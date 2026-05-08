@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一代宗師 / The Grandmaster — Script</title>
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8cc82;
+    --ink: #1a1a1a;
+    --paper: #f5f0e8;
+    --muted: #6b6459;
+    --border: #d4c9b0;
+    --active-bg: #2a2520;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Georgia', 'Noto Serif SC', serif;
+    background: var(--ink);
+    color: var(--paper);
+    min-height: 100vh;
+  }
+
+  /* ─── Header ─── */
+  header {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    border-bottom: 1px solid #333;
+  }
+  header h1 {
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    font-weight: normal;
+  }
+  header .subtitle {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ─── Layout ─── */
+  .layout {
+    display: flex;
+    min-height: calc(100vh - 140px);
+  }
+
+  /* ─── Sidebar ─── */
+  aside {
+    width: 260px;
+    flex-shrink: 0;
+    border-right: 1px solid #2d2d2d;
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 140px);
+    overflow-y: auto;
+    background: #111;
+  }
+
+  aside h2 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    padding: 0 1.2rem 0.6rem;
+  }
+
+  .filter-section { margin-bottom: 1.5rem; }
+
+  .filter-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.45rem 1.2rem;
+    font-family: inherit;
+    font-size: 0.82rem;
+    color: #888;
+    transition: color 0.15s, background 0.15s;
+  }
+  .filter-btn:hover { color: var(--gold-light); background: #1a1a1a; }
+  .filter-btn.active { color: var(--gold); background: #1e1c18; }
+  .filter-btn .tag {
+    float: right;
+    font-size: 0.7rem;
+    color: #555;
+    margin-top: 1px;
+  }
+  .filter-btn.active .tag { color: var(--gold); opacity: 0.7; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #222;
+    margin: 0.8rem 1.2rem;
+  }
+
+  /* Scene list in sidebar */
+  .scene-list-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    padding: 0 1.2rem 0.5rem;
+  }
+  .scene-jump {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem 1.2rem;
+    font-family: inherit;
+    font-size: 0.78rem;
+    color: #666;
+    transition: color 0.15s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .scene-jump:hover { color: var(--gold-light); }
+  .scene-jump.hidden { display: none; }
+
+  /* ─── Main content ─── */
+  main {
+    flex: 1;
+    padding: 2rem 3rem;
+    max-width: 820px;
+  }
+
+  /* Timeline strip */
+  .timeline {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .year-pill {
+    padding: 0.25rem 0.7rem;
+    border: 1px solid #333;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: none;
+    font-family: inherit;
+  }
+  .year-pill:hover { border-color: var(--gold); color: var(--gold-light); }
+  .year-pill.active { border-color: var(--gold); color: var(--gold); background: #1e1c18; }
+  .year-pill.all { color: var(--muted); }
+
+  /* Results info */
+  .results-info {
+    font-size: 0.75rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* Scene card */
+  .scene-card {
+    margin-bottom: 2.5rem;
+    border-left: 2px solid #2a2a2a;
+    padding-left: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .scene-card:hover { border-color: var(--gold); }
+  .scene-card.hidden { display: none; }
+
+  .scene-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .scene-num {
+    font-size: 0.7rem;
+    color: #444;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .location-badge {
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border: 1px solid #333;
+    border-radius: 3px;
+    color: var(--muted);
+  }
+  .year-badge {
+    font-size: 0.72rem;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  /* Lines */
+  .line {
+    margin-bottom: 1.2rem;
+  }
+  .speaker {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #555;
+    margin-bottom: 0.25rem;
+  }
+  .zh {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #ddd;
+    margin-bottom: 0.2rem;
+  }
+  .en {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #777;
+    font-style: italic;
+  }
+
+  /* Empty state */
+  .empty {
+    display: none;
+    color: #444;
+    font-size: 0.9rem;
+    padding: 3rem 0;
+    text-align: center;
+  }
+  .empty.visible { display: block; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 700px) {
+    .layout { flex-direction: column; }
+    aside {
+      width: 100%;
+      height: auto;
+      position: static;
+      border-right: none;
+      border-bottom: 1px solid #2d2d2d;
+      padding: 1rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .filter-section { flex: 1; min-width: 140px; }
+    .scene-list-section { display: none; }
+    main { padding: 1.5rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>一代宗師 &nbsp;/&nbsp; The Grandmaster</h1>
+  <p class="subtitle">Script &nbsp;·&nbsp; 劇本</p>
+</header>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside id="sidebar">
+
+    <!-- Location filter -->
+    <div class="filter-section">
+      <h2>Location &nbsp;地點</h2>
+      <button class="filter-btn active" data-loc="all">All <span class="tag" id="loc-all-count"></span></button>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Scene jump list -->
+    <div class="scene-list-section">
+      <div class="scene-list-label">Scenes &nbsp;場景</div>
+      <div id="scene-jump-list"></div>
+    </div>
+
+  </aside>
+
+  <!-- Main -->
+  <main>
+
+    <!-- Timeline -->
+    <div class="timeline" id="timeline">
+      <button class="year-pill all active" data-year="all">All</button>
+    </div>
+
+    <div class="results-info" id="results-info"></div>
+
+    <!-- Scene cards -->
+    <div id="scenes-container"></div>
+    <div class="empty" id="empty-state">No scenes match the current filter.</div>
+
+  </main>
+</div>
+
+<script>
+const DATA_URL = 'script.json';
+
+fetch(DATA_URL)
+  .then(r => r.json())
+  .then(init);
+
+function init(data) {
+  const scenes = data.scenes;
+
+  // ── Collect unique years & locations ──
+  const years = [...new Set(scenes.map(s => s.year).filter(Boolean))].sort((a,b)=>a-b);
+  const locations = [...new Set(scenes.map(s => s.location).filter(Boolean))].sort();
+
+  // ── Build timeline year pills ──
+  const timeline = document.getElementById('timeline');
+  years.forEach(y => {
+    const btn = document.createElement('button');
+    btn.className = 'year-pill';
+    btn.dataset.year = y;
+    btn.textContent = y;
+    timeline.appendChild(btn);
+  });
+
+  // ── Build location filter buttons ──
+  const sidebar = document.getElementById('sidebar').querySelector('.filter-section');
+  locations.forEach(loc => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.dataset.loc = loc;
+    const locEn = loc; // already has Chinese
+    btn.innerHTML = `${loc} <span class="tag"></span>`;
+    sidebar.appendChild(btn);
+  });
+
+  // ── Build scene cards ──
+  const container = document.getElementById('scenes-container');
+  const jumpList = document.getElementById('scene-jump-list');
+
+  scenes.forEach((scene, i) => {
+    // Card
+    const card = document.createElement('div');
+    card.className = 'scene-card';
+    card.id = `scene-${scene.scene}`;
+    card.dataset.year = scene.year || 'unknown';
+    card.dataset.loc = scene.location || '';
+
+    const yearText = scene.year ? `<span class="year-badge">${scene.year}</span>` : '';
+    const locText = scene.location ? `<span class="location-badge">${scene.location}</span>` : '';
+
+    const linesHtml = scene.lines.map(line => {
+      const spk = line.speaker
+        ? `<div class="speaker">${line.speaker}</div>`
+        : '';
+      return `<div class="line">${spk}<div class="zh">${line.zh}</div><div class="en">${line.en}</div></div>`;
+    }).join('');
+
+    card.innerHTML = `
+      <div class="scene-meta">
+        <span class="scene-num">Scene ${scene.scene}</span>
+        ${locText}
+        ${yearText}
+      </div>
+      ${linesHtml}
+    `;
+    container.appendChild(card);
+
+    // Sidebar jump link
+    const firstZh = scene.lines[0]?.zh?.slice(0, 18) || '…';
+    const jump = document.createElement('button');
+    jump.className = 'scene-jump';
+    jump.dataset.scene = scene.scene;
+    jump.textContent = `${scene.scene}. ${firstZh}`;
+    jump.addEventListener('click', () => {
+      document.getElementById(`scene-${scene.scene}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    jumpList.appendChild(jump);
+  });
+
+  // ── Filter state ──
+  let activeYear = 'all';
+  let activeLoc = 'all';
+
+  function applyFilters() {
+    const cards = document.querySelectorAll('.scene-card');
+    const jumps = document.querySelectorAll('.scene-jump');
+    let visible = 0;
+
+    cards.forEach((card, i) => {
+      const yearMatch = activeYear === 'all' || card.dataset.year == activeYear;
+      const locMatch = activeLoc === 'all' || card.dataset.loc === activeLoc;
+      const show = yearMatch && locMatch;
+      card.classList.toggle('hidden', !show);
+      if (jumps[i]) jumps[i].classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+
+    document.getElementById('results-info').textContent =
+      `${visible} of ${scenes.length} scenes`;
+
+    document.getElementById('empty-state').classList.toggle('visible', visible === 0);
+
+    // Update location counts
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      const loc = btn.dataset.loc;
+      const tagEl = btn.querySelector('.tag');
+      if (!tagEl) return;
+      if (loc === 'all') {
+        tagEl.textContent = scenes.filter(s =>
+          activeYear === 'all' || s.year == activeYear
+        ).length;
+      } else {
+        tagEl.textContent = scenes.filter(s =>
+          (activeYear === 'all' || s.year == activeYear) && s.location === loc
+        ).length;
+      }
+    });
+  }
+
+  // ── Year pill clicks ──
+  timeline.addEventListener('click', e => {
+    const btn = e.target.closest('.year-pill');
+    if (!btn) return;
+    activeYear = btn.dataset.year;
+    document.querySelectorAll('.year-pill').forEach(b => b.classList.toggle('active', b === btn));
+    applyFilters();
+  });
+
+  // ── Location filter clicks ──
+  document.getElementById('sidebar').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    activeLoc = btn.dataset.loc;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+    applyFilters();
+  });
+
+  // ── Initial render ──
+  applyFilters();
+}
+</script>
+</body>
+</html>
