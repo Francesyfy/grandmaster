@@ -271,9 +271,17 @@
   <aside id="sidebar">
 
     <!-- Location filter -->
-    <div class="filter-section">
+    <div class="filter-section" id="loc-filter-section">
       <h2>Location &nbsp;地點</h2>
-      <button class="filter-btn active" data-loc="all">All <span class="tag" id="loc-all-count"></span></button>
+      <button class="filter-btn active" data-filter="loc" data-loc="all">All <span class="tag" id="loc-all-count"></span></button>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Character filter -->
+    <div class="filter-section" id="spk-filter-section">
+      <h2>Character &nbsp;人物</h2>
+      <button class="filter-btn active" data-filter="spk" data-spk="all">All <span class="tag" id="spk-all-count"></span></button>
     </div>
 
     <hr class="divider">
@@ -313,9 +321,23 @@ fetch(DATA_URL)
 function init(data) {
   const scenes = data.scenes;
 
-  // ── Collect unique years & locations ──
+  const LOC_ORDER = ['佛山', '东北', '香港', '未知'];
+
+  function splitAmp(str) {
+    return str ? str.split(/\s*&\s*/).map(s => s.trim()).filter(Boolean) : [];
+  }
+
+  // ── Enrich scenes with parsed locs/speakers ──
+  scenes.forEach(s => {
+    s._locs = s.location ? splitAmp(s.location) : ['未知'];
+    s._speakers = [...new Set(s.lines.flatMap(l => splitAmp(l.speaker)))];
+  });
+
+  // ── Collect unique years, locations, speakers ──
   const years = [...new Set(scenes.map(s => s.year).filter(Boolean))].sort((a,b)=>a-b);
-  const locations = [...new Set(scenes.map(s => s.location).filter(Boolean))].sort();
+  const allLocs = [...new Set(scenes.flatMap(s => s._locs))];
+  const locations = LOC_ORDER.filter(l => allLocs.includes(l));
+  const speakers = [...new Set(scenes.flatMap(s => s._speakers))].sort();
 
   // ── Build timeline year pills ──
   const timeline = document.getElementById('timeline');
@@ -328,14 +350,25 @@ function init(data) {
   });
 
   // ── Build location filter buttons ──
-  const sidebar = document.getElementById('sidebar').querySelector('.filter-section');
+  const locSection = document.getElementById('loc-filter-section');
   locations.forEach(loc => {
     const btn = document.createElement('button');
     btn.className = 'filter-btn';
+    btn.dataset.filter = 'loc';
     btn.dataset.loc = loc;
-    const locEn = loc; // already has Chinese
     btn.innerHTML = `${loc} <span class="tag"></span>`;
-    sidebar.appendChild(btn);
+    locSection.appendChild(btn);
+  });
+
+  // ── Build speaker filter buttons ──
+  const spkSection = document.getElementById('spk-filter-section');
+  speakers.forEach(spk => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.dataset.filter = 'spk';
+    btn.dataset.spk = spk;
+    btn.innerHTML = `${spk} <span class="tag"></span>`;
+    spkSection.appendChild(btn);
   });
 
   // ── Build scene cards ──
@@ -343,15 +376,15 @@ function init(data) {
   const jumpList = document.getElementById('scene-jump-list');
 
   scenes.forEach((scene, i) => {
-    // Card
     const card = document.createElement('div');
     card.className = 'scene-card';
     card.id = `scene-${scene.scene}`;
     card.dataset.year = scene.year || 'unknown';
-    card.dataset.loc = scene.location || '';
+    card.dataset.locs = scene._locs.join('|');
+    card.dataset.speakers = scene._speakers.join('|');
 
     const yearText = scene.year ? `<span class="year-badge">${scene.year}</span>` : '';
-    const locText = scene.location ? `<span class="location-badge">${scene.location}</span>` : '';
+    const locBadges = scene._locs.map(l => `<span class="location-badge">${l}</span>`).join('');
 
     const linesHtml = scene.lines.map(line => {
       const spk = line.speaker
@@ -363,14 +396,13 @@ function init(data) {
     card.innerHTML = `
       <div class="scene-meta">
         <span class="scene-num">Scene ${scene.scene}</span>
-        ${locText}
+        ${locBadges}
         ${yearText}
       </div>
       ${linesHtml}
     `;
     container.appendChild(card);
 
-    // Sidebar jump link
     const firstZh = scene.lines[0]?.zh?.slice(0, 18) || '…';
     const jump = document.createElement('button');
     jump.className = 'scene-jump';
@@ -385,6 +417,14 @@ function init(data) {
   // ── Filter state ──
   let activeYear = 'all';
   let activeLoc = 'all';
+  let activeSpk = 'all';
+
+  function sceneMatchesFilters(scene, card) {
+    const yearMatch = activeYear === 'all' || card.dataset.year == activeYear;
+    const locMatch = activeLoc === 'all' || card.dataset.locs.split('|').includes(activeLoc);
+    const spkMatch = activeSpk === 'all' || card.dataset.speakers.split('|').includes(activeSpk);
+    return yearMatch && locMatch && spkMatch;
+  }
 
   function applyFilters() {
     const cards = document.querySelectorAll('.scene-card');
@@ -392,9 +432,7 @@ function init(data) {
     let visible = 0;
 
     cards.forEach((card, i) => {
-      const yearMatch = activeYear === 'all' || card.dataset.year == activeYear;
-      const locMatch = activeLoc === 'all' || card.dataset.loc === activeLoc;
-      const show = yearMatch && locMatch;
+      const show = sceneMatchesFilters(scenes[i], card);
       card.classList.toggle('hidden', !show);
       if (jumps[i]) jumps[i].classList.toggle('hidden', !show);
       if (show) visible++;
@@ -402,23 +440,32 @@ function init(data) {
 
     document.getElementById('results-info').textContent =
       `${visible} of ${scenes.length} scenes`;
-
     document.getElementById('empty-state').classList.toggle('visible', visible === 0);
 
     // Update location counts
-    document.querySelectorAll('.filter-btn').forEach(btn => {
+    document.querySelectorAll('#loc-filter-section .filter-btn').forEach(btn => {
       const loc = btn.dataset.loc;
       const tagEl = btn.querySelector('.tag');
       if (!tagEl) return;
-      if (loc === 'all') {
-        tagEl.textContent = scenes.filter(s =>
-          activeYear === 'all' || s.year == activeYear
-        ).length;
-      } else {
-        tagEl.textContent = scenes.filter(s =>
-          (activeYear === 'all' || s.year == activeYear) && s.location === loc
-        ).length;
-      }
+      tagEl.textContent = scenes.filter((s, i) => {
+        const yearOk = activeYear === 'all' || s.year == activeYear;
+        const spkOk = activeSpk === 'all' || s._speakers.includes(activeSpk);
+        const locOk = loc === 'all' ? true : s._locs.includes(loc);
+        return yearOk && spkOk && locOk;
+      }).length;
+    });
+
+    // Update speaker counts
+    document.querySelectorAll('#spk-filter-section .filter-btn').forEach(btn => {
+      const spk = btn.dataset.spk;
+      const tagEl = btn.querySelector('.tag');
+      if (!tagEl) return;
+      tagEl.textContent = scenes.filter(s => {
+        const yearOk = activeYear === 'all' || s.year == activeYear;
+        const locOk = activeLoc === 'all' || s._locs.includes(activeLoc);
+        const spkOk = spk === 'all' ? true : s._speakers.includes(spk);
+        return yearOk && locOk && spkOk;
+      }).length;
     });
   }
 
@@ -432,11 +479,20 @@ function init(data) {
   });
 
   // ── Location filter clicks ──
-  document.getElementById('sidebar').addEventListener('click', e => {
+  document.getElementById('loc-filter-section').addEventListener('click', e => {
     const btn = e.target.closest('.filter-btn');
     if (!btn) return;
     activeLoc = btn.dataset.loc;
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('#loc-filter-section .filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+    applyFilters();
+  });
+
+  // ── Speaker filter clicks ──
+  document.getElementById('spk-filter-section').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    activeSpk = btn.dataset.spk;
+    document.querySelectorAll('#spk-filter-section .filter-btn').forEach(b => b.classList.toggle('active', b === btn));
     applyFilters();
   });
 
