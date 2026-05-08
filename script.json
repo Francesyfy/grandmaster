@@ -20,7 +20,7 @@
           "speaker": "葉問 / Ip Man"
         }
       ],
-      "location": "香港",
+      "location": null,
       "year": null
     },
     {
@@ -156,7 +156,7 @@
         }
       ],
       "location": null,
-      "year": null
+      "year": 1936
     },
     {
       "scene": 6,
@@ -861,7 +861,7 @@
         }
       ],
       "location": null,
-      "year": null
+      "year": 1938
     },
     {
       "scene": 25,
@@ -942,10 +942,22 @@
           "zh": "揍他娘的小日本。窯姐兒要聽老鴇的，混道的要聽大爺的。孫中山是咱大爺的，凡事他說了算。南粵子弟火氣旺，知榮辱。孫子才不敢打日本鬼子呢！來一個殺一個！",
           "en": "China will never die! Girls obey their Madam. Gangsters obey their boss. Our boss was Sun Yat-sen. We followed his orders. We Southerners have fire in our bellies and a sense of honor. Only cowards fear the Japs. I'll kill any I see!",
           "speaker": "燈叔 / Uncle Deng"
+        }
+      ],
+      "location": "佛山",
+      "year": null
+    },
+    {
+      "scene": -1,
+      "lines": [
+        {
+          "zh": "一九三八年，燈叔死于日軍大轟炸，金樓被漢奸接管。",
+          "en": "1938. Uncle Deng died in a Japanese bombardment. Collaborators took over the Gold Pavilion.",
+          "speaker": ""
         },
         {
-          "zh": "一九三八年，燈叔死于日軍大轟炸，金樓被漢奸接管。最後是我的家人。",
-          "en": "1938. Uncle Deng died in a Japanese bombardment. Collaborators took over the Gold Pavilion. Finally, I lost my family.",
+          "zh": "最後是我的家人。",
+          "en": "Finally, I lost my family.",
           "speaker": "葉問 / Ip Man"
         },
         {
@@ -963,7 +975,7 @@
         {
           "zh": "坐下不要動！你們去哪裡的？把身分證拿出來，快點。拿出來。去哪裏？快拿出證件。站住！",
           "en": "No one move! Where are you going? Show your IDs! Hurry. IDs! Where are you going? IDs! Halt!",
-          "speaker": ""
+          "speaker": "眾人 / Crowd"
         }
       ],
       "location": "东北",
@@ -979,7 +991,7 @@
         }
       ],
       "location": null,
-      "year": null
+      "year": 1939
     },
     {
       "scene": -1,
@@ -991,7 +1003,7 @@
         }
       ],
       "location": null,
-      "year": null
+      "year": 1940
     },
     {
       "scene": 29,
@@ -1063,12 +1075,12 @@
         {
           "zh": "聽說您回來。東北的同門同道都到了。三爺五爺從關內趕來。老薑呢？",
           "en": "The whole clan heard you were coming and raced in from all over. And Jiang?",
-          "speaker": "眾人 / Crowd"
+          "speaker": "宮寶森手下 / Gong Yutian's man"
         },
         {
           "zh": "薑叔在裡面陪著老爺。",
           "en": "He's keeping them company.",
-          "speaker": "眾人 / Crowd"
+          "speaker": "宮寶森手下 / Gong Yutian's man"
         },
         {
           "zh": "姑娘，大夥都等著您拿主意呢！",
@@ -1129,17 +1141,17 @@
         {
           "zh": "西方正路，諸神引領。",
           "en": "Oh ye gods and spirits guide this soul to Paradise!",
-          "speaker": "眾人 / Crowd"
+          "speaker": "宮寶森手下 / Gong Yutian's man"
         },
         {
           "zh": "停！不能停！閃開。大路通天，各走一邊。閃開！",
           "en": "Halt! We mustn't stop! Don't block the road. Keep to the side. Move!",
-          "speaker": "眾人 / Crowd"
+          "speaker": "宮寶森手下 / Gong Yutian's man"
         },
         {
           "zh": "奉家師馬三爺之命，送師爺一程。",
           "en": "Ma San ordered us to escort the body.",
-          "speaker": "眾人 / Crowd"
+          "speaker": "馬三手下 / Ma San's man"
         },
         {
           "zh": "二小姐，馬三的人，把路給攔上了。說是來給送挽幛。這不是搗亂嗎？二小姐，這人等時辰，時辰可不能等人吶。",
@@ -1154,7 +1166,7 @@
         {
           "zh": "西方正路，諸神引領。",
           "en": "Oh ye gods and spirits ...guide this soul to Paradise!",
-          "speaker": "眾人 / Crowd"
+          "speaker": "宮寶森手下 / Gong Yutian's man"
         }
       ],
       "location": "东北",
@@ -1167,7 +1179,7 @@
         {
           "zh": "來人吶，把她給我攔住。攔住她，給我上。",
           "en": "They're here. Stop her. Keep her back. Let me at her. Stop her.",
-          "speaker": "眾人 / Crowd"
+          "speaker": "馬三手下 / Ma San's man"
         },
         {
           "zh": "除了馬三，其他人都給我讓開。我敬你是師兄，不闖你屋子。可你得想清楚了，這道簾子擋不了你一輩子。我今天是要拿回宮家的東西。你出來！",
@@ -1216,7 +1228,7 @@
         }
       ],
       "location": null,
-      "year": null
+      "year": 1950
     },
     {
       "scene": 35,
@@ -1370,25 +1382,13 @@
       "scene": -1,
       "lines": [
         {
-          "zh": "",
-          "en": "In exile in Hong Kong, The Razor ran the White Rose Barber Shop.",
-          "speaker": ""
-        }
-      ],
-      "location": null,
-      "year": null
-    },
-    {
-      "scene": -1,
-      "lines": [
-        {
           "zh": "一九五Ｏ年 大年夜·香港",
           "en": "1950. Chinese New Year's Eve. Hong Kong",
           "speaker": ""
         }
       ],
       "location": null,
-      "year": null
+      "year": 1950
     },
     {
       "scene": 38,
@@ -1471,7 +1471,7 @@
         }
       ],
       "location": "香港",
-      "year": null
+      "year": 1950
     },
     {
       "scene": -1,
@@ -1483,7 +1483,7 @@
         }
       ],
       "location": null,
-      "year": null
+      "year": 1940
     },
     {
       "scene": 41,
@@ -1586,7 +1586,7 @@
         }
       ],
       "location": null,
-      "year": null
+      "year": 1952
     },
     {
       "scene": 44,
@@ -1656,7 +1656,7 @@
         }
       ],
       "location": null,
-      "year": null
+      "year": 1952
     },
     {
       "scene": 45,
@@ -1768,7 +1768,7 @@
         }
       ],
       "location": null,
-      "year": null
+      "year": 1953
     },
     {
       "scene": 49,
@@ -1807,18 +1807,6 @@
           "speaker": "葉問 / Ip Man"
         }
       ],
-      "location": "香港",
-      "year": null
-    },
-    {
-      "scene": -1,
-      "lines": [
-        {
-          "zh": "",
-          "en": "1953. Ip Man gets his Hong Kong ID after the border to China is shut.",
-          "speaker": ""
-        }
-      ],
       "location": null,
       "year": null
     },
@@ -1842,7 +1830,7 @@
         }
       ],
       "location": "佛山",
-      "year": null
+      "year": 1950
     },
     {
       "scene": 52,
@@ -1855,7 +1843,7 @@
         }
       ],
       "location": null,
-      "year": null
+      "year": 1960
     },
     {
       "scene": -1,
@@ -1878,7 +1866,7 @@
           "speaker": "宮二 / Gong Er"
         }
       ],
-      "location": "香港",
+      "location": null,
       "year": null
     },
     {
@@ -1891,7 +1879,7 @@
           "speaker": "葉問 / Ip Man"
         }
       ],
-      "location": "香港",
+      "location": null,
       "year": null
     },
     {
