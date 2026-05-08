@@ -313,8 +313,8 @@
 <body>
 
 <header>
-  <h1>一代宗師 &nbsp;/&nbsp; The Grandmaster</h1>
-  <p class="subtitle">Script &nbsp;·&nbsp; 劇本</p>
+  <h1>一代宗師 &nbsp;/&nbsp; THE GRANDMASTER</h1>
+  <p class="subtitle">2013 &nbsp; 王家衛·梁朝偉·章子怡</p>
 </header>
 
 <div class="layout">
@@ -437,9 +437,10 @@ function init(data) {
   const jumpList = document.getElementById('scene-jump-list');
 
   scenes.forEach((scene, i) => {
+    const num = i + 1;
     const card = document.createElement('div');
     card.className = 'scene-card';
-    card.id = `scene-${scene.scene}`;
+    card.id = `scene-${num}`;
     card.dataset.year = scene.year || 'unknown';
     card.dataset.locs = scene._locs.join('|');
     card.dataset.speakers = scene._speakers.join('|');
@@ -456,7 +457,7 @@ function init(data) {
 
     card.innerHTML = `
       <div class="scene-meta">
-        <span class="scene-num">Scene ${scene.scene}</span>
+        <span class="scene-num">Scene ${num}</span>
         ${locBadges}
         ${yearText}
       </div>
@@ -467,10 +468,10 @@ function init(data) {
     const firstZh = scene.lines[0]?.zh?.slice(0, 18) || '…';
     const jump = document.createElement('button');
     jump.className = 'scene-jump';
-    jump.dataset.scene = scene.scene;
-    jump.textContent = `${scene.scene}. ${firstZh}`;
+    jump.dataset.scene = num;
+    jump.textContent = `${num}. ${firstZh}`;
     jump.addEventListener('click', () => {
-      document.getElementById(`scene-${scene.scene}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById(`scene-${num}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
     jumpList.appendChild(jump);
   });
