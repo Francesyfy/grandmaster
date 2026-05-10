@@ -702,7 +702,28 @@
         {
           "zh": "其實天下之大，又何止南北？勉強求全等於固步自封。在你眼中這塊餅是一個武林，對我來講是一個世界。所謂大成若缺，有缺憾才能有進步。真管用的話，南拳又何止北傳呐。你說對嗎？",
           "en": "The world is a big place. Why limit it to North and South? It holds you back. To you, this cake is the country. To me it's much more. Break from what you know and you will know more. If the Southern arts go far, what boundary is the North? Would you agree?",
-          "speaker": "葉問 / Ip Man"
+          "speaker": "葉問 / Ip Man",
+          "annotation": {
+            "headline": "大成若缺 — The Daodejing's Paradox of Completion",
+            "explanation": "Ip Man's line 所謂大成若缺，有缺憾才能有進步 is a direct quotation from Daodejing Chapter 45: 大成若缺，其用不弊 — \"The greatest completion appears incomplete; its use is never exhausted.\" The paradox is Daoist: a vessel that declares itself full cannot receive anything more; a martial art that believes itself perfected has begun its decline. Ip Man uses this to argue that the wider world — not just the martial world — is the proper frame, and that admitting incompleteness is itself the sign of deeper understanding.\n\nThe line also contains 固步自封 — a Confucian idiom meaning \"to seal oneself within one's own footsteps.\" It describes the paralysis of any tradition that grows too attached to its own past forms, mistaking preservation for vitality. The entire passage — the cake, the north/south division, the Daodejing reference — argues that the martial world (武林) and the wider world are not separate realms, and that clinging to the boundary between them is itself the defeat.",
+            "key_terms": [
+              {
+                "zh": "大成若缺",
+                "pinyin": "dà chéng ruò quē",
+                "meaning": "The greatest completion appears incomplete — Daodejing Ch. 45"
+              },
+              {
+                "zh": "固步自封",
+                "pinyin": "gù bù zì fēng",
+                "meaning": "To seal oneself within one's own footsteps; self-imposed stagnation"
+              },
+              {
+                "zh": "武林",
+                "pinyin": "wǔ lín",
+                "meaning": "The martial world — a distinct cultural sphere with its own codes and hierarchy"
+              }
+            ]
+          }
         },
         {
           "zh": "說得好！宮某羸了一輩子，沒有輸在武功上。沒成想，輸在了想法。葉先生，今日我把名聲送給你。往後的路，你是一步一擂臺。希望你像我一樣。憑一口氣點一盞燈。要知道念念不忘，必有迴響。有燈就有人！",
@@ -823,12 +844,49 @@
         {
           "zh": "葉底藏花一度，夢裡踏雪幾回。",
           "en": "I dream of seeing the 64 Hands again in the snow.",
-          "speaker": "葉問 / Ip Man"
+          "speaker": "葉問 / Ip Man",
+          "annotation": {
+            "headline": "葉底藏花 — Classical Verse and the Aesthetic of Concealment",
+            "explanation": "This line is written in classical shi poetry register — not conversational Mandarin, but a literary mode immediately legible to educated audiences in Republican-era China as belonging to the world of opera and classical verse. 葉底藏花一度，夢裡踏雪幾回: \"Once, a flower hidden beneath the leaf. How many times, walking in snow within a dream.\"\n\n葉底藏花 (flower hidden beneath the leaf) is a classical Chinese aesthetic principle — the most beautiful things are concealed, not displayed. It also names one of the 64 Hands of the Gong family style, so the phrase carries both poetic and martial meaning simultaneously. 踏雪 (treading snow) is a classical image of solitary longing across great distance and time. The English subtitle \"I dream of seeing the 64 Hands again in the snow\" captures the surface image but loses the layered aesthetic and martial resonance of the original.",
+            "key_terms": [
+              {
+                "zh": "葉底藏花",
+                "pinyin": "yè dǐ cáng huā",
+                "meaning": "Flower hidden beneath the leaf — concealed beauty; also a name for one of the Gong family's 64 Hands"
+              },
+              {
+                "zh": "踏雪",
+                "pinyin": "tà xuě",
+                "meaning": "Treading snow — a classical image of solitary longing and distance"
+              },
+              {
+                "zh": "幾回",
+                "pinyin": "jǐ huí",
+                "meaning": "How many times — a lament of recurrence, not a simple question"
+              }
+            ]
+          }
         },
         {
           "zh": "一約既訂，萬里無阻。",
           "en": "I'm waiting. What's keeping you?",
-          "speaker": "宮二 / Gong Er"
+          "speaker": "宮二 / Gong Er",
+          "annotation": {
+            "headline": "一約既訂 — The Language of Fate",
+            "explanation": "This is the formal register of classical oath and opera — not conversational Chinese. 一約 (one vow), 既訂 (once established, sealed), 萬里無阻 (ten thousand li cannot obstruct). 萬里 is the classical unit of vast, near-mythic distance — it evokes 萬里長城 and the heroic journeys of classical narrative. To say \"ten thousand li cannot obstruct\" is not optimism; it is a metaphysical assertion. The vow exists on a plane where geography and time are irrelevant.\n\nThe English subtitle \"I'm waiting. What's keeping you?\" deflates this entirely into casual impatience — a complete register collapse from the formal language of fate into an offhand conversational question.",
+            "key_terms": [
+              {
+                "zh": "一約既訂",
+                "pinyin": "yī yuē jì dìng",
+                "meaning": "Once a vow is established — sealed on a different ontological plane from ordinary speech"
+              },
+              {
+                "zh": "萬里無阻",
+                "pinyin": "wàn lǐ wú zǔ",
+                "meaning": "Ten thousand li cannot obstruct — mythic distance made irrelevant by the force of a vow"
+              }
+            ]
+          }
         }
       ],
       "location": "佛山 & 东北",
@@ -1741,7 +1799,28 @@
         {
           "zh": "我爹常說，習武之人有三個階段，見自己，見天地，見眾生。我見過自己，也算見過天地，可惜見不到眾生。這條路，我沒走完。希望你能把它走下去。",
           "en": "My father said mastery had three stages — being, knowing, doing. I know myself. I've seen the world. Sadly, I can't pass on what I know. This is a road I won't see to the end. I hope you will.",
-          "speaker": "宮二 / Gong Er"
+          "speaker": "宮二 / Gong Er",
+          "annotation": {
+            "headline": "見自己，見天地，見眾生 — Three Stages of Buddhist Awakening",
+            "explanation": "The English subtitle translates this as \"being, knowing, doing\" — a near-inversion of the original. This is not a pragmatic framework for skill development. It is a Buddhist progression of awakening, moving outward from the self toward all of existence.\n\n見自己 — to truly see oneself — is the first stage: stripping away illusion and attachment to arrive at genuine self-knowledge, what Buddhism calls 自我認知 or the beginning of insight practice. 見天地 — to see heaven and earth — is the second: transcending individual perspective and perceiving the universal order. In Chinese thought, 天地 is not merely \"nature\" or the physical world; it is the entire cosmic structure, the interplay of forces that holds all things in relation.\n\n見眾生 — to see all sentient beings — is the highest stage: the bodhisattva ideal. In Mahayana Buddhism, enlightenment achieved only for oneself is considered incomplete; the fullest awakening includes recognition of and compassion for all living beings (眾生, a specifically Buddhist term for all sentient life). Gong Er says she has reached the first two stages but not the third — 我見過自己，也算見過天地，可惜見不到眾生 — and this admission is one of the most quietly devastating moments in the film. She has given everything to martial arts and personal honor, but the path toward universal compassion remains unwalked.",
+            "key_terms": [
+              {
+                "zh": "見",
+                "pinyin": "jiàn",
+                "meaning": "To see, to awaken to — not merely visual perception but genuine recognition"
+              },
+              {
+                "zh": "天地",
+                "pinyin": "tiān dì",
+                "meaning": "Heaven and earth — the entire cosmic order, not just the natural world"
+              },
+              {
+                "zh": "眾生",
+                "pinyin": "zhòng shēng",
+                "meaning": "All sentient beings — a Mahayana Buddhist term; compassion for 眾生 is the bodhisattva ideal"
+              }
+            ]
+          }
         },
         {
           "zh": "一眼看上去，這不就是一個武林嗎？",
@@ -1821,7 +1900,28 @@
         {
           "zh": "郎心自有一雙腳，隔江隔海會歸來。",
           "en": "My heart will carry me back to you.",
-          "speaker": ""
+          "speaker": "",
+          "annotation": {
+            "headline": "郎心自有一雙腳 — A Classical Promise Against History",
+            "explanation": "This is Ip Man narrating his departure from Foshan and his wife Zhang Yongcheng (張永成), whom he left behind when he fled to Hong Kong. He quotes a line from classical Chinese folk song and opera tradition: 郎心自有一雙腳，隔江隔海會歸來 — \"The heart of a beloved has its own two feet; separated by rivers and seas, it will return.\"\n\n郎 (láng) is the classical poetic term for a young man or beloved, common in Tang dynasty verse and operatic tradition. 隔江隔海 — \"separated by rivers and seas\" — is a classical formula for the most immense distance imaginable, invoking both geographic reality and poetic convention. 會歸來 — \"will return\" — is stated with the certainty of a promise, not the tentativeness of a hope.\n\nThe devastation comes in the very next lines: 我踏出這一步的時候，我以為有一天我還會回來，沒想到那次是最後一面 — \"When I took that step, I believed I would return one day. I did not know it was the last time I would see her.\" Ip Man believed the classical verse. History made it false. The poem that had sustained generations could not hold against the Japanese invasion and the civil war.",
+            "key_terms": [
+              {
+                "zh": "郎",
+                "pinyin": "láng",
+                "meaning": "A beloved young man — classical poetic term used in Tang verse and opera"
+              },
+              {
+                "zh": "隔江隔海",
+                "pinyin": "gé jiāng gé hǎi",
+                "meaning": "Separated by rivers and seas — a classical formula for mythic distance"
+              },
+              {
+                "zh": "張永成",
+                "pinyin": "Zhāng Yǒngchéng",
+                "meaning": "Ip Man's wife, left in Foshan; they never reunited"
+              }
+            ]
+          }
         },
         {
           "zh": "我踏出這一步的時候，我以為有一天我還會回來，沒想到那次是最後一面。從此我只有眼前路，沒有身後身，回頭無岸。",
