@@ -20,7 +20,6 @@
 
   html, body {
     height: 100%;
-    overflow: hidden;
   }
 
   body {
@@ -67,12 +66,6 @@
     letter-spacing: 0.08em;
   }
 
-  .top-venue {
-    font-size: 0.68rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-  }
-
   .top-center {
     text-align: center;
   }
@@ -91,36 +84,6 @@
     font-style: italic;
     letter-spacing: 0.03em;
     margin-top: 0.2rem;
-  }
-
-  .top-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-
-  .top-nav-btn {
-    background: none;
-    border: none;
-    color: var(--gold);
-    cursor: pointer;
-    font-size: 0.9rem;
-    padding: 0.2rem 0.3rem;
-    transition: color 0.15s;
-    font-family: inherit;
-  }
-  .top-nav-btn:hover { color: var(--gold-light); }
-  .top-nav-btn:disabled { color: var(--dim); cursor: default; }
-
-  .top-nav-sep { color: var(--dim); }
-
-  .top-nav-label {
-    color: var(--muted);
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
   }
 
   /* ─── Layout ─── */
@@ -407,60 +370,10 @@
     z-index: 0;
   }
 
-  /* ─── Bottom bar ─── */
-  .bottom-bar {
-    height: 44px;
-    border-top: 1px solid var(--border);
-    flex-shrink: 0;
-    display: grid;
-    grid-template-columns: 80px 1fr 80px;
-    align-items: center;
-    padding: 0 1.5rem;
-    gap: 1rem;
+  /* ─── Scene card (in scroll mode) ─── */
+  .scene-card {
+    margin-bottom: 3.5rem;
   }
-
-  .bottom-counter {
-    font-size: 0.65rem;
-    color: #2e2e2e;
-    letter-spacing: 0.08em;
-  }
-
-  .bottom-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.9rem;
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-
-  .bottom-nav-btn {
-    background: none;
-    border: none;
-    color: var(--gold-dim);
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 0.78rem;
-    padding: 0.1rem;
-    transition: color 0.15s;
-  }
-  .bottom-nav-btn:hover { color: var(--gold-light); }
-  .bottom-nav-btn:disabled { color: #252525; cursor: default; }
-
-  .bottom-nav-scene {
-    color: var(--muted);
-    cursor: pointer;
-    transition: color 0.15s;
-  }
-  .bottom-nav-scene:hover { color: var(--gold-light); }
-
-  .bottom-note-info {
-    color: #2e2e2e;
-    letter-spacing: 0.06em;
-  }
-
-  .bottom-sep { color: #252525; }
 </style>
 </head>
 <body>
@@ -474,16 +387,10 @@
       <div class="top-year-loc" id="top-year-loc">—</div>
     </div>
     <div class="top-center">
-      <h1 class="scene-title-zh" id="scene-title-zh">—</h1>
-      <p class="scene-title-en" id="scene-title-en"></p>
+      <h1 class="scene-title-zh" id="scene-title-zh">一代宗師</h1>
+      <p class="scene-title-en" id="scene-title-en">The Grandmaster</p>
     </div>
-    <div class="top-right">
-      <button class="top-nav-btn" id="top-prev">«</button>
-      <span class="top-nav-label" id="top-prev-label"></span>
-      <span class="top-nav-sep">·</span>
-      <span class="top-nav-label" id="top-next-label"></span>
-      <button class="top-nav-btn" id="top-next">»</button>
-    </div>
+    <div></div>
   </header>
 
   <div class="layout">
@@ -492,13 +399,8 @@
     <nav class="year-nav" id="year-nav"></nav>
 
     <!-- Reading area -->
-    <main class="reading-area">
-      <div class="scene-header">
-        <span class="sc-label" id="sc-label">SC —</span>
-        <span class="sc-loc" id="sc-loc"></span>
-      </div>
-      <hr class="scene-rule">
-      <div id="lines-container"></div>
+    <main class="reading-area" id="reading-area">
+      <div id="scenes-container"></div>
     </main>
 
     <!-- Notes panel -->
@@ -522,20 +424,6 @@
 
   </div>
 
-  <!-- Bottom bar -->
-  <footer class="bottom-bar">
-    <span class="bottom-counter" id="bottom-counter">1/1</span>
-    <nav class="bottom-nav">
-      <button class="bottom-nav-btn" id="bot-prev">«</button>
-      <span class="bottom-nav-scene" id="bot-prev-label"></span>
-      <span class="bottom-sep">·</span>
-      <span class="bottom-note-info" id="bot-note-info">⌘ K TO SEARCH</span>
-      <span class="bottom-sep">·</span>
-      <span class="bottom-nav-scene" id="bot-next-label"></span>
-      <button class="bottom-nav-btn" id="bot-next">»</button>
-    </nav>
-    <span></span>
-  </footer>
 
 </div>
 
@@ -543,12 +431,9 @@
 fetch('script.json').then(r => r.json()).then(init);
 
 function init(data) {
-  const raw = data.scenes;
+  const scenes = data.scenes.filter(s => s.scene > 0);
 
-  // Only show positive scene numbers, in array order
-  const scenes = raw.filter(s => s.scene > 0);
-
-  // Build global annotation index: [{sceneIdx, lineIdx, sceneNum, speaker, annotation}]
+  // Global annotation index
   const allAnnotations = [];
   scenes.forEach((scene, si) => {
     scene.lines.forEach((line, li) => {
@@ -558,10 +443,33 @@ function init(data) {
     });
   });
 
-  // Collect unique years for year nav
   const years = [...new Set(scenes.map(s => s.year).filter(Boolean))].sort((a, b) => a - b);
 
-  // Build year nav
+  function getChapter(year) {
+    if (!year || year <= 1906) return 'I';
+    if (year <= 1939) return 'II';
+    if (year <= 1949) return 'III';
+    return 'IV';
+  }
+
+  function escHtml(s) {
+    if (!s) return '';
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function highlightTerms(zh, keyTerms) {
+    if (!keyTerms || !keyTerms.length) return escHtml(zh);
+    let result = escHtml(zh);
+    keyTerms.forEach(t => {
+      const safe = escHtml(t.zh);
+      result = result.split(safe).join(
+        `<span class="term-highlight" title="${escHtml(t.pinyin)}: ${escHtml(t.meaning)}">${safe}</span>`
+      );
+    });
+    return result;
+  }
+
+  // ── Build year nav ──
   const yearNav = document.getElementById('year-nav');
   years.forEach((y, i) => {
     if (i > 0) {
@@ -576,176 +484,95 @@ function init(data) {
     btn.dataset.year = y;
     btn.textContent = y;
     btn.addEventListener('click', () => {
-      const idx = scenes.findIndex(s => s.year == y);
-      if (idx >= 0) showScene(idx);
+      const card = document.querySelector(`.scene-card[data-year="${y}"]`);
+      card?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
     item.appendChild(btn);
     yearNav.appendChild(item);
   });
 
-  // Chapter derivation from year
-  function getChapter(year) {
-    if (!year || year <= 1906) return 'I';
-    if (year <= 1939) return 'II';
-    if (year <= 1949) return 'III';
-    return 'IV';
-  }
+  // ── Render all scenes ──
+  const container = document.getElementById('scenes-container');
 
-  // Highlight key terms in zh text
-  function highlightTerms(zh, keyTerms) {
-    if (!keyTerms || !keyTerms.length) return escHtml(zh);
-    let result = escHtml(zh);
-    keyTerms.forEach(t => {
-      const safeZh = escHtml(t.zh);
-      result = result.split(safeZh).join(
-        `<span class="term-highlight" title="${escHtml(t.pinyin)}: ${escHtml(t.meaning)}">${safeZh}</span>`
-      );
-    });
-    return result;
-  }
+  scenes.forEach((scene, si) => {
+    const card = document.createElement('div');
+    card.className = 'scene-card';
+    card.dataset.scene = scene.scene;
+    card.dataset.year = scene.year || '';
 
-  function escHtml(s) {
-    if (!s) return '';
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  // Speaker display: short form after /
-  function shortSpeaker(speaker) {
-    if (!speaker) return '';
-    return speaker;
-  }
-
-  // State
-  let currentIdx = 0;
-
-  function showScene(idx) {
-    currentIdx = Math.max(0, Math.min(idx, scenes.length - 1));
-    renderScene();
-  }
-
-  function renderScene() {
-    const scene = scenes[currentIdx];
-    const prev = currentIdx > 0 ? scenes[currentIdx - 1] : null;
-    const next = currentIdx < scenes.length - 1 ? scenes[currentIdx + 1] : null;
-
-    const chapter = getChapter(scene.year);
     const yearLoc = [scene.year, scene.location].filter(Boolean).join(' · ') || '—';
 
-    // Scene title: use explicit title fields if available, else location / notes
-    const titleZh = scene.title_zh || scene.location || `SC ${scene.scene}`;
-    const titleEn = scene.title_en || scene.notes || '';
-
-    // Top bar
-    document.getElementById('chapter-tag').textContent = `章·Ch·${chapter}`;
-    document.getElementById('top-year-loc').textContent = yearLoc;
-    document.getElementById('scene-title-zh').textContent = titleZh;
-    document.getElementById('scene-title-en').textContent = titleEn;
-
-    // Top nav labels
-    const prevLabel = prev ? `SC ${prev.scene}` : '';
-    const nextLabel = next ? `SC ${next.scene}` : '';
-    document.getElementById('top-prev-label').textContent = prevLabel;
-    document.getElementById('top-next-label').textContent = nextLabel;
-    document.getElementById('top-prev').disabled = !prev;
-    document.getElementById('top-next').disabled = !next;
-    document.querySelector('.top-nav-sep').style.visibility = (prev && next) ? '' : 'hidden';
-
-    // Scene header
-    document.getElementById('sc-label').textContent = `SC ${scene.scene}`;
-    document.getElementById('sc-loc').textContent = yearLoc;
-
-    // Year nav highlight
-    document.querySelectorAll('.year-nav-btn').forEach(btn => {
-      btn.classList.toggle('active', scene.year && btn.dataset.year == scene.year);
-    });
-
-    // Lines
-    const container = document.getElementById('lines-container');
-    container.innerHTML = '';
-
-    // Find the annotation for this scene (if any) — use first one
-    const sceneAnnotations = allAnnotations.filter(a => a.si === currentIdx);
-
-    scene.lines.forEach((line, li) => {
+    const linesHtml = scene.lines.map((line, li) => {
       const hasAnn = !!line.annotation;
-      const div = document.createElement('div');
-      div.className = 'line' + (hasAnn ? ' annotated' : '');
-
-      const spk = line.speaker
-        ? `<div class="speaker">${escHtml(shortSpeaker(line.speaker))}</div>`
-        : '';
-
-      const zhHtml = hasAnn
-        ? highlightTerms(line.zh, line.annotation.key_terms)
-        : escHtml(line.zh);
+      const spk = line.speaker ? `<div class="speaker">${escHtml(line.speaker)}</div>` : '';
+      const zhHtml = hasAnn ? highlightTerms(line.zh, line.annotation.key_terms) : escHtml(line.zh);
 
       if (hasAnn) {
-        div.innerHTML = `
+        const annRef = allAnnotations.find(a => a.si === si && a.li === li);
+        return `<div class="line annotated" data-ann-si="${si}" data-ann-li="${li}">
           ${spk}
           <div class="zh">${zhHtml}</div>
           <div class="en">${escHtml(line.en)}</div>
           <button class="annotation-toggle showing">解 <span style="font-size:0.6rem;letter-spacing:0.14em">SHOWING</span></button>
-        `;
-        // When annotation toggle is clicked, scroll right panel to this note
-        div.querySelector('.annotation-toggle').addEventListener('click', () => {
-          showAnnotationInPanel(line.annotation, scene.scene, line.speaker, sceneAnnotations[0]);
-        });
-      } else {
-        div.innerHTML = `${spk}<div class="zh">${zhHtml}</div><div class="en">${escHtml(line.en)}</div>`;
+        </div>`;
       }
+      return `<div class="line">${spk}<div class="zh">${zhHtml}</div><div class="en">${escHtml(line.en)}</div></div>`;
+    }).join('');
 
-      container.appendChild(div);
+    card.innerHTML = `
+      <div class="scene-header">
+        <span class="sc-label">SC ${scene.scene}</span>
+        <span class="sc-loc">${escHtml(yearLoc)}</span>
+      </div>
+      <hr class="scene-rule">
+      ${linesHtml}
+    `;
+
+    // Annotation toggle clicks
+    card.querySelectorAll('.annotation-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lineEl = btn.closest('.line.annotated');
+        const si2 = parseInt(lineEl.dataset.annSi);
+        const li2 = parseInt(lineEl.dataset.annLi);
+        const annRef = allAnnotations.find(a => a.si === si2 && a.li === li2);
+        if (annRef) showAnnotationInPanel(annRef);
+      });
     });
 
-    // Right panel
-    if (sceneAnnotations.length > 0) {
-      const a = sceneAnnotations[0];
-      showAnnotationInPanel(scenes[a.si].lines[a.li].annotation, a.sceneNum, a.speaker, a);
-    } else {
-      document.getElementById('notes-empty').style.display = '';
-      document.getElementById('notes-content').style.display = 'none';
-    }
+    container.appendChild(card);
+  });
 
-    // Bottom bar
-    document.getElementById('bottom-counter').textContent = `${currentIdx + 1}/${scenes.length}`;
-
-    const botPrev = document.getElementById('bot-prev-label');
-    const botNext = document.getElementById('bot-next-label');
-    botPrev.textContent = prev ? `SC ${prev.scene}` : '';
-    botNext.textContent = next ? `SC ${next.scene}` : '';
-    botPrev.onclick = prev ? () => showScene(currentIdx - 1) : null;
-    botNext.onclick = next ? () => showScene(currentIdx + 1) : null;
-    document.getElementById('bot-prev').disabled = !prev;
-    document.getElementById('bot-next').disabled = !next;
-
-    const noteCount = sceneAnnotations.length;
-    document.getElementById('bot-note-info').textContent =
-      noteCount > 0 ? `${noteCount} NOTE${noteCount > 1 ? 'S' : ''} IN VIEW · ⌘ K TO SEARCH` : '⌘ K TO SEARCH';
-
-    // Scroll reading area to top
-    document.querySelector('.reading-area').scrollTop = 0;
+  // ── Update top bar ──
+  function updateTopBar(scene) {
+    const chapter = getChapter(scene.year);
+    const yearLoc = [scene.year, scene.location].filter(Boolean).join(' · ') || '—';
+    const titleZh = scene.title_zh || scene.location || `SC ${scene.scene}`;
+    const titleEn = scene.title_en || scene.notes || '';
+    document.getElementById('chapter-tag').textContent = `章·Ch·${chapter}`;
+    document.getElementById('top-year-loc').textContent = yearLoc;
+    document.getElementById('scene-title-zh').textContent = titleZh;
+    document.getElementById('scene-title-en').textContent = titleEn;
   }
 
-  function showAnnotationInPanel(ann, sceneNum, speaker, annotationRef) {
+  // ── Show annotation in panel ──
+  function showAnnotationInPanel(annRef) {
+    const ann = scenes[annRef.si].lines[annRef.li].annotation;
     document.getElementById('notes-empty').style.display = 'none';
     document.getElementById('notes-content').style.display = '';
 
-    // Global annotation number
-    const globalIdx = allAnnotations.findIndex(a => a.si === annotationRef?.si && a.li === annotationRef?.li);
-    const countText = globalIdx >= 0
+    const globalIdx = allAnnotations.indexOf(annRef);
+    document.getElementById('notes-count').textContent = globalIdx >= 0
       ? `${String(globalIdx + 1).padStart(2, '0')} / ${String(allAnnotations.length).padStart(2, '0')}`
       : '';
-    document.getElementById('notes-count').textContent = countText;
 
     document.getElementById('notes-scene-ref').textContent =
-      `SC ${sceneNum}${speaker ? ' · ' + speaker : ''}`;
-
+      `SC ${annRef.sceneNum}${annRef.speaker ? ' · ' + annRef.speaker : ''}`;
     document.getElementById('notes-headline').textContent = ann.headline || '';
 
     const paras = (ann.explanation || '').split('\n\n').map(p => `<p>${escHtml(p)}</p>`).join('');
     document.getElementById('notes-explanation').innerHTML = paras;
 
-    const terms = (ann.key_terms || []);
+    const terms = ann.key_terms || [];
     document.getElementById('notes-terms').innerHTML = terms.map(t => `
       <div class="notes-term">
         <div class="nt-left">
@@ -756,26 +583,53 @@ function init(data) {
       </div>
     `).join('');
 
-    // Watermark: last character of first key term's zh
-    const watermark = terms.length > 0 ? terms[0].zh.slice(-1) : '';
-    document.getElementById('notes-watermark').textContent = watermark;
+    document.getElementById('notes-watermark').textContent = terms.length > 0 ? terms[0].zh.slice(-1) : '';
   }
 
-  // Nav buttons
-  document.getElementById('top-prev').addEventListener('click', () => showScene(currentIdx - 1));
-  document.getElementById('top-next').addEventListener('click', () => showScene(currentIdx + 1));
-  document.getElementById('bot-prev').addEventListener('click', () => showScene(currentIdx - 1));
-  document.getElementById('bot-next').addEventListener('click', () => showScene(currentIdx + 1));
+  // ── Scroll observer: update top bar, year nav, notes panel ──
+  const readingArea = document.getElementById('reading-area');
 
-  // Keyboard navigation
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') showScene(currentIdx - 1);
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') showScene(currentIdx + 1);
-  });
+  // IntersectionObserver for scene cards → update top bar + year nav
+  const sceneObserver = new IntersectionObserver(entries => {
+    // Pick the topmost visible scene card
+    let topmost = null;
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (!topmost || entry.boundingClientRect.top < topmost.boundingClientRect.top) {
+          topmost = entry;
+        }
+      }
+    });
+    if (topmost) {
+      const sceneNum = parseInt(topmost.target.dataset.scene);
+      const scene = scenes.find(s => s.scene === sceneNum);
+      if (scene) {
+        updateTopBar(scene);
+        document.querySelectorAll('.year-nav-btn').forEach(btn => {
+          btn.classList.toggle('active', scene.year && btn.dataset.year == scene.year);
+        });
+      }
+    }
+  }, { root: readingArea, threshold: 0.1 });
 
-  // Initial render — try to start at scene 19 for demonstration
-  const startIdx = scenes.findIndex(s => s.scene === 19);
-  showScene(startIdx >= 0 ? startIdx : 0);
+  document.querySelectorAll('.scene-card').forEach(card => sceneObserver.observe(card));
+
+  // IntersectionObserver for annotated lines → update notes panel
+  const annObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const si = parseInt(entry.target.dataset.annSi);
+        const li = parseInt(entry.target.dataset.annLi);
+        const annRef = allAnnotations.find(a => a.si === si && a.li === li);
+        if (annRef) showAnnotationInPanel(annRef);
+      }
+    });
+  }, { root: readingArea, threshold: 0.5 });
+
+  document.querySelectorAll('.line.annotated').forEach(el => annObserver.observe(el));
+
+  // ── Initial top bar state ──
+  if (scenes.length > 0) updateTopBar(scenes[0]);
 }
 </script>
 </body>
