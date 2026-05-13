@@ -30,19 +30,21 @@
 
   /* ─── App shell ─── */
   .app {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 62px 1fr 310px;
+    grid-template-rows: 72px 1fr;
     height: 100vh;
   }
 
   /* ─── Top bar ─── */
   .top-bar {
+    grid-column: 2;
+    grid-row: 1;
     display: grid;
     grid-template-columns: 200px 1fr 200px;
     align-items: center;
     height: 72px;
     border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
     padding: 0 1.5rem;
     gap: 1rem;
   }
@@ -86,17 +88,10 @@
     margin-top: 0.2rem;
   }
 
-  /* ─── Layout ─── */
-  .layout {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-  }
-
   /* ─── Year nav ─── */
   .year-nav {
-    width: 62px;
-    flex-shrink: 0;
+    grid-column: 1;
+    grid-row: 1 / 3;
     border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
@@ -154,7 +149,8 @@
 
   /* ─── Reading area ─── */
   .reading-area {
-    flex: 1;
+    grid-column: 2;
+    grid-row: 2;
     overflow-y: auto;
     padding: 2rem 3.5rem 4rem;
   }
@@ -258,8 +254,8 @@
 
   /* ─── Notes panel ─── */
   .notes-panel {
-    width: 310px;
-    flex-shrink: 0;
+    grid-column: 3;
+    grid-row: 1 / 3;
     border-left: 1px solid var(--border);
     position: relative;
     overflow: hidden;
@@ -393,42 +389,127 @@
     <div></div>
   </header>
 
-  <div class="layout">
+  <!-- Year nav -->
+  <nav class="year-nav" id="year-nav"></nav>
 
-    <!-- Year nav -->
-    <nav class="year-nav" id="year-nav"></nav>
+  <!-- Reading area -->
+  <main class="reading-area" id="reading-area">
+    <div id="scenes-container"></div>
+  </main>
 
-    <!-- Reading area -->
-    <main class="reading-area" id="reading-area">
-      <div id="scenes-container"></div>
-    </main>
-
-    <!-- Notes panel -->
-    <aside class="notes-panel" id="notes-panel">
-      <div class="notes-panel-inner">
-        <div class="notes-panel-empty" id="notes-empty">— 解 —</div>
-        <div id="notes-content" style="display:none">
-          <div class="notes-top">
-            <span class="notes-tag">NOTE 解</span>
-            <span class="notes-count" id="notes-count"></span>
-          </div>
-          <hr class="notes-rule">
-          <div class="notes-scene-ref" id="notes-scene-ref"></div>
-          <div class="notes-headline" id="notes-headline"></div>
-          <div class="notes-explanation" id="notes-explanation"></div>
-          <div class="notes-terms" id="notes-terms"></div>
+  <!-- Notes panel -->
+  <aside class="notes-panel" id="notes-panel">
+    <div class="notes-panel-inner">
+      <div class="notes-panel-empty" id="notes-empty">— 解 —</div>
+      <div id="notes-content" style="display:none">
+        <div class="notes-top">
+          <span class="notes-tag">NOTE 解</span>
+          <span class="notes-count" id="notes-count"></span>
         </div>
+        <hr class="notes-rule">
+        <div class="notes-scene-ref" id="notes-scene-ref"></div>
+        <div class="notes-headline" id="notes-headline"></div>
+        <div class="notes-explanation" id="notes-explanation"></div>
+        <div class="notes-terms" id="notes-terms"></div>
       </div>
-      <div class="notes-watermark" id="notes-watermark"></div>
-    </aside>
-
-  </div>
+    </div>
+    <div class="notes-watermark" id="notes-watermark"></div>
+  </aside>
 
 
 </div>
 
 <script>
-fetch('script.json').then(r => r.json()).then(init);
+fetch('script.json').then(r => r.json()).then(init).catch(() => init(SAMPLE_DATA));
+
+const SAMPLE_DATA = {
+  "title": "一代宗師 / The Grandmaster",
+  "scenes": [
+    {
+      "scene": 1,
+      "year": null,
+      "location": null,
+      "title_zh": "功夫",
+      "title_en": "What Kungfu Is",
+      "lines": [
+        { "speaker": "葉問 / Ip Man", "zh": "別跟我說你功夫有多深，師父有多厲害，門派有多少嘍囉。", "en": "Don't tell me how well you fight, or how great your teacher is, or brag about your style." },
+        { "speaker": "葉問 / Ip Man", "zh": "功夫，兩個字，一橫一堅。", "en": "Kungfu — two words. Horizontal. Vertical." },
+        { "speaker": "葉問 / Ip Man", "zh": "錯的，躺下嘍，站著的才有資格說話，你說這話對嗎？", "en": "Make a mistake — horizontal. Stay standing and you win. Isn't that right?" }
+      ]
+    },
+    {
+      "scene": 2,
+      "year": 1936,
+      "location": "佛山",
+      "title_zh": "南北相遇",
+      "title_en": "South Meets North",
+      "lines": [
+        { "speaker": "宮寶森 / Gong Yutian", "zh": "天下之大，又何止南北。", "en": "The world is a big place. Why limit it to North and South?" },
+        {
+          "speaker": "葉問 / Ip Man",
+          "zh": "所謂大成若缺，有缺憾才能有進步。",
+          "en": "The greatest completion appears incomplete. Only through imperfection can we grow.",
+          "annotation": {
+            "headline": "大成若缺 — The Daodejing's Paradox of Completion",
+            "explanation": "Ip Man's line is a direct quotation from Daodejing Chapter 45: 大成若缺，其用不弊 — \"The greatest completion appears incomplete; its use is never exhausted.\"\n\nThe paradox is Daoist: a vessel that declares itself full cannot receive anything more. A martial art that believes itself perfected has begun its decline. Ip Man uses this to argue that admitting incompleteness is itself the sign of deeper understanding.",
+            "key_terms": [
+              { "zh": "大成若缺", "pinyin": "dà chéng ruò quē", "meaning": "The greatest completion appears incomplete — Daodejing Ch. 45" },
+              { "zh": "武林", "pinyin": "wǔ lín", "meaning": "The martial world — a distinct cultural sphere with its own codes and hierarchy" }
+            ]
+          }
+        },
+        { "speaker": "宮寶森 / Gong Yutian", "zh": "說得好！宮某贏了一輩子，沒有輸在武功上。今日我把名聲送給你。", "en": "Well said. All my life I've been the victor. Today I hand my reputation to you." }
+      ]
+    },
+    {
+      "scene": 3,
+      "year": 1936,
+      "location": "佛山",
+      "title_zh": "一念",
+      "title_en": "A Single Thought",
+      "lines": [
+        { "speaker": "宮二 / Gong Er", "zh": "我不圖一世，只圖一時。", "en": "I ask not for a lifetime — only for a single moment." },
+        {
+          "speaker": "宮二 / Gong Er",
+          "zh": "念念不忘，必有迴響。有燈就有人。",
+          "en": "Hold fast to what matters, and an echo will return. While there is light, there is someone.",
+          "annotation": {
+            "headline": "念念不忘，必有迴響 — The Buddhist Echo",
+            "explanation": "This line comes from Chan Buddhist teaching: 念念不忘，必有迴響 — if one holds a thought ceaselessly without forgetting, that thought must eventually find its answer in the world.\n\nGong Yutian's use of it reframes martial transmission as something closer to prayer or devotion. Keeping the flame is not technique — it is faith. The 燈 (lamp) is the lineage itself.",
+            "key_terms": [
+              { "zh": "念念不忘", "pinyin": "niàn niàn bù wàng", "meaning": "To hold something ceaselessly in mind; never to forget, thought after thought" },
+              { "zh": "迴響", "pinyin": "huí xiǎng", "meaning": "Echo; a resonance that returns — the universe answering a sustained intention" },
+              { "zh": "燈", "pinyin": "dēng", "meaning": "Lamp; here the flame of lineage passed between generations" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "scene": 4,
+      "year": 1939,
+      "location": "東北",
+      "title_zh": "雪中刀",
+      "title_en": "Blade in the Snow",
+      "lines": [
+        { "speaker": "馬三 / Ma San", "zh": "時勢造英雄。", "en": "The times make the hero." },
+        { "speaker": "宮二 / Gong Er", "zh": "你記住了，我今日，是為了門規而來。", "en": "Remember this: I am here today for the sake of our code." },
+        { "speaker": "宮二 / Gong Er", "zh": "你是我爹的徒弟，打死你，我不能，所以我廢了你的武功。", "en": "You are my father's disciple. I cannot kill you. So I take your kung fu instead." }
+      ]
+    },
+    {
+      "scene": 5,
+      "year": 1950,
+      "location": "香港",
+      "title_zh": "離散",
+      "title_en": "Diaspora",
+      "lines": [
+        { "speaker": "葉問 / Ip Man", "zh": "我在香港開了武館，學生多是窮孩子，收費不高。", "en": "I opened a school in Hong Kong. Most of my students were poor. I charged very little." },
+        { "speaker": "葉問 / Ip Man", "zh": "我這一生，沒什麼遺憾。", "en": "I have no regrets." }
+      ]
+    }
+  ]
+};
 
 function init(data) {
   const scenes = data.scenes.filter(s => s.scene > 0);
