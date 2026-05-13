@@ -37,7 +37,7 @@
     transition: grid-template-columns 0.28s ease;
   }
   .app.nav-expanded {
-    grid-template-columns: 210px 1fr 310px;
+    grid-template-columns: 280px 1fr 310px;
   }
 
   /* ─── Top bar ─── */
@@ -245,9 +245,8 @@
     padding: 0.25rem 0.6rem;
     cursor: pointer;
     text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-word;
     transition: color 0.15s, border-color 0.15s, background 0.15s;
   }
   .filter-chip:hover { color: var(--gold-light); border-color: #333; }
@@ -779,9 +778,9 @@ function init(data) {
 
   function applyFilters() {
     document.querySelectorAll('.scene-card').forEach(card => {
-      const loc = card.dataset.location;
+      const locs = (card.dataset.location || '').split('|').filter(Boolean);
       const chars = (card.dataset.characters || '').split('|').filter(Boolean);
-      const locMatch = activeLocs.size === 0 || (loc && activeLocs.has(loc));
+      const locMatch = activeLocs.size === 0 || locs.some(l => activeLocs.has(l));
       const charMatch = activeChars.size === 0 || chars.some(c => activeChars.has(c));
       card.style.display = (locMatch && charMatch) ? '' : 'none';
     });
@@ -816,9 +815,11 @@ function init(data) {
     });
   }
 
-  const allLocations = new Set(scenes.map(s => s.location).filter(Boolean));
+  const allLocations = new Set(
+    scenes.flatMap(s => s.location ? s.location.split(' & ') : [])
+  );
   const allCharacters = new Set(
-    scenes.flatMap(s => s.lines.map(l => l.speaker).filter(Boolean))
+    scenes.flatMap(s => s.lines.flatMap(l => l.speaker ? l.speaker.split(' & ') : []))
   );
 
   buildChips('loc-chips', 'loc-clear', allLocations, activeLocs);
@@ -832,8 +833,8 @@ function init(data) {
     card.className = 'scene-card';
     card.dataset.scene = scene.scene;
     card.dataset.year = scene.year || '';
-    card.dataset.location = scene.location || '';
-    card.dataset.characters = [...new Set(scene.lines.map(l => l.speaker).filter(Boolean))].join('|');
+    card.dataset.location = scene.location ? scene.location.split(' & ').join('|') : '';
+    card.dataset.characters = [...new Set(scene.lines.flatMap(l => l.speaker ? l.speaker.split(' & ') : []))].join('|');
 
     const yearLoc = [scene.year, scene.location].filter(Boolean).join(' · ') || '—';
 
