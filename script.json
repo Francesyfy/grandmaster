@@ -24,7 +24,7 @@
       "year": null,
       "title_zh": "功夫之道",
       "title_en": "The Way of Kung Fu",
-      "notes": "Ip Man's opening monologue about the true essence of martial arts—horizontal and vertical, the fundamental principle."
+      "notes": "Ip Man philosophizes about the true essence of martial arts—horizontal and vertical, the fundamental principle."
     },
     {
       "scene": 2,
@@ -157,9 +157,9 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "北方武林變天",
-      "title_en": "The Northern Masters Arrive",
-      "notes": "News of northern martial arts masters coming south to challenge local supremacy creates tension in Foshan."
+      "title_zh": "妻子張永成",
+      "title_en": "Ip Man's Wife",
+      "notes": "Introduction to Ip Man's wife Zhang Yongcheng, a quiet but strong woman who supports him through life's challenges."
     },
     {
       "scene": -1,
@@ -172,9 +172,9 @@
       ],
       "location": null,
       "year": 1936,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 眾人."
+      "title_zh": "場景 -1",
+      "title_en": "Scene -1",
+      "notes": "眾人的故事 (1 行對白)"
     },
     {
       "scene": 6,
@@ -212,9 +212,9 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "宮羽田現身",
-      "title_en": "Gong Yutian's Challenge",
-      "notes": "The renowned northern master Gong Yutian arrives in Foshan with his daughter Gong Er, formally challenging the southern schools."
+      "title_zh": "花樓舊事",
+      "title_en": "The Pleasure Houses",
+      "notes": "Scenes of Ip Man in the pleasure houses of Foshan in 1936, a social custom of that era before the war."
     },
     {
       "scene": 7,
@@ -262,9 +262,9 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "夜宴論武",
-      "title_en": "The Banquet",
-      "notes": "Southern martial artists gather for a formal dinner to discuss the northern challenge and choose their champions."
+      "title_zh": "北方武林變天",
+      "title_en": "The Northern Masters Arrive",
+      "notes": "Gong Baosen recounts how he unified the northern martial schools, setting up the confrontation with the south."
     },
     {
       "scene": 8,
@@ -282,9 +282,9 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "擂台對戰",
-      "title_en": "The Competition Begins",
-      "notes": "Formal matches between northern and southern fighters commence, with the crowd watching intently."
+      "title_zh": "馬三挑戰",
+      "title_en": "Ma San's Provocation",
+      "notes": "Ma San, a formidable fighter, challenges the southern martial arts tradition with arrogance and skill."
     },
     {
       "scene": 9,
@@ -307,9 +307,9 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "葉問迎戰",
-      "title_en": "Ip Man Steps Forward",
-      "notes": "Ip Man personally challenges the northern master in defense of his school's honor and the southern martial arts tradition."
+      "title_zh": "擂台對戰",
+      "title_en": "The Competition Begins",
+      "notes": "Ip Man steps forward to defend southern martial arts, questioning his right to represent despite his lineage."
     },
     {
       "scene": 10,
@@ -332,9 +332,9 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "一觸即發",
-      "title_en": "The Final Match",
-      "notes": "The climactic fight between Ip Man and the northern master—a test of skill, speed, and philosophical understanding of kung fu."
+      "title_zh": "妻子的擔憂",
+      "title_en": "A Wife's Concern",
+      "notes": "Before the crucial match, Ip Man's wife expresses her concerns about his confrontation with the northern master."
     },
     {
       "scene": 11,
@@ -367,9 +367,9 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "勝負已定",
-      "title_en": "The Victory",
-      "notes": "Ip Man defeats the northern master, reestablishing southern martial arts supremacy and earning widespread respect."
+      "title_zh": "刀的真意",
+      "title_en": "The Meaning of the Blade",
+      "notes": "A philosophical discussion about martial arts—the true meaning of a blade is not to kill, but to conceal and endure."
     },
     {
       "scene": 12,
@@ -414,7 +414,7 @@
       "year": 1936,
       "title_zh": "時代變遷",
       "title_en": "Changing Times",
-      "notes": "Japan's occupation of China and subsequent civil war force Ip Man and Gong Er to become refugees, abandoning their past."
+      "notes": "Japan's occupation of China and the subsequent war transform society, forcing martial artists and civilians into exile."
     },
     {
       "scene": 13,
@@ -489,7 +489,7 @@
       "year": 1936,
       "title_zh": "東北拳王女",
       "title_en": "The Master's Daughter",
-      "notes": "Ip Man encounters Gong Er, the legendary martial artist and daughter of his defeated rival—a woman of exceptional skill."
+      "notes": "Gong Er, the legendary martial artist and daughter of Ip Man's defeated rival, makes her dramatic entrance."
     },
     {
       "scene": 14,
@@ -517,9 +517,9 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "對峙",
-      "title_en": "Mutual Recognition",
-      "notes": "Tension and respect develop as Ip Man and Gong Er recognize each other's martial excellence and share a deep understanding."
+      "title_zh": "新人的野心",
+      "title_en": "The New Generation's Pride",
+      "notes": "Gong Er and her brother express their frustration over their father's defeat and yearning for recognition of the new generation."
     },
     {
       "scene": 15,
@@ -552,13 +552,13 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "流亡香港",
-      "title_en": "Exile in Hong Kong",
-      "notes": "Ip Man flees to Hong Kong as mainland China falls to chaos, leaving behind his wealth and former status."
+      "title_zh": "父女之爭",
+      "title_en": "Father and Daughter Conflict",
+      "notes": "Gong Yutian's unconventional choices clash with his daughter's sense of propriety and martial dignity."
     },
     {
       "scene": 16,
-      "notes": "Stripped of his fortune, Ip Man struggles in the crowded streets of Hong Kong, facing poverty and uncertainty.",
+      "notes": "Ip Man arrives in Hong Kong after the war, greeted by old friends like Uncle Deng who offer their support and celebration.",
       "lines": [
         {
           "zh": "葉師父，風塵之中多是性情之人。今天是你出頭的好日子，兄弟跟這裡同仁封廳來祝賀你。",
@@ -623,8 +623,8 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "身無分文",
-      "title_en": "Starting Over"
+      "title_zh": "香港落腳",
+      "title_en": "Arriving in Hong Kong"
     },
     {
       "scene": 17,
@@ -657,9 +657,9 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "教拳謀生",
-      "title_en": "Teaching for Survival",
-      "notes": "Ip Man begins teaching Wing Chun to make a living, finding purpose in preserving and passing on his martial knowledge."
+      "title_zh": "教拳為生",
+      "title_en": "Teaching Martial Arts",
+      "notes": "Ip Man begins his new life teaching Wing Chun and meeting various martial artists, sharing techniques and philosophies."
     },
     {
       "scene": 18,
@@ -722,15 +722,15 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "武館新生",
-      "title_en": "Opening a School",
-      "notes": "Ip Man establishes his martial arts school in Hong Kong, attracting students from all walks of life and backgrounds."
+      "title_zh": "收第一個徒弟",
+      "title_en": "The First Student",
+      "notes": "Yong Ge, one of Ip Man's earliest students in Hong Kong, asks for formal training and becomes part of his new life."
     },
     {
       "scene": 19,
-      "title_zh": "金樓論武",
+      "title_zh": "金樓會武",
       "title_en": "The Golden Tower",
-      "notes": "Local gangs and rival schools challenge Ip Man's authority, testing his reputation in Hong Kong's martial underworld.",
+      "notes": "Gong Baosen visits Ip Man at a social venue, acknowledging his skill and declaring this as his last martial contest.",
       "lines": [
         {
           "zh": "江山代有人才出，幸會葉先生是有緣。今日是我最後一戰。咱們今天不比武功，比想法，如何？",
@@ -841,13 +841,13 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "江湖恩怨",
-      "title_en": "Old Conflicts",
-      "notes": "Former rivals and complicated relationships from his past resurface as Ip Man establishes himself in Hong Kong."
+      "title_zh": "宮家之怨",
+      "title_en": "The Gong Family's Sorrow",
+      "notes": "The Gong family grapples with their loss and seeks to restore their honor while maintaining martial tradition and propriety."
     },
     {
       "scene": 21,
-      "notes": "Ip Man encounters Gong Er once again—now both are exiles, dealing with loss and the fading of their martial world.",
+      "notes": "Old debts and martial politics resurface as various figures from different schools navigate power and reputation in Hong Kong.",
       "lines": [
         {
           "zh": "宮寶森一身武藝，馬三得到了他的剛勁，女兒得到了他的柔勁，是六十四手的唯一傳人。一手葉裡藏花，更是防不勝防。",
@@ -867,12 +867,12 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "再遇宮羽田",
-      "title_en": "Reunion with Gong Er"
+      "title_zh": "江湖局勢",
+      "title_en": "The Martial Underworld"
     },
     {
       "scene": 22,
-      "notes": "Ip Man reflects on his responsibility to preserve Wing Chun and pass it to the next generation before it fades.",
+      "notes": "Ip Man and Gong Er meet again—the winner and loser facing each other in exile, sharing unspoken understanding and respect.",
       "lines": [
         {
           "zh": "三天前，我爹就坐這位置。今天，咱們就從這兒開始。",
@@ -917,12 +917,12 @@
       ],
       "location": "佛山",
       "year": 1936,
-      "title_zh": "武學傳承",
-      "title_en": "The Burden of Legacy"
+      "title_zh": "再遇宮羽田",
+      "title_en": "Reunion with Gong Er"
     },
     {
       "scene": 23,
-      "notes": "Ip Man's diverse students from different regions come together, united in learning the principles of Wing Chun.",
+      "notes": "The poetic meeting continues as Ip Man witnesses Gong Er's exceptional martial techniques and philosophical depth.",
       "lines": [
         {
           "zh": "葉底藏花一度，夢裡踏雪幾回。",
@@ -1004,8 +1004,8 @@
       ],
       "location": "佛山 & 东北",
       "year": null,
-      "title_zh": "弟子雲集",
-      "title_en": "Disciples Gather"
+      "title_zh": "葉底藏花",
+      "title_en": "A Flower Hidden in Leaves"
     },
     {
       "scene": 24,
@@ -1023,9 +1023,9 @@
       ],
       "location": "佛山",
       "year": 1937,
-      "title_zh": "教與學",
-      "title_en": "Master Teachings",
-      "notes": "Ip Man guides his students through fundamental Wing Chun techniques, emphasizing discipline, respect, and martial philosophy."
+      "title_zh": "教妻習武",
+      "title_en": "Teaching His Wife",
+      "notes": "Ip Man guides his wife through martial training and domestic life, sharing his philosophy and passing on his knowledge."
     },
     {
       "scene": -1,
@@ -1038,13 +1038,13 @@
       ],
       "location": null,
       "year": 1938,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 眾人."
+      "title_zh": "場景 -1",
+      "title_en": "Scene -1",
+      "notes": "眾人的故事 (1 行對白)"
     },
     {
       "scene": 25,
-      "notes": "Each of Ip Man's students faces personal trials and growth, finding their own meaning through martial arts.",
+      "notes": "As Japan occupies Foshan, Ip Man loses his family estate and wealth, entering a period of profound loss and upheaval.",
       "lines": [
         {
           "zh": "1938年10月，佛山淪陷，葉家大宅被日本憲兵部徵用。如果人生按四季分的話，那麼我的家就像從春天一下兒到了冬天。",
@@ -1059,8 +1059,8 @@
       ],
       "location": "佛山",
       "year": 1938,
-      "title_zh": "一人一事",
-      "title_en": "Individual Paths"
+      "title_zh": "家國之痛",
+      "title_en": "Nation and Home in Ruins"
     },
     {
       "scene": 26,
@@ -1088,9 +1088,9 @@
       ],
       "location": "佛山",
       "year": null,
-      "title_zh": "暮年思鄉",
-      "title_en": "Longing for Home",
-      "notes": "As Ip Man ages, he reflects nostalgically on his lost life in Foshan and the world he once knew."
+      "title_zh": "窮困歲月",
+      "title_en": "Years of Hardship",
+      "notes": "Ip Man navigates poverty and survival in occupied territory, accepting his reduced circumstances with dignity and humor."
     },
     {
       "scene": 27,
@@ -1113,9 +1113,9 @@
       ],
       "location": "佛山",
       "year": null,
-      "title_zh": "歲月如白駒",
-      "title_en": "Impermanence",
-      "notes": "Ip Man contemplates the fleeting nature of life, martial glory, and the importance of passing on knowledge before time runs out."
+      "title_zh": "命運捉弄",
+      "title_en": "Fate's Changes",
+      "notes": "A moment of resignation as Ip Man sells off possessions, accepting that his life can no longer return to its former state."
     },
     {
       "scene": 28,
@@ -1133,9 +1133,9 @@
       ],
       "location": "佛山",
       "year": null,
-      "title_zh": "往事回憶",
-      "title_en": "Memories of the Past",
-      "notes": "Flashback scenes of Ip Man's life in Foshan with key figures from his martial training and family."
+      "title_zh": "武學傳承",
+      "title_en": "The Martial Legacy Continues",
+      "notes": "Ip Man reflects on his seven decades of martial training and life's struggles, determined to pass on Wing Chun despite hardships."
     },
     {
       "scene": -1,
@@ -1158,9 +1158,9 @@
       ],
       "location": "佛山",
       "year": null,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 葉問."
+      "title_zh": "葉問",
+      "title_en": "葉問",
+      "notes": "葉問的故事 (3 行對白)"
     },
     {
       "scene": -1,
@@ -1173,9 +1173,9 @@
       ],
       "location": "东北",
       "year": 1939,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 眾人."
+      "title_zh": "眾人",
+      "title_en": "眾人",
+      "notes": "眾人的故事 (1 行對白)"
     },
     {
       "scene": -1,
@@ -1188,9 +1188,9 @@
       ],
       "location": null,
       "year": 1939,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 眾人."
+      "title_zh": "場景 -1",
+      "title_en": "Scene -1",
+      "notes": "眾人的故事 (1 行對白)"
     },
     {
       "scene": -1,
@@ -1203,13 +1203,13 @@
       ],
       "location": null,
       "year": 1940,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 眾人."
+      "title_zh": "場景 -1",
+      "title_en": "Scene -1",
+      "notes": "眾人的故事 (1 行對白)"
     },
     {
       "scene": 29,
-      "notes": "Backstory of Gong Yutian's murder and Gong Er's vow for revenge against the man responsible, Ma San.",
+      "notes": "Gong Baosen explains to Ma San the meaning of his name and the philosophy of yielding—letting others take the lead.",
       "lines": [
         {
           "zh": "你知道我為什麼叫你馬三嗎？",
@@ -1269,12 +1269,12 @@
       ],
       "location": "东北",
       "year": 1940,
-      "title_zh": "宮家之難",
-      "title_en": "The Gong Family's Tragedy"
+      "title_zh": "宮家往事",
+      "title_en": "The Gong Family's Past"
     },
     {
       "scene": 30,
-      "notes": "Gong Er returns home to face her father's killer and fulfill her martial oath, despite family pressure.",
+      "notes": "The Gong family mourns Gong Yutian's death, gathering martial allies from across the north to honor the fallen master.",
       "lines": [
         {
           "zh": "聽說您回來。東北的同門同道都到了。三爺五爺從關內趕來。老薑呢？",
@@ -1304,12 +1304,12 @@
       ],
       "location": "东北",
       "year": 1940,
-      "title_zh": "歸鄉復仇",
-      "title_en": "Return and Vengeance"
+      "title_zh": "宮家返鄉",
+      "title_en": "The Gong Family Returns"
     },
     {
       "scene": 31,
-      "notes": "Gong Er makes her formal vow before the family elders, committing to avenging her father's death.",
+      "notes": "The elder martial artists debate whether revenge is justified, warning that it could harm the family's honor and legacy.",
       "lines": [
         {
           "zh": "依著我也該殺了他了。這仇太大了！欺師滅祖，天下還有比這更大的仇恨嗎？可話說回來，打你爹一門，八卦和形意就合成了一門。你師兄在形意上下了大功夫啊！你的六十四手，也是你父親手把手教的。你倆各成了你父親的一手絕活。你倆齊全了，你家那門武功才算齊全。",
@@ -1339,12 +1339,12 @@
       ],
       "location": "东北",
       "year": 1940,
-      "title_zh": "宮二誓言",
-      "title_en": "Gong Er's Oath"
+      "title_zh": "長輩勸阻",
+      "title_en": "The Elders' Counsel"
     },
     {
       "scene": 32,
-      "notes": "During her father's funeral, Gong Er confronts those responsible, maintaining her martial dignity amid grief.",
+      "notes": "A ceremonial procession carrying the master's body, with martial protocol and the presence of armed disciples.",
       "lines": [
         {
           "zh": "西方正路，諸神引領。",
@@ -1379,12 +1379,12 @@
       ],
       "location": "东北",
       "year": 1940,
-      "title_zh": "喪禮與對峙",
-      "title_en": "Funeral Procession"
+      "title_zh": "葬禮遊行",
+      "title_en": "The Funeral Procession"
     },
     {
       "scene": 33,
-      "notes": "Gong Er finally meets Ma San, the man who killed her father, in a tense confrontation filled with honor and rage.",
+      "notes": "Gong Er finally confronts Ma San, the man responsible for her father's death, demanding accountability and closure.",
       "lines": [
         {
           "zh": "來人吶，把她給我攔住。攔住她，給我上。",
@@ -1404,12 +1404,12 @@
       ],
       "location": "东北",
       "year": 1940,
-      "title_zh": "恩怨相逢",
-      "title_en": "Face to Face"
+      "title_zh": "宮二複仇",
+      "title_en": "Gong Er's Reckoning"
     },
     {
       "scene": 34,
-      "notes": "The title's meaning revealed—not just a martial title, but a responsibility to preserve tradition and mentor future generations.",
+      "notes": "Gong Er takes a monastic vow after her father's death, renouncing marriage, teaching, and worldly attachments forever.",
       "lines": [
         {
           "zh": "別打聽我的事情，沒有消息就是消息，再找個人吧。",
@@ -1429,8 +1429,8 @@
       ],
       "location": "东北",
       "year": 1940,
-      "title_zh": "一代宗師",
-      "title_en": "The Grandmaster"
+      "title_zh": "宮二出家",
+      "title_en": "Gong Er's Vow"
     },
     {
       "scene": -1,
@@ -1443,13 +1443,13 @@
       ],
       "location": null,
       "year": 1950,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 眾人."
+      "title_zh": " - 教武",
+      "title_en": "Scene -1",
+      "notes": "眾人的故事 (1 行對白)"
     },
     {
       "scene": 35,
-      "notes": "Scenes of Ip Man's daily life teaching students in his modest Hong Kong martial arts school.",
+      "notes": "Ip Man establishes his formal teaching operation in Hong Kong, beginning a new chapter of his martial career.",
       "lines": [
         {
           "zh": "葉師父您教過拳麼？靠教拳吃飯還是第一次。",
@@ -1485,7 +1485,7 @@
       "location": "香港",
       "year": 1950,
       "title_zh": "香港教館",
-      "title_en": "Hong Kong School Days"
+      "title_en": "The Hong Kong School"
     },
     {
       "scene": -1,
@@ -1508,9 +1508,9 @@
       ],
       "location": "香港",
       "year": 1950,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 眾人、雄哥."
+      "title_zh": "眾人、雄哥 - 師徒",
+      "title_en": "眾人, 雄哥",
+      "notes": "眾人、雄哥的故事 (3 行對白)"
     },
     {
       "scene": -1,
@@ -1528,13 +1528,13 @@
       ],
       "location": "香港",
       "year": 1950,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 葉問、雄哥."
+      "title_zh": "雄哥、葉問 - 師徒",
+      "title_en": "雄哥, 葉問",
+      "notes": "雄哥、葉問的故事 (2 行對白)"
     },
     {
       "scene": 36,
-      "notes": "Young challengers from Hong Kong's underworld come to test Ip Man's skills and reputation.",
+      "notes": "Young martial artists and gang members come to test Ip Man's school, challenging his authority and techniques.",
       "lines": [
         {
           "zh": "葉師父，我這幫兄弟想跟你學兩手絕活。八毛一位，不算貴。不過你當師父的，得貨真價實。絕不能賣假藥。你那兩下行嗎？",
@@ -1569,12 +1569,12 @@
       ],
       "location": "香港",
       "year": 1950,
-      "title_zh": "挑戰者來臨",
+      "title_zh": "踢館者來",
       "title_en": "Challengers Arrive"
     },
     {
       "scene": 37,
-      "notes": "A mysterious figure called 一線天 (The Razor) emerges as an agent with connections to nationalist political forces.",
+      "notes": "A mysterious figure called 一線天 appears, connected to nationalist intelligence operations and the Gong family's fate.",
       "lines": [
         {
           "zh": "你還記得我們的誓言嗎？什麼誓言？",
@@ -1605,7 +1605,7 @@
       "location": "香港",
       "year": 1950,
       "title_zh": "一線天現身",
-      "title_en": "The Razor Appears"
+      "title_en": "The Razor Emerges"
     },
     {
       "scene": -1,
@@ -1618,13 +1618,13 @@
       ],
       "location": null,
       "year": 1950,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 眾人."
+      "title_zh": " - 教武",
+      "title_en": "Scene -1",
+      "notes": "眾人的故事 (1 行對白)"
     },
     {
       "scene": 38,
-      "notes": "Ip Man seeks out Gong Er in Hong Kong, their meeting bittersweet—both are relics of a fading martial world.",
+      "notes": "Ip Man seeks out Gong Er in Hong Kong, finding her weakened and dealing with illness and the weight of her vows.",
       "lines": [
         {
           "zh": "葉先生來，不單是為了看病吧。",
@@ -1664,7 +1664,7 @@
       ],
       "location": "香港",
       "year": 1950,
-      "title_zh": "再見宮二",
+      "title_zh": "宮二病重",
       "title_en": "Visiting Gong Er"
     },
     {
@@ -1683,13 +1683,13 @@
       ],
       "location": "香港",
       "year": 1950,
-      "title_zh": "舊人新恨",
-      "title_en": "Old Friends, New Sorrows",
-      "notes": "Conversations between Ip Man and old friends reveal the hardships of exile and the loss of their former world."
+      "title_zh": "老薑阻止",
+      "title_en": "Old Jiang's Warning",
+      "notes": "Old Jiang, loyal to the Gong family, warns Ip Man that the family still has martial masters and will not yield easily."
     },
     {
       "scene": 40,
-      "notes": "A significant moment between Ip Man and his most promising student, showing the passing of wisdom.",
+      "notes": "Ip Man encounters Ding Lianshan, a fellow martial artist, discussing how times have changed and how they must adapt.",
       "lines": [
         {
           "zh": "唉，人哪，此一時彼一時。過什麼河，脫什麼鞋。有多大屁股就穿多大褲衩。來到了香港，我只能抽這種煙了。過去在老家，抽一口正宗的關東葉子煙，講究多了。要學會「溫、良、恭、儉、讓」。特別這個讓字，比方說我現在抽煙，對方坐了一個我不認識的人，我也要讓「抽兩口吧」。對方不管會抽不會抽，都要接受邀請，否則就是不給面子。葉先生，抽兩口吧。",
@@ -1709,8 +1709,8 @@
       ],
       "location": "香港",
       "year": 1950,
-      "title_zh": "師傅與弟子",
-      "title_en": "Master and Disciple"
+      "title_zh": "丁連山敘舊",
+      "title_en": "Meeting Ding Lianshan"
     },
     {
       "scene": -1,
@@ -1723,13 +1723,13 @@
       ],
       "location": null,
       "year": 1940,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 眾人."
+      "title_zh": "場景 -1",
+      "title_en": "Scene -1",
+      "notes": "眾人的故事 (1 行對白)"
     },
     {
       "scene": 41,
-      "notes": "On the eve of the new year, characters confront their fates—Gong Er awaits a final reckoning with her past.",
+      "notes": "Gong Er waits for Ma San on New Year's Eve, resolved to finally face her father's killer and end the vendetta.",
       "lines": [
         {
           "zh": "你說殺人難嗎？姑娘，現在不比從前了，殺人是要償命的。為了馬三犯得著嗎？",
@@ -1744,12 +1744,12 @@
       ],
       "location": "东北",
       "year": 1940,
-      "title_zh": "年除夕夜",
+      "title_zh": "大年夜決鬥",
       "title_en": "New Year's Eve"
     },
     {
       "scene": 42,
-      "notes": "The climactic confrontation between Gong Er and Ma San—a final act of honor and closure for her family's tragedy.",
+      "notes": "Old Jiang intervenes in the confrontation between Gong Er and Ma San, asserting the family's right to settle their own affairs.",
       "lines": [
         {
           "zh": "今天是我家姑娘和馬三的事兒，旁人不得插手。",
@@ -1784,12 +1784,12 @@
       ],
       "location": "东北",
       "year": 1940,
-      "title_zh": "宮二復仇",
-      "title_en": "Gong Er's Revenge"
+      "title_zh": "家族恩怨",
+      "title_en": "The Family Reckoning"
     },
     {
       "scene": 43,
-      "notes": "After her revenge, Gong Er reflects on what she has lost and gained, accepting the end of her martial chapter.",
+      "notes": "Ma San, mortally wounded, finally understands the profound martial technique his master had taught him years ago.",
       "lines": [
         {
           "zh": "師傅！別過來。別過來。馬三，說話！",
@@ -1809,8 +1809,8 @@
       ],
       "location": "东北",
       "year": 1940,
-      "title_zh": "一代終焉",
-      "title_en": "The End of an Era"
+      "title_zh": "師傅的功夫",
+      "title_en": "The Master's Technique"
     },
     {
       "scene": -1,
@@ -1823,9 +1823,9 @@
       ],
       "location": "东北",
       "year": 1940,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 老薑."
+      "title_zh": "老薑",
+      "title_en": "老薑",
+      "notes": "老薑的故事 (1 行對白)"
     },
     {
       "scene": -1,
@@ -1838,13 +1838,13 @@
       ],
       "location": null,
       "year": 1952,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 眾人."
+      "title_zh": " - 教武",
+      "title_en": "Scene -1",
+      "notes": "眾人的故事 (1 行對白)"
     },
     {
       "scene": 44,
-      "notes": "The fate of 一線天 is revealed—his connection to Ip Man and the broader political struggles of the era.",
+      "notes": "A mysterious figure delivers formal notification about a new establishment, maintaining the protocols of the martial underworld.",
       "lines": [
         {
           "zh": "對不起，我想我娘了。在下送的帖子老闆收到了嗎？收了。",
@@ -1899,8 +1899,8 @@
       ],
       "location": "香港",
       "year": 1952,
-      "title_zh": "一線天結局",
-      "title_en": "The Razor's End"
+      "title_zh": "三江水的帖子",
+      "title_en": "San Jiang Shui's Invitation"
     },
     {
       "scene": -1,
@@ -1913,13 +1913,13 @@
       ],
       "location": null,
       "year": 1952,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 眾人."
+      "title_zh": " - 教武",
+      "title_en": "Scene -1",
+      "notes": "眾人的故事 (1 行對白)"
     },
     {
       "scene": 45,
-      "notes": "Ip Man's reflection on Gong Er's decline and death, mourning both her loss and the loss of his martial era.",
+      "notes": "Ip Man recounts Gong Er's final years in Hong Kong—illness, addiction, and the weight of her unfulfilled martial legacy.",
       "lines": [
         {
           "zh": "1952年冬天，宮二停止掛牌。有人說是因為舊患，開始吸鴉片。有人傳她是煉功走火入魔。我最後一次見她是在大南。",
@@ -1929,12 +1929,12 @@
       ],
       "location": "香港",
       "year": 1952,
-      "title_zh": "歲月蒼涼",
-      "title_en": "The Passage of Years"
+      "title_zh": "宮二之死",
+      "title_en": "Gong Er's Decline"
     },
     {
       "scene": 46,
-      "notes": "A poignant final scene between Ip Man and Gong Er (or memory of her), filled with unspoken emotion and acceptance.",
+      "notes": "A final meeting between Ip Man and Gong Er as they listen to opera, discussing life, dreams, and the beauty of fleeting moments.",
       "lines": [
         {
           "zh": "聽得懂這戲嗎？像是在佛山聽過，叫什麼夢。風流戲。",
@@ -1994,12 +1994,12 @@
       ],
       "location": "香港",
       "year": 1953,
-      "title_zh": "最後相逢",
-      "title_en": "Final Meeting"
+      "title_zh": "風流戲",
+      "title_en": "The Dream of Romance"
     },
     {
       "scene": 47,
-      "notes": "Gong Er's reflective monologue about her life, her father, and the burden of being the grandmaster's daughter.",
+      "notes": "Gong Er's final reflection on the martial path—seeing oneself, seeing heaven and earth, and seeing all sentient beings.",
       "lines": [
         {
           "zh": "我爹常說，習武之人有三個階段，見自己，見天地，見眾生。我見過自己，也算見過天地，可惜見不到眾生。這條路，我沒走完。希望你能把它走下去。",
@@ -2048,12 +2048,12 @@
       ],
       "location": "香港",
       "year": 1953,
-      "title_zh": "宮二獨白",
-      "title_en": "Gong Er's Soliloquy"
+      "title_zh": "三個階段",
+      "title_en": "Three Stages of Martial Arts"
     },
     {
       "scene": 48,
-      "notes": "Intertitle conveying the passage of years and the fading of the martial arts world they knew.",
+      "notes": "Gong Er passes away in Hong Kong, never breaking her vows—never married, never had heirs, never taught disciples.",
       "lines": [
         {
           "zh": "一九五三年，宮二病逝香港，一生信守誓言，不婚嫁，不留後，不傳藝。",
@@ -2063,12 +2063,12 @@
       ],
       "location": null,
       "year": 1953,
-      "title_zh": "時光沙漏",
-      "title_en": "Time Passes"
+      "title_zh": "宮二之訣",
+      "title_en": "Gong Er's Farewell"
     },
     {
       "scene": 49,
-      "notes": "Old Jiang brings news of Gong Er's death and her ashes, marking the end of Ip Man's connection to his past.",
+      "notes": "Old Jiang brings news of Gong Er's death and delivers her final message to Ip Man, marking the end of an era.",
       "lines": [
         {
           "zh": "明天送二小姐靈柩回老家。這是她留給您的。",
@@ -2093,8 +2093,8 @@
       ],
       "location": "香港",
       "year": 1953,
-      "title_zh": "骨灰西歸",
-      "title_en": "Return to the West"
+      "title_zh": "灰燼西歸",
+      "title_en": "Ashes Return Home"
     },
     {
       "scene": 50,
@@ -2107,9 +2107,9 @@
       ],
       "location": null,
       "year": null,
-      "title_zh": "獨自思考",
-      "title_en": "Reflection",
-      "notes": "Ip Man alone, contemplating the meaning of everything he has witnessed and endured."
+      "title_zh": "宮家無敗",
+      "title_en": "The Gong Family's Honor",
+      "notes": "Ip Man reflects on Gong Er's philosophy—the Gong family never lost because she preferred to lose to herself rather than others."
     },
     {
       "scene": 51,
@@ -2160,13 +2160,13 @@
       ],
       "location": "佛山",
       "year": 1950,
-      "title_zh": "故地重遊",
-      "title_en": "Return to Foshan",
-      "notes": "Ip Man returns to his birthplace, visiting memories of his family, his master, and his youth."
+      "title_zh": "未曾說出",
+      "title_en": "The Unspoken Words",
+      "notes": "Ip Man reveals that he had words to tell Gong Er when he left Foshan, but the opportunity never came."
     },
     {
       "scene": 52,
-      "notes": "Intertitle expressing the bittersweet reality that places remain but people and times have changed irrevocably.",
+      "notes": "Years pass—Ip Man's wife passes away, and he never returns to Foshan, severing his final ties to the past.",
       "lines": [
         {
           "zh": "一九六Ｏ年，張永成病逝，葉問終生未再踏足佛山。",
@@ -2176,8 +2176,8 @@
       ],
       "location": null,
       "year": 1960,
-      "title_zh": "物是人非",
-      "title_en": "Nostalgia and Change"
+      "title_zh": "歲月流逝",
+      "title_en": "Time Passes"
     },
     {
       "scene": -1,
@@ -2190,9 +2190,9 @@
       ],
       "location": "香港",
       "year": null,
-      "title_zh": "間幕",
-      "title_en": "Interlude",
-      "notes": "Scene interlude with 雄哥."
+      "title_zh": "雄哥",
+      "title_en": "雄哥",
+      "notes": "雄哥的故事 (1 行對白)"
     },
     {
       "scene": 53,
@@ -2205,13 +2205,13 @@
       ],
       "location": null,
       "year": null,
-      "title_zh": "宮二相憶",
-      "title_en": "Memory of Gong Er",
-      "notes": "Ip Man remembers Gong Er—their encounters, their mutual respect, and the romance of a martial world now gone."
+      "title_zh": "久別重逢",
+      "title_en": "Reunion After Long Absence",
+      "notes": "A reflection that all meetings in life are reunions after long separation—a poetic meditation on time and connection."
     },
     {
       "scene": 54,
-      "notes": "Ip Man's final years—still teaching Wing Chun in Hong Kong, passing the legacy to new generations who will carry it forward.",
+      "notes": "Ip Man's final reflection on his life and legacy—spreading Wing Chun without ever hanging a sign, as martial arts transcend schools.",
       "lines": [
         {
           "zh": "有人說詠春因我而起，因我而收。我一輩子沒掛過招牌，對我而言，武術是大同的。到頭來，就兩個字，一橫一堅。",
@@ -2221,12 +2221,12 @@
       ],
       "location": null,
       "year": null,
-      "title_zh": "教拳傳道",
-      "title_en": "Teaching in Hong Kong"
+      "title_zh": "一代宗師傳燈",
+      "title_en": "The Grandmaster's Enlightenment"
     },
     {
       "scene": 55,
-      "notes": "Final intertitle and closing—Ip Man's legacy transcends his lifetime, influencing martial arts history for generations to come.",
+      "notes": "Ip Man's final years in Hong Kong, teaching countless disciples and spreading Wing Chun worldwide before his death in 1972.",
       "lines": [
         {
           "zh": "一九七二年，葉問逝於香港。一生傳燈無數，詠春因他而盛，從此傳遍世界。",
@@ -2236,7 +2236,7 @@
       ],
       "location": null,
       "year": 1972,
-      "title_zh": "一代宗師永遠",
+      "title_zh": "葉問的傳奇",
       "title_en": "The Grandmaster's Legacy"
     }
   ]
