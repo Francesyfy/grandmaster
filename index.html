@@ -261,12 +261,48 @@
     overflow: hidden;
   }
 
+  .notes-panel-header {
+    padding: 1rem 1.8rem 0;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  .notes-select {
+    width: 100%;
+    background: #0e0e0e;
+    border: 1px solid #2a2520;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    padding: 0.5rem 2rem 0.5rem 0.8rem;
+    border-radius: 2px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a6430'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .notes-select:hover { border-color: var(--gold-dim); color: var(--gold); }
+  .notes-select:focus { outline: none; border-color: var(--gold-dim); color: var(--gold); }
+  .notes-select option { background: #111; color: #8a8070; }
+
   .notes-panel-inner {
-    height: 100%;
+    flex: 1;
     overflow-y: auto;
-    padding: 1.5rem 1.8rem;
+    padding: 1rem 1.8rem 1.5rem;
     position: relative;
     z-index: 1;
+  }
+
+  .notes-panel-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
   }
 
   .notes-panel-inner::-webkit-scrollbar { display: none; }
@@ -399,18 +435,25 @@
 
   <!-- Notes panel -->
   <aside class="notes-panel" id="notes-panel">
-    <div class="notes-panel-inner">
-      <div class="notes-panel-empty" id="notes-empty">— 解 —</div>
-      <div id="notes-content" style="display:none">
-        <div class="notes-top">
-          <span class="notes-tag">NOTE 解</span>
-          <span class="notes-count" id="notes-count"></span>
+    <div class="notes-panel-body">
+      <div class="notes-panel-header">
+        <select class="notes-select" id="notes-select">
+          <option value="">— 解 select a note —</option>
+        </select>
+      </div>
+      <div class="notes-panel-inner">
+        <div class="notes-panel-empty" id="notes-empty">— 解 —</div>
+        <div id="notes-content" style="display:none">
+          <div class="notes-top">
+            <span class="notes-tag">NOTE 解</span>
+            <span class="notes-count" id="notes-count"></span>
+          </div>
+          <hr class="notes-rule">
+          <div class="notes-scene-ref" id="notes-scene-ref"></div>
+          <div class="notes-headline" id="notes-headline"></div>
+          <div class="notes-explanation" id="notes-explanation"></div>
+          <div class="notes-terms" id="notes-terms"></div>
         </div>
-        <hr class="notes-rule">
-        <div class="notes-scene-ref" id="notes-scene-ref"></div>
-        <div class="notes-headline" id="notes-headline"></div>
-        <div class="notes-explanation" id="notes-explanation"></div>
-        <div class="notes-terms" id="notes-terms"></div>
       </div>
     </div>
     <div class="notes-watermark" id="notes-watermark"></div>
@@ -522,6 +565,25 @@ function init(data) {
         allAnnotations.push({ si, li, sceneNum: scene.scene, speaker: line.speaker, annotation: line.annotation });
       }
     });
+  });
+
+  // ── Populate notes dropdown ──
+  const notesSelect = document.getElementById('notes-select');
+  allAnnotations.forEach((annRef, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    const scene = scenes[annRef.si];
+    const yearPart = scene.year ? ` ${scene.year}` : '';
+    opt.textContent = `SC ${annRef.sceneNum}${yearPart} — ${annRef.annotation.headline}`;
+    notesSelect.appendChild(opt);
+  });
+  notesSelect.addEventListener('change', () => {
+    const idx = notesSelect.value;
+    if (idx === '') return;
+    const annRef = allAnnotations[parseInt(idx)];
+    showAnnotationInPanel(annRef);
+    const lineEl = document.querySelector(`.line.annotated[data-ann-si="${annRef.si}"][data-ann-li="${annRef.li}"]`);
+    lineEl?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
   const years = [...new Set(scenes.map(s => s.year).filter(Boolean))].sort((a, b) => a - b);
@@ -645,6 +707,7 @@ function init(data) {
     document.getElementById('notes-count').textContent = globalIdx >= 0
       ? `${String(globalIdx + 1).padStart(2, '0')} / ${String(allAnnotations.length).padStart(2, '0')}`
       : '';
+    notesSelect.value = globalIdx >= 0 ? globalIdx : '';
 
     document.getElementById('notes-scene-ref').textContent =
       `SC ${annRef.sceneNum}${annRef.speaker ? ' · ' + annRef.speaker : ''}`;
