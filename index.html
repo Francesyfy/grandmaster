@@ -34,6 +34,10 @@
     grid-template-columns: 62px 1fr 310px;
     grid-template-rows: 72px 1fr;
     height: 100vh;
+    transition: grid-template-columns 0.28s ease;
+  }
+  .app.nav-expanded {
+    grid-template-columns: 210px 1fr 310px;
   }
 
   /* ─── Top bar ─── */
@@ -95,13 +99,26 @@
     border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 2.5rem 0;
-    overflow-y: auto;
-    gap: 0;
+    overflow: hidden;
   }
 
-  .year-nav::-webkit-scrollbar { display: none; }
+  .year-nav-body {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+  }
+
+  .year-nav-scroll {
+    width: 62px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 0 1rem;
+  }
+  .year-nav-scroll::-webkit-scrollbar { display: none; }
 
   .year-nav-item {
     display: flex;
@@ -133,11 +150,7 @@
   }
 
   .year-nav-btn:hover { color: var(--gold-light); }
-
-  .year-nav-btn.active {
-    color: var(--gold);
-  }
-
+  .year-nav-btn.active { color: var(--gold); }
   .year-nav-btn.active::after {
     content: '';
     display: block;
@@ -145,6 +158,103 @@
     height: 1px;
     background: var(--gold);
     margin: 3px auto 0;
+  }
+
+  /* ─── Nav expand button ─── */
+  .nav-expand-btn {
+    flex-shrink: 0;
+    width: 100%;
+    background: none;
+    border: none;
+    border-top: 1px solid var(--border);
+    cursor: pointer;
+    color: #2e2e2e;
+    font-size: 0.9rem;
+    padding: 0.7rem 0.9rem;
+    text-align: right;
+    transition: color 0.2s, background 0.2s;
+    font-family: inherit;
+  }
+  .nav-expand-btn:hover { color: var(--gold); background: #111; }
+  .app.nav-expanded .nav-expand-btn { color: var(--gold-dim); }
+
+  /* ─── Filter panel (slides in beside the year strip) ─── */
+  .nav-filters {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    border-left: 1px solid var(--border);
+  }
+  .nav-filters::-webkit-scrollbar { display: none; }
+  .app.nav-expanded .nav-filters {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .filter-section {
+    padding: 1rem 1.2rem 0.5rem;
+  }
+  .filter-section + .filter-section {
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .filter-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .filter-clear {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 0.58rem;
+    color: var(--gold-dim);
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    padding: 0;
+    display: none;
+  }
+  .filter-clear.visible { display: inline; }
+  .filter-clear:hover { color: var(--gold); }
+
+  .filter-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .filter-chip {
+    background: none;
+    border: 1px solid #222;
+    border-radius: 2px;
+    color: #3a3632;
+    font-family: inherit;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.6rem;
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .filter-chip:hover { color: var(--gold-light); border-color: #333; }
+  .filter-chip.active {
+    color: var(--gold);
+    border-color: var(--gold-dim);
+    background: #100e08;
   }
 
   /* ─── Reading area ─── */
@@ -426,7 +536,28 @@
   </header>
 
   <!-- Year nav -->
-  <nav class="year-nav" id="year-nav"></nav>
+  <nav class="year-nav" id="year-nav">
+    <div class="year-nav-body">
+      <div class="year-nav-scroll" id="year-nav-scroll"></div>
+      <div class="nav-filters" id="nav-filters">
+        <div class="filter-section">
+          <div class="filter-label">
+            <span>地點 Location</span>
+            <button class="filter-clear" id="loc-clear">clear</button>
+          </div>
+          <div class="filter-chips" id="loc-chips"></div>
+        </div>
+        <div class="filter-section">
+          <div class="filter-label">
+            <span>人物 Character</span>
+            <button class="filter-clear" id="char-clear">clear</button>
+          </div>
+          <div class="filter-chips" id="char-chips"></div>
+        </div>
+      </div>
+    </div>
+    <button class="nav-expand-btn" id="nav-expand-btn" title="Filter">&raquo;</button>
+  </nav>
 
   <!-- Reading area -->
   <main class="reading-area" id="reading-area">
@@ -613,12 +744,12 @@ function init(data) {
   }
 
   // ── Build year nav ──
-  const yearNav = document.getElementById('year-nav');
+  const yearNavScroll = document.getElementById('year-nav-scroll');
   years.forEach((y, i) => {
     if (i > 0) {
       const rule = document.createElement('div');
       rule.className = 'year-nav-rule';
-      yearNav.appendChild(rule);
+      yearNavScroll.appendChild(rule);
     }
     const item = document.createElement('div');
     item.className = 'year-nav-item';
@@ -631,8 +762,67 @@ function init(data) {
       card?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
     item.appendChild(btn);
-    yearNav.appendChild(item);
+    yearNavScroll.appendChild(item);
   });
+
+  // ── Build filters ──
+  const app = document.querySelector('.app');
+  const navExpandBtn = document.getElementById('nav-expand-btn');
+
+  navExpandBtn.addEventListener('click', () => {
+    app.classList.toggle('nav-expanded');
+    navExpandBtn.innerHTML = app.classList.contains('nav-expanded') ? '&laquo;' : '&raquo;';
+  });
+
+  const activeLocs = new Set();
+  const activeChars = new Set();
+
+  function applyFilters() {
+    document.querySelectorAll('.scene-card').forEach(card => {
+      const loc = card.dataset.location;
+      const chars = (card.dataset.characters || '').split('|').filter(Boolean);
+      const locMatch = activeLocs.size === 0 || (loc && activeLocs.has(loc));
+      const charMatch = activeChars.size === 0 || chars.some(c => activeChars.has(c));
+      card.style.display = (locMatch && charMatch) ? '' : 'none';
+    });
+  }
+
+  function buildChips(containerId, clearId, values, activeSet) {
+    const container = document.getElementById(containerId);
+    const clearBtn = document.getElementById(clearId);
+    [...values].sort().forEach(val => {
+      const chip = document.createElement('button');
+      chip.className = 'filter-chip';
+      chip.textContent = val;
+      chip.title = val;
+      chip.addEventListener('click', () => {
+        if (activeSet.has(val)) {
+          activeSet.delete(val);
+          chip.classList.remove('active');
+        } else {
+          activeSet.add(val);
+          chip.classList.add('active');
+        }
+        clearBtn.classList.toggle('visible', activeSet.size > 0);
+        applyFilters();
+      });
+      container.appendChild(chip);
+    });
+    clearBtn.addEventListener('click', () => {
+      activeSet.clear();
+      container.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      clearBtn.classList.remove('visible');
+      applyFilters();
+    });
+  }
+
+  const allLocations = new Set(scenes.map(s => s.location).filter(Boolean));
+  const allCharacters = new Set(
+    scenes.flatMap(s => s.lines.map(l => l.speaker).filter(Boolean))
+  );
+
+  buildChips('loc-chips', 'loc-clear', allLocations, activeLocs);
+  buildChips('char-chips', 'char-clear', allCharacters, activeChars);
 
   // ── Render all scenes ──
   const container = document.getElementById('scenes-container');
@@ -642,6 +832,8 @@ function init(data) {
     card.className = 'scene-card';
     card.dataset.scene = scene.scene;
     card.dataset.year = scene.year || '';
+    card.dataset.location = scene.location || '';
+    card.dataset.characters = [...new Set(scene.lines.map(l => l.speaker).filter(Boolean))].join('|');
 
     const yearLoc = [scene.year, scene.location].filter(Boolean).join(' · ') || '—';
 
