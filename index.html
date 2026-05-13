@@ -882,8 +882,8 @@ function init(data) {
   function updateTopBar(scene) {
     const chapter = getChapter(scene.year);
     const yearLoc = [scene.year, scene.location].filter(Boolean).join(' · ') || '—';
-    const titleZh = scene.title_zh || scene.location || `SC ${scene.scene}`;
-    const titleEn = scene.title_en || scene.notes || '';
+    const titleZh = scene.title_zh;
+    const titleEn = scene.title_en;
     document.getElementById('chapter-tag').textContent = `章·Ch·${chapter}`;
     document.getElementById('top-year-loc').textContent = yearLoc;
     document.getElementById('scene-title-zh').textContent = titleZh;
