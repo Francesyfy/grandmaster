@@ -8,568 +8,709 @@
   :root {
     --gold: #c9a84c;
     --gold-light: #e8cc82;
-    --ink: #1a1a1a;
-    --paper: #f5f0e8;
-    --muted: #6b6459;
-    --border: #d4c9b0;
-    --active-bg: #2a2520;
+    --gold-dim: #7a6430;
+    --ink: #0e0e0e;
+    --paper: #e4ddd0;
+    --muted: #5a554a;
+    --dim: #333;
+    --border: #1e1e1e;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+  }
 
   body {
     font-family: 'Georgia', 'Noto Serif SC', serif;
     background: var(--ink);
     color: var(--paper);
-    min-height: 100vh;
   }
 
-  /* ─── Header ─── */
-  header {
-    text-align: center;
-    padding: 3rem 1rem 2rem;
-    border-bottom: 1px solid #333;
+  /* ─── App shell ─── */
+  .app {
+    display: grid;
+    grid-template-columns: 62px 1fr 310px;
+    grid-template-rows: 72px 1fr;
+    height: 100vh;
   }
-  header h1 {
-    font-size: clamp(1.4rem, 4vw, 2.4rem);
+
+  /* ─── Top bar ─── */
+  .top-bar {
+    grid-column: 2;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    align-items: center;
+    height: 72px;
+    border-bottom: 1px solid var(--border);
+    padding: 0 1.5rem;
+    gap: 1rem;
+  }
+
+  .top-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .chapter-tag {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .top-year-loc {
+    font-size: 0.8rem;
     color: var(--gold);
     letter-spacing: 0.08em;
+  }
+
+  .top-center {
+    text-align: center;
+  }
+
+  .scene-title-zh {
+    font-size: 1.6rem;
+    color: var(--gold);
     font-weight: normal;
-  }
-  header .subtitle {
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin-top: 0.4rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
   }
 
-  /* ─── Layout ─── */
-  .layout {
+  .scene-title-en {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    letter-spacing: 0.03em;
+    margin-top: 0.2rem;
+  }
+
+  /* ─── Year nav ─── */
+  .year-nav {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    border-right: 1px solid var(--border);
     display: flex;
-    min-height: 100vh;
-  }
-
-  /* ─── Sidebar ─── */
-  aside {
-    width: 260px;
-    flex-shrink: 0;
-    border-right: 1px solid #2d2d2d;
-    padding: 1.5rem 0;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    background: #111;
-  }
-
-  aside h2 {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--muted);
-    padding: 0 1.2rem 0.6rem;
-  }
-
-  .filter-section { margin-bottom: 1.5rem; }
-
-  .filter-btn {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.45rem 1.2rem;
-    font-family: inherit;
-    font-size: 0.82rem;
-    color: #888;
-    transition: color 0.15s, background 0.15s;
-  }
-  .filter-btn:hover { color: var(--gold-light); background: #1a1a1a; }
-  .filter-btn.active { color: var(--gold); background: #1e1c18; }
-  .filter-btn .tag {
-    float: right;
-    font-size: 0.7rem;
-    color: #555;
-    margin-top: 1px;
-  }
-  .filter-btn.active .tag { color: var(--gold); opacity: 0.7; }
-
-  .divider {
-    border: none;
-    border-top: 1px solid #222;
-    margin: 0.8rem 1.2rem;
-  }
-
-  /* Scene list in sidebar */
-  .scene-list-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--muted);
-    padding: 0 1.2rem 0.5rem;
-  }
-  .scene-jump {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.3rem 1.2rem;
-    font-family: inherit;
-    font-size: 0.78rem;
-    color: #666;
-    transition: color 0.15s;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .scene-jump:hover { color: var(--gold-light); }
-  .scene-jump.hidden { display: none; }
-
-  /* ─── Main content ─── */
-  main {
-    flex: 1;
-    padding: 2rem 3rem;
-    max-width: 820px;
-  }
-
-  /* ─── Right year timeline ─── */
-  #year-timeline {
-    width: 100px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow: hidden;
-    padding: 4rem 0;
-  }
-
-  .year-track {
-    position: relative;
-    height: 100%;
-  }
-
-  .year-track::before {
-    content: '';
-    position: absolute;
-    left: 18px;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: #252525;
-  }
-
-  .year-marker {
-    position: absolute;
-    left: 0;
-    right: 0;
-    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 12px;
-    padding: 0 0.6rem;
-    transform: translateY(-50%);
-    cursor: pointer;
-    background: none;
-    border: none;
-    font-family: inherit;
-    text-align: left;
+    padding: 2.5rem 0;
+    overflow-y: auto;
+    gap: 0;
   }
 
-  .year-marker .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #2e2e2e;
-    flex-shrink: 0;
-    transition: background 0.25s, transform 0.25s;
+  .year-nav::-webkit-scrollbar { display: none; }
+
+  .year-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .year-nav-rule {
+    width: 1px;
+    height: 18px;
+    background: var(--border);
+    margin: 0 auto;
+  }
+
+  .year-nav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.72rem;
+    color: #3a3a3a;
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0;
+    width: 100%;
+    text-align: center;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .year-nav-btn:hover { color: var(--gold-light); }
+
+  .year-nav-btn.active {
+    color: var(--gold);
+  }
+
+  .year-nav-btn.active::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+    margin: 3px auto 0;
+  }
+
+  /* ─── Reading area ─── */
+  .reading-area {
+    grid-column: 2;
+    grid-row: 2;
+    overflow-y: auto;
+    padding: 2rem 3.5rem 4rem;
+  }
+
+  .reading-area::-webkit-scrollbar { width: 4px; }
+  .reading-area::-webkit-scrollbar-track { background: transparent; }
+  .reading-area::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 2px; }
+
+  /* ─── Scene header ─── */
+  .scene-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.75rem;
+  }
+
+  .sc-label {
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .sc-loc {
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .scene-rule {
+    border: none;
+    border-top: 1px solid #1c1c1c;
+    margin-bottom: 2rem;
+  }
+
+  /* ─── Lines ─── */
+  .line {
+    margin-bottom: 1.6rem;
+  }
+
+  .speaker {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gold-dim);
+    margin-bottom: 0.35rem;
+  }
+
+  .zh {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: #ccc8be;
+    margin-bottom: 0.25rem;
+  }
+
+  .zh .term-highlight {
+    color: var(--gold);
+    text-decoration: underline;
+    text-decoration-color: var(--gold-dim);
+    text-underline-offset: 3px;
+    cursor: default;
+  }
+
+  .en {
+    font-size: 0.84rem;
+    line-height: 1.65;
+    color: #585248;
+    font-style: italic;
+  }
+
+  /* ─── Annotated line ─── */
+  .line.annotated {
+    border-left: 2px solid var(--gold-dim);
+    padding: 0.9rem 1.2rem;
+    background: #121008;
+    border-radius: 0 3px 3px 0;
+    margin-left: -1.4rem;
+  }
+
+  .line.annotated .zh { color: #ddd8cc; }
+
+  .annotation-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.7rem;
+    background: none;
+    border: 1px solid var(--gold-dim);
+    border-radius: 3px;
+    color: var(--gold);
+    font-size: 0.68rem;
+    padding: 0.15rem 0.6rem;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .annotation-toggle:hover { background: #1a1710; border-color: var(--gold); }
+  .annotation-toggle.showing { background: #1a1710; border-color: var(--gold); color: var(--gold-light); }
+
+  /* ─── Notes panel ─── */
+  .notes-panel {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    border-left: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .notes-panel-inner {
+    height: 100%;
+    overflow-y: auto;
+    padding: 1.5rem 1.8rem;
     position: relative;
     z-index: 1;
   }
 
-  .year-marker .yr {
-    font-size: 0.72rem;
-    color: #3a3a3a;
-    letter-spacing: 0.06em;
-    transition: color 0.25s;
-    white-space: nowrap;
-  }
+  .notes-panel-inner::-webkit-scrollbar { display: none; }
 
-  .year-marker.active .dot {
-    background: var(--gold);
-    transform: scale(1.8);
-  }
-
-  .year-marker.active .yr {
-    color: var(--gold);
-    font-size: 0.78rem;
-  }
-
-  .year-marker:hover .yr { color: var(--gold-light); }
-  .year-marker:hover .dot { background: #666; }
-  .year-marker.active:hover .dot { background: var(--gold); }
-
-  /* Results info */
-  .results-info {
-    font-size: 0.75rem;
-    color: #555;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
-  }
-
-  /* Scene card */
-  .scene-card {
-    margin-bottom: 2.5rem;
-    border-left: 2px solid #2a2a2a;
-    padding-left: 1.5rem;
-    transition: border-color 0.2s;
-  }
-  .scene-card:hover { border-color: var(--gold); }
-  .scene-card.hidden { display: none; }
-
-  .scene-meta {
+  .notes-panel-empty {
     display: flex;
-    align-items: baseline;
-    gap: 0.8rem;
-    margin-bottom: 0.8rem;
-    flex-wrap: wrap;
-  }
-  .scene-num {
-    font-size: 0.7rem;
-    color: #444;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #252525;
+    font-size: 0.75rem;
     letter-spacing: 0.1em;
+  }
+
+  .notes-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.6rem;
+  }
+
+  .notes-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: var(--muted);
     text-transform: uppercase;
   }
-  .location-badge {
-    font-size: 0.72rem;
-    padding: 0.15rem 0.55rem;
-    border: 1px solid #333;
-    border-radius: 3px;
+
+  .notes-count {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
     color: var(--muted);
   }
-  .year-badge {
-    font-size: 0.72rem;
-    color: var(--gold);
-    opacity: 0.7;
-  }
 
-  /* Lines */
-  .line {
+  .notes-rule {
+    border: none;
+    border-top: 1px solid #1c1c1c;
     margin-bottom: 1.2rem;
   }
-  .speaker {
-    font-size: 0.68rem;
+
+  .notes-scene-ref {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #555;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.9rem;
   }
-  .zh {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #ddd;
-    margin-bottom: 0.2rem;
-  }
-  .en {
-    font-size: 0.88rem;
-    line-height: 1.6;
-    color: #777;
+
+  .notes-headline {
+    font-size: 1.15rem;
+    color: var(--gold);
     font-style: italic;
+    line-height: 1.35;
+    margin-bottom: 1.3rem;
+    letter-spacing: 0.01em;
   }
 
-  /* Empty state */
-  .empty {
-    display: none;
-    color: #444;
-    font-size: 0.9rem;
-    padding: 3rem 0;
-    text-align: center;
+  .notes-explanation p {
+    font-size: 0.79rem;
+    line-height: 1.8;
+    color: #6a6358;
+    margin-bottom: 0.9rem;
   }
-  .empty.visible { display: block; }
+  .notes-explanation p:last-child { margin-bottom: 0; }
 
-  /* ─── Responsive ─── */
-  @media (max-width: 700px) {
-    .layout { flex-direction: column; }
-    aside {
-      width: 100%;
-      height: auto;
-      position: static;
-      border-right: none;
-      border-bottom: 1px solid #2d2d2d;
-      padding: 1rem 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0;
-    }
-    .filter-section { flex: 1; min-width: 140px; }
-    .scene-list-section { display: none; }
-    main { padding: 1.5rem 1.2rem; }
-    #year-timeline { display: none; }
+  .notes-terms {
+    margin-top: 1.3rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid #1c1c1c;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .notes-term {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0.6rem;
+    align-items: start;
+  }
+
+  .nt-left { display: flex; flex-direction: column; gap: 0.15rem; }
+  .nt-zh { font-size: 0.88rem; color: var(--gold); letter-spacing: 0.04em; }
+  .nt-pinyin { font-size: 0.68rem; color: var(--gold-dim); font-style: italic; letter-spacing: 0.03em; }
+  .nt-meaning { font-size: 0.72rem; color: #5a554a; line-height: 1.5; }
+
+  .notes-watermark {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.8rem;
+    font-size: 7rem;
+    color: #161410;
+    pointer-events: none;
+    line-height: 1;
+    user-select: none;
+    font-weight: normal;
+    z-index: 0;
+  }
+
+  /* ─── Scene card (in scroll mode) ─── */
+  .scene-card {
+    margin-bottom: 3.5rem;
   }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>一代宗師 &nbsp;/&nbsp; THE GRANDMASTER</h1>
-  <p class="subtitle">2013 &nbsp; 王家衛·梁朝偉·章子怡</p>
-</header>
+<div class="app">
 
-<div class="layout">
-
-  <!-- Sidebar -->
-  <aside id="sidebar">
-
-    <!-- Location filter -->
-    <div class="filter-section" id="loc-filter-section">
-      <h2>Location &nbsp;地點</h2>
-      <button class="filter-btn active" data-filter="loc" data-loc="all">All <span class="tag" id="loc-all-count"></span></button>
+  <!-- Top bar -->
+  <header class="top-bar">
+    <div class="top-left">
+      <div class="chapter-tag" id="chapter-tag">章·Ch·I</div>
+      <div class="top-year-loc" id="top-year-loc">—</div>
     </div>
-
-    <hr class="divider">
-
-    <!-- Character filter -->
-    <div class="filter-section" id="spk-filter-section">
-      <h2>Character &nbsp;人物</h2>
-      <button class="filter-btn active" data-filter="spk" data-spk="all">All <span class="tag" id="spk-all-count"></span></button>
+    <div class="top-center">
+      <h1 class="scene-title-zh" id="scene-title-zh">一代宗師</h1>
+      <p class="scene-title-en" id="scene-title-en">The Grandmaster</p>
     </div>
+    <div></div>
+  </header>
 
-    <hr class="divider">
+  <!-- Year nav -->
+  <nav class="year-nav" id="year-nav"></nav>
 
-    <!-- Scene jump list -->
-    <div class="scene-list-section">
-      <div class="scene-list-label">Scenes &nbsp;場景</div>
-      <div id="scene-jump-list"></div>
-    </div>
-
-  </aside>
-
-  <!-- Main -->
-  <main>
-
-    <div class="results-info" id="results-info"></div>
-
-    <!-- Scene cards -->
+  <!-- Reading area -->
+  <main class="reading-area" id="reading-area">
     <div id="scenes-container"></div>
-    <div class="empty" id="empty-state">No scenes match the current filter.</div>
-
   </main>
 
-  <!-- Right year timeline -->
-  <nav id="year-timeline"><div class="year-track" id="year-track"></div></nav>
+  <!-- Notes panel -->
+  <aside class="notes-panel" id="notes-panel">
+    <div class="notes-panel-inner">
+      <div class="notes-panel-empty" id="notes-empty">— 解 —</div>
+      <div id="notes-content" style="display:none">
+        <div class="notes-top">
+          <span class="notes-tag">NOTE 解</span>
+          <span class="notes-count" id="notes-count"></span>
+        </div>
+        <hr class="notes-rule">
+        <div class="notes-scene-ref" id="notes-scene-ref"></div>
+        <div class="notes-headline" id="notes-headline"></div>
+        <div class="notes-explanation" id="notes-explanation"></div>
+        <div class="notes-terms" id="notes-terms"></div>
+      </div>
+    </div>
+    <div class="notes-watermark" id="notes-watermark"></div>
+  </aside>
+
 
 </div>
 
 <script>
-const DATA = {"title":"一代宗師 / The Grandmaster","scenes":[{"scene":1,"lines":[{"zh":"別跟我說你功夫有多深，師父有多厲害，門派有多少嘍囉。","en":"Don't tell me how well you fight, or how great your teacher is, or brag about your style.","speaker":"葉問 / Ip Man"},{"zh":"功夫，兩個字，一橫一堅。","en":"Kungfu — two words. Horizontal. Vertical.","speaker":"葉問 / Ip Man"},{"zh":"錯的，躺下嘍，站著的才有資格說話，你說這話對嗎？","en":"Make a mistake — horizontal. Stay standing and you win. Isn't that right?","speaker":"葉問 / Ip Man"}],"location":"香港","year":null},{"scene":2,"lines":[{"zh":"我是廣東南海佛山人，我父親叫葉靄多，在香港文昌西街經營南北行生意。","en":"We're from Foshan. My father ran the family business. He exported goods to Hong Kong.","speaker":"葉問 / Ip Man"},{"zh":"我葉氏在佛山，人稱培德里葉，也就是說整個培德里都是我家的。","en":"The Ips have a long history in Foshan. They named a street after us. That's how wealthy we were.","speaker":"葉問 / Ip Man"},{"zh":"我四十歲前不愁吃喝，靠的是祖上留下的財產。","en":"Before I turned 40, life was easy. I lived off my family money.","speaker":"葉問 / Ip Man"},{"zh":"我唯一的嗜好是［武學］，我七歲學拳，師父是陳華順。","en":"I had only one passion. At seven, I started learning kungfu. My master was Chan Wah-shun.","speaker":"葉問 / Ip Man"},{"zh":"佛山詠春是從贊先生開始的，我算是第三代傳人。","en":"Foshan's Wing Chun began with Leung Jan. I'm the third generation.","speaker":"葉問 / Ip Man"},{"zh":"我師父收我的時候已經70歲。拜師那一天，是他親手替我上腰帶。","en":"When I started, my master was seventy. The day I became a disciple, he tied the sash himself.","speaker":"葉問 / Ip Man"}],"location":"佛山","year":1936},{"scene":3,"lines":[{"zh":"這條腰帶就是代表你的師門，你的師父。","en":"This sash stands for school and teacher.","speaker":"陳華順 / Chan Wah-shun"},{"zh":"一條腰帶一口氣，上了這條腰帶就是練武之人。","en":"It stands for honor. You are now a martial artist.","speaker":"陳華順 / Chan Wah-shun"},{"zh":"往後你就要憑這口氣做人，開拳。","en":"You must live your life with honor.","speaker":"陳華順 / Chan Wah-shun"}],"location":"佛山","year":1906},{"scene":4,"lines":[{"zh":"一條腰帶一口氣。","en":"One sash, an unbroken tradition.","speaker":"葉問 / Ip Man"},{"zh":"我一生經歷光緒，宣統，民國，北伐，抗日，內戰。","en":"I lived through dynastic times, the early republic, warlords, Japanese invasion and civil war.","speaker":"葉問 / Ip Man"},{"zh":"最後來到香港，能夠堅持下來，憑的就是這句話。","en":"Finally, I came to Hong Kong. What kept me going was the martial arts code of honor.","speaker":"葉問 / Ip Man"}],"location":"佛山","year":1936},{"scene":5,"lines":[{"zh":"我內人叫張永成，是前清洋務大臣張萌桓的後人。","en":"My wife, Zhang Yongcheng, was the descendant of an Imperial Minister.","speaker":"葉問 / Ip Man"},{"zh":"一般她話不多，因為她說出口有時會傷人。","en":"She was a woman of few words because she knew their power.","speaker":"葉問 / Ip Man"},{"zh":"兩夫妻，要無聲勝有聲。","en":"We understood each other well.","speaker":"葉問 / Ip Man"},{"zh":"她喜歡聽曲兒，要有應酬，我會帶著她去金樓。","en":"She loved music. I'd take her to hear opera.","speaker":"葉問 / Ip Man"},{"zh":"那個年月還是很保守的，良家婦女上堂子聽曲兒是很少有的。她倒也不怕人家說閒話。","en":"People were so conservative back then. Nice women didn't visit places like this. But gossip didn't bother her.","speaker":"葉問 / Ip Man"},{"zh":"晚上我出去，她會亮著門口那盞燈，要等到我回來，才會關上。","en":"When I went out, she lit a lamp and left it lit till I came home.","speaker":"葉問 / Ip Man"},{"zh":"如果人生有四季的話，我四十歲之前都是春天。","en":"If life has seasons, my first forty years were spring.","speaker":"葉問 / Ip Man"}],"location":"佛山","year":1936},{"scene":6,"lines":[{"zh":"一九三六年 廣東·佛山","en":"1936. Foshan, Guangdong Province.","speaker":""}],"location":null,"year":null},{"scene":7,"lines":[{"zh":"1936年，是陳濟棠時代，算是太平年景。","en":"In 1936, Foshan was a prosperous city. Life was peaceful and good.","speaker":"葉問 / Ip Man"},{"zh":"那年月男人到堂子交際是平常事。在廣州最有名的玩場是陳塘的留觴。","en":"Back then, men socialised in brothels. Such places were popular in the South.","speaker":"葉問 / Ip Man"},{"zh":"在佛山最吃香的，是鷹沙嘴的共和樓，裡面滿堂貼金，所以大家都喚它金樓。","en":"Foshan's finest was Republic House. Its walls were covered in gold, so we called it the Gold Pavilion.","speaker":"葉問 / Ip Man"},{"zh":"它是全廣東第一家有電梯的堂子，號稱太子進太監出，可以讓你千金散盡。","en":"It was the first to have an elevator. Enter a prince, exit a pauper. You'd spend money like water.","speaker":"葉問 / Ip Man"},{"zh":"那裡也是我們師兄弟常聚的地方，風塵之中，必有性情中人，其中不少是藏身不露的高手。","en":"It was like a social club for martial artists. Good men can be found among rogues. And hidden masters too.","speaker":"葉問 / Ip Man"},{"zh":"一般人看金樓是個銷魂處。反過來看，它是一片英雄地。","en":"People saw it as a pleasure palace. But to us, it was a battleground.","speaker":"葉問 / Ip Man"}],"location":"佛山","year":1936},{"scene":8,"lines":[{"zh":"我這輩子只成了三件事，合併了形意門和八卦門。","en":"I claim three accomplishments in life. First, I united Xingyi and Bagua styles.","speaker":"宮寶森 / Gong Yutian"},{"zh":"接了我大師兄的班，主事中華武士會，聯合了通背、炮錘、太極、燕青等十幾個門派加入。","en":"Second, I became the director of the Northern Martial Arts Union, bringing together Tongbei, Cannon Fist, Tai Chi, Yan Qing and other schools.","speaker":"宮寶森 / Gong Yutian"},{"zh":"最後是撮成了北方拳師南下傳藝。","en":"Third, I took the northern masters south.","speaker":"宮寶森 / Gong Yutian"},{"zh":"民國十八年；兩廣國術館成立，五虎下江南。就是我和李任潮先生在這座金樓談定的。","en":"In 1929, the First Southern Martial Arts Academy was founded under my supervision after talks here in the Gold Pavilion.","speaker":"宮寶森 / Gong Yutian"},{"zh":"我是老了，新人要出頭，我的引退儀式在北邊辦過一次。","en":"I'm getting old. It's time for new blood. I held a retirement ceremony up North.","speaker":"宮寶森 / Gong Yutian"},{"zh":"今次蒙精武會的邀請在這兒再辦一次，是想給南方的老哥們老同志做個告別。","en":"You invited me to hold a second one here. It's my farewell to my southern comrades.","speaker":"宮寶森 / Gong Yutian"},{"zh":"在東北和我搭手的是我的大徒弟馬三，我的班他接了，諸位可是得照應得他。","en":"Up North, the one who took part was my top disciple, Ma San. He'll be my successor. Please give him your support.","speaker":"宮寶森 / Gong Yutian"},{"zh":"本來我還想辦最後一件事，就是把南拳北傳。可惜我沒有時間了，在這裡的引退儀式上，跟我搭手的，我想是位南方的拳手。當然得大家認可才行啊，挑一個吧！","en":"I'd always wanted to take the southern styles north. Sadly, my time's up. I want to hold a demonstration match with a southern martial artist. Someone you all support. Pick one.","speaker":"宮寶森 / Gong Yutian"}],"location":"佛山","year":1936},{"scene":9,"lines":[{"zh":"敢叫板老爺子？乾脆點兒，一起來吧。","en":"Think you're good enough to challenge the Old Master? Let's keep it simple. I'll take you all on.","speaker":"馬三 / Ma San"},{"zh":"老爺子在北方引退儀式上，搭手的是我。入廟拜佛，得先進山門。要見真佛，得先過我馬三。","en":"At the ceremony up North, I had the honor. To worship at the feet of the Buddha, first pass the Guardian of the Gate. That's me.","speaker":"馬三 / Ma San"}],"location":"佛山","year":1936},{"scene":10,"lines":[{"zh":"我有什麼資格代表廣東武林呐？講門派，南拳有洪、劉、蔡、李、莫。論輩份，在座各位都是長輩，不是掌門就是館主，怎麼也輪不到我。","en":"How can I represent the South? The southern schools are Hung, Lau, Choy, Lee, and Mok. In rank, you are all my seniors. You're the leaders and masters. I have no standing.","speaker":"葉問 / Ip Man"},{"zh":"這件事關乎兩廣國術界的面子。我們廣東人，雖說平時愛打個小算盤，真要動手誰也沒怕過，我們他媽怕過誰呀？今天人家上門來叫板，我們不能裝孫子。你們說是不是啊？","en":"The reputation of the South is at stake. We Southerners may be petty, but we don't run away from a fight. We're not afraid of these Northerners! This is a challenge. We will rise to it. Isn't that right?","speaker":"壽哥 / Shou"},{"zh":"壽哥說的對啊，就是你啦！","en":"Absolutely! It must be you.","speaker":"眾人 / Crowd"}],"location":"佛山","year":1936},{"scene":11,"lines":[{"zh":"明天我帶孩子回娘家，讓你少牽掛。","en":"I'll take the kids to my mother's. Less for you to worry about.","speaker":"張永成 / Zhang Yongcheng"},{"zh":"男人過了四十，要做有把握的事情。","en":"When a man reaches forty, he needs to be sure of things.","speaker":"張永成 / Zhang Yongcheng"},{"zh":"等這事兒過了，你來接我。","en":"When it's all over, come pick us up.","speaker":"張永成 / Zhang Yongcheng"}],"location":"佛山","year":1936},{"scene":12,"lines":[{"zh":"你知道為什麼刀得有鞘？","en":"Do you know why a knife must have a sheath?","speaker":"宮寶森 / Gong Yutian"},{"zh":"因為刀的真意不在殺，在藏。","en":"Its power lies not in sharpness, but in concealment.","speaker":"馬三 / Ma San"},{"zh":"你的刀太銳，得在鞘裡好好藏藏。","en":"You're too sharp a blade. You have to stay put.","speaker":"宮寶森 / Gong Yutian"},{"zh":"我的鞘，就是師父您，您在，我出不了亂子。","en":"My sheath is you, Master. With you around, I'm under control.","speaker":"馬三 / Ma San"},{"zh":"我藏不住你，十年之後再成名吧，現在就離開佛山，趕不上火車，我就斷你的腿！","en":"I can no longer control you. You're too anxious to make your mark. For now, leave Foshan. Miss that train, and I'll break your legs.","speaker":"宮寶森 / Gong Yutian"}],"location":"佛山","year":1936},{"scene":13,"lines":[{"zh":"停車！請朋友讓個道。","en":"Halt! Let us pass.","speaker":"老薑 / Old Jiang"},{"zh":"對不起，佛山精武會有規定：「凡帶兵器者，不許進這條街」。","en":"Sorry. This street is closed off. No one bearing arms can enter.","speaker":"精武會成員 / Jingwu member"},{"zh":"知道車上坐的什麼人嘛？把宮家的弟子叫出來。","en":"Do you know who's in that rickshaw? Call out the Gong Family disciples!","speaker":"老薑 / Old Jiang"},{"zh":"二姑娘，你可來了。這事兒必須得攔下，輸贏都不好聽。","en":"Miss Gong, it's good you're here. He must call this off. Win or lose, it's a disgrace.","speaker":"宮寶森手下 / Gong Yutian's man"},{"zh":"我爹一輩子沒敗過，談何輸贏？","en":"My father has never lost. There's no question of losing.","speaker":"宮二 / Gong Er"},{"zh":"嘿，贏了又怎麼著？說人家說以大欺小，差著輩份呢。","en":"And so what if he wins? They'll say he beat a nobody. Ip Man's not at his level.","speaker":"宮寶森手下 / Gong Yutian's man"},{"zh":"我爹呢？","en":"Where's my father?","speaker":"宮二 / Gong Er"}],"location":"佛山","year":1936},{"scene":14,"lines":[{"zh":"師哥，寶森來看你來了。","en":"Brother. It's me, Baosen.","speaker":"宮寶森 / Gong Yutian"},{"zh":"東北那麼大都容不下你了？非要來佛山？起來。","en":"Isn't the Northeast big enough for you? You had to come to Foshan? Get up.","speaker":"丁連山 / Ding Lianshan"},{"zh":"我是來接您回去的。","en":"I'm taking you home.","speaker":"宮寶森 / Gong Yutian"},{"zh":"回去？能回去嗎？現在的東北是日本人的天下，在太陽旗下，能容下我這只鬼？還不是時候。","en":"Home? How's that possible? The Japanese control the Northeast. The Japanese flag won't wave over me. The time's not ripe.","speaker":"丁連山 / Ding Lianshan"},{"zh":"這麼燉湯，是很耗神的。","en":"Making soup like this is a lot of work.","speaker":"宮寶森 / Gong Yutian"},{"zh":"這不是燉湯，是蛇羹。","en":"It's not soup. It's snake stew.","speaker":"丁連山 / Ding Lianshan"},{"zh":"蛇羹不是冬天的菜嗎？","en":"Isn't that a winter dish?","speaker":"宮寶森 / Gong Yutian"},{"zh":"是幾十年的菜了。","en":"It's a dish from a long time ago.","speaker":"丁連山 / Ding Lianshan"},{"zh":"是幾十年了，1905年，乙巳年，是蛇年，你是在那一年離開東北的。","en":"Yes, decades. 1905 was a Snake Year. You left the Northeast that year.","speaker":"宮寶森 / Gong Yutian"},{"zh":"做羹，要講究火候。火候不到，眾口能調。火候過了，事情就焦了。做人也是這樣，回去吧。","en":"The fire has to be right for stew. Too low — it'll lack taste. Too high — it'll scald. There's a lesson in that. Go.","speaker":"丁連山 / Ding Lianshan"},{"zh":"等這爐子裡能容下這根柴，我就回去。","en":"Wait till the fire can take this wood. I'll go then.","speaker":"宮寶森 / Gong Yutian"},{"zh":"暗事好做，明事難成。我們都老了，你一輩子名聲不容易。跟晚輩掄拳頭揮胳膊的事就別幹了，勉強了味道就壞了。","en":"The South may secede. It's no time for diplomacy. We're getting old. Don't risk your reputation. Ip is more than he appears to be. Force it, things could go wrong.","speaker":"丁連山 / Ding Lianshan"},{"zh":"寶森不是想當英雄，是想造時勢。現在這爐子裡呀，需要這根新柴。","en":"I know what I'm doing. I'm creating opportunity. This fire today needs new wood.","speaker":"宮寶森 / Gong Yutian"}],"location":"佛山","year":1936},{"scene":15,"lines":[{"zh":"你在北方的老哥們；都不贊成這場比武。讓他搭手多大的面子，姓葉的不識抬舉，咱可不能壞了規矩。","en":"Your northern colleagues disapprove of this match. It's a huge honor. This Ip doesn't deserve it. It's not how things are done.","speaker":"宮二 / Gong Er"},{"zh":"別跟他們一般見識，老人死守著規矩，新人什麼時候才能出頭啊。葉問是個好材料，就看他這次能不能出頭！","en":"Don't follow the herd. If the old never let go, when will the young get their chance? Ip Man has talent. Let's see if he can prove himself.","speaker":"宮寶森 / Gong Yutian"},{"zh":"宮家沒有敗績，你又在這兒，他憑什麼出頭？","en":"The Gong Family has never lost before. With you here, what right does he have?","speaker":"宮二 / Gong Er"},{"zh":"你的脾氣呀就是爹年輕的時候，眼睛裡只有勝負，沒有人性世故。人要往遠看，過了山，眼界就開闊了。但凡一個人見不得人好，見不得人高明，是沒有容人之心。咱們宮家的門檻高，但是不出小人。","en":"I once had a temper like yours: winning was everything. But life's bigger than that. Take a longer view. Past the mountains the world opens up. Not to see the good in others, not to admit their talent, is to lack generosity. Our high standards in martial arts apply to character as well.","speaker":"宮寶森 / Gong Yutian"}],"location":"佛山","year":1936},{"scene":16,"lines":[{"zh":"爹，您帶著親閨女逛堂子這什麼說法？","en":"Father, why did you bring me to a brothel?","speaker":"宮二 / Gong Er"},{"zh":"這天底下的事，你不看他就沒了，看看無妨。我第一次來這金樓，你還沒有出生呢！一晃二十年過去了。","en":"If you don't see something, does it not exist? No harm in seeing. The first time I came here was before you were born. Twenty years have passed in a flash.","speaker":"宮寶森 / Gong Yutian"},{"zh":"人活這一世，能耐還在其次，有的成了面子，有的成了裡子，都是時勢使然。","en":"In life, ability isn't everything. Some thrive in light, others in shadow. The times make us what we are.","speaker":"宮寶森 / Gong Yutian"},{"zh":"這次讓你下來，是想求個始終。讓你看看，爹是怎麼退下來的。你從小，是看著我跟人交手長大的，這是最後一次。","en":"I asked you to come South to bring things full circle and to let you see how I step down. Since you were little, you've watched me fight. This is the last time.","speaker":"宮寶森 / Gong Yutian"},{"zh":"你是定了親的人了，江湖的事，和你沒關係。當個好大夫，平平安安的，就是盡孝心了。","en":"You're engaged to be married. The Martial World is no longer your world. Be a good doctor. Live a peaceful life. This is my greatest wish.","speaker":"宮寶森 / Gong Yutian"}],"location":"佛山","year":1936},{"scene":17,"notes":"Gold Pavilion — warmup matches before the main contest","lines":[{"zh":"葉師父，風塵之中多是性情之人。今天是你出頭的好日子，兄弟跟這裡同仁封廳來祝賀你。","en":"Master Ip. We're here to celebrate. Your big day is coming up. We'd like to show you our support.","speaker":"燈叔 / Uncle Deng"},{"zh":"那怎麼好意思呀，燈叔。","en":"I'm humbled, Uncle Deng.","speaker":"葉問 / Ip Man"},{"zh":"小意思。千萬別客氣呀！請！","en":"It's nothing at all. Don't mention it. Please.","speaker":"燈叔 / Uncle Deng"},{"zh":"問哥，我們幾個小輩代表全體阿姑來賀一賀你。","en":"On behalf of the ladies and staff, congratulations.","speaker":"眾人 / Crowd"},{"zh":"好大的陣勢啊。","en":"That's quite a battle formation.","speaker":"葉問 / Ip Man"},{"zh":"三姐呢，是我們京班跟人裡的頭。會點八卦掌，想請問哥您指教一下。","en":"Sister San heads our Peking Opera troupe. She dabbles in Bagua. She'd like to offer a few pointers.","speaker":"眾人 / Crowd"},{"zh":"請。","en":"Please.","speaker":"三姐 / Sister San"},{"zh":"請。","en":"After you.","speaker":"葉問 / Ip Man"},{"zh":"八卦掌取法於刀術，單換掌是單刀，雙換掌是雙刀。步伐一掰一扣。有六十四變化，擅長偏門搶攻。","en":"Bagua is based on swordplay. Single reverse palm is a single blade. Double reverse palm is a double blade. The feet arc out and in. There are 64 transformations. Attack comes out of nowhere.","speaker":"三姐 / Sister San"},{"zh":"三姐試手而已，用不著拆祠堂吧？","en":"Sister San, it's just practice. No need to smash the ancestral tablets.","speaker":"葉問 / Ip Man"},{"zh":"哼，祠堂拆過無數，沒什麼稀奇。葉先生，八卦手黑，小心！","en":"I've done that many times before. No big deal. Mr Ip, Bagua is underhanded. Beware.","speaker":"三姐 / Sister San"},{"zh":"多謝！","en":"Thank you.","speaker":"葉問 / Ip Man"}],"location":"佛山","year":1936},{"scene":18,"lines":[{"zh":"哦！葉先生，今個是喜事。兄弟代表帳房先生，賀賀你。形意拳，奉岳飛為祖師。所謂脫槍為拳。鑽，劈，橫，炮，崩。","en":"Ah, Mr Ip. Today is a happy day. We in Accounts wish you well. Xingyi began with General Yue Fei. It uses the fist as a spear. Drill. Chop. Cross. Blast. Crush.","speaker":"先生瑞 / Master Rui"},{"zh":"詠春聽橋？好功夫。","en":"Such sensitivity — impressive! That Crushing Fist is quite something.","speaker":"先生瑞 / Master Rui"},{"zh":"你的半步崩拳也很厲害呀。","en":"Mr Ip, each challenge leads to a higher peak. Xingyi is brutal. Don't underestimate it.","speaker":"葉問 / Ip Man"},{"zh":"葉先生，過手如登山一步一重天。形意拳霸道，千萬別輕敵！","en":"Let's see how high the peaks get.","speaker":"先生瑞 / Master Rui"},{"zh":"我就是想見識一下高山。","en":"Hmm. This will be fun.","speaker":"葉問 / Ip Man"}],"location":"佛山","year":1936},{"scene":19,"lines":[{"zh":"葉師父，該輪到我了吧。","en":"My turn now, Master Ip.","speaker":"勇哥 / Brother Yong"},{"zh":"勇哥，你又怎麼個賀法？","en":"And what have you got for me, Yong?","speaker":"葉問 / Ip Man"},{"zh":"一串兒炮仗。","en":"A string of firecrackers.","speaker":"勇哥 / Brother Yong"},{"zh":"分定寸，洪拳呀？","en":"That move, isn't that Hung Gar?","speaker":"葉問 / Ip Man"},{"zh":"我打雜家的。","en":"I'm a jack of all trades.","speaker":"勇哥 / Brother Yong"},{"zh":"你可真夠雜的啊！","en":"You do mix it up.","speaker":"葉問 / Ip Man"},{"zh":"雜又怎麼樣？能打不就行啦！人家宮家六十四手千變萬化。你們詠春就三板斧。攤、傍、伏，你怎麼打啊？","en":"What's wrong with that? So long as it works. The 64 Hands have endless combinations. Your Wing Chun is a three-trick pony. Spade, Pin, Sheath. How can it compete?","speaker":"勇哥 / Brother Yong"},{"zh":"三板斧就夠你受的了。","en":"Three's enough to take care of you.","speaker":"葉問 / Ip Man"},{"zh":"勇哥，你這串炮仗不怎麼響啊！","en":"Yong, your fireworks have fizzled.","speaker":"葉問 / Ip Man"},{"zh":"那又怎麼樣，我什麼歲數了？拳怕少壯，管他什麼宗師不宗師的。追風趕月別留情，你一定得響啊！","en":"What of it? I'm an old man. Youth trumps skill. He might be a grandmaster, but don't hold back. You'd better win.","speaker":"勇哥 / Brother Yong"},{"zh":"多謝各位前輩指路！","en":"This has been a real privilege. To victory! Good luck.","speaker":"葉問 / Ip Man"}],"location":"佛山","year":1936},{"scene":20,"notes":"Main contest — Gong Yutian vs Ip Man","lines":[{"zh":"江山代有人才出，幸會葉先生是有緣。今日是我最後一戰。咱們今天不比武功，比想法，如何？","en":"Every generation produces new talent. Mr Ip, we were fated to meet. For my final contest I suggest we match wits, not skill. Do you accept?","speaker":"宮寶森 / Gong Yutian"},{"zh":"上門都是客，主隨客便。","en":"As our guest, it's up to you.","speaker":"葉問 / Ip Man"},{"zh":"當年，中華武士會成立，從南方來了一個人。話不多說，手裡拿著一個餅，讓我大師兄李存義掰開。我師哥李存義沒有說話。還讓他當了武士會的第一任會長。他憑的不是武功，是一句話。拳有南北，國有南北麼？","en":"When our Union was founded 25 years ago, a man came from the South. He offered a challenge. He held out a flat cake and asked our Master to break it. Our Master wasn't offended. He even named the man our first chairman. It wasn't because of his kungfu but what he said — Kungfu divides into North and South. Must the country divide as well?","speaker":"宮寶森 / Gong Yutian"},{"zh":"這位先生就是你們佛山人。叫葉雲表，是位人傑。想不到二十五年之後，讓我在佛山又碰到另一位葉先生。我想以前輩的話問一句，葉先生，你能掰開我手中的這塊餅嗎？","en":"That man was also from Foshan — Ip Yun-biu. He was a great man. Today, meeting another Mr Ip, I will ask that same question. Mr Ip, can you break this cake in my hand?","speaker":"宮寶森 / Gong Yutian"},{"zh":"太極楊露蟬有鳥不飛的絕技，麻雀在他的手裡飛不起來是因為無處借力。老爺子還是功夫深那！葉先生就是那只麻雀。我看這餅呀，是掰不開了。","en":"A Tai Chi master kept a bird from flying by giving it no perch from which to fly. The Old Master's skill is too great. Mr Ip is a sparrow in his palm. I don't think he can do it.","speaker":"先生瑞 / Master Rui"},{"zh":"其實天下之大，又何止南北？勉強求全等於固步自封。在你眼中這塊餅是一個武林，對我來講是一個世界。所謂大成若缺，有缺憾才能有進步。真管用的話，南拳又何止北傳呐。你說對嗎？","en":"The world is a big place. Why limit it to North and South? It holds you back. To you, this cake is the country. To me it's much more. Break from what you know and you will know more. If the Southern arts go far, what boundary is the North? Would you agree?","speaker":"葉問 / Ip Man"},{"zh":"說得好！宮某羸了一輩子，沒有輸在武功上。沒成想，輸在了想法。葉先生，今日我把名聲送給你。往後的路，你是一步一擂臺。希望你像我一樣。憑一口氣點一盞燈。要知道念念不忘，必有迴響。有燈就有人！","en":"Well said. All my life, I've been the victor. My technique has never failed me. I never thought I'd see the limits of my own vision. Mr Ip, today I've made you famous. In future, you'll face challenges at every step. I hope you'll be like me. Pass on the torch. Never give up the faith. Keep the light burning.","speaker":"宮寶森 / Gong Yutian"}],"location":"佛山","year":1936},{"scene":21,"lines":[{"zh":"姑娘，這事萬萬不可。","en":"Miss Gong, you mustn't do this.","speaker":"老薑 / Old Jiang"},{"zh":"宮家沒有敗績，輸了宮家有人會找回來。把這個轉給姓葉的，他懂。這輩子我是成不了像我爹那樣一天一地的豪傑。可我不圖一世，只圖一時。快去。","en":"The Gongs have never been defeated. I will redeem our honor. Give this to Ip. He'll understand. I have no chance to be as great as Father. It wasn't my choice. But I'll make my mark. Go.","speaker":"宮二 / Gong Er"},{"zh":"晚上的局，按北方規矩，贏的一方請客。葉問不到場，我也不到場，你就代表我去。","en":"Tonight, following Northern custom, the winner will host a banquet. Neither Ip Man nor I will attend. You'll represent me.","speaker":"宮寶森 / Gong Yutian"},{"zh":"你放心，宮家人辦事，沒丟過人。","en":"Don't worry. I'll do the right thing.","speaker":"宮二 / Gong Er"},{"zh":"走。","en":"Let's go!","speaker":"宮寶森 / Gong Yutian"}],"location":"佛山","year":1936},{"scene":22,"notes":"Others warn Ip Man about Gong Er","lines":[{"zh":"宮寶森一身武藝，馬三得到了他的剛勁，女兒得到了他的柔勁，是六十四手的唯一傳人。一手葉裡藏花，更是防不勝防。","en":"Of Master Gong's martial arts, Ma San inherited the steel and his daughter the silk. She is the sole heir to the 64 Hands. Her moves are deadly.","speaker":"先生瑞 / Master Rui"},{"zh":"一個女子在金樓擺下霸王夜宴，就是讓你非出來不可。別小看她是個女的，武行四大忌：和尚道士女人小孩。上門准沒好事。","en":"In booking the whole place first, she forces your hand. Don't underrate Gong Er. The Martial World has four taboos: monks, Taoist priests, women and children. Grappling with them is a bad idea.","speaker":"燈叔 / Uncle Deng"},{"zh":"過橋不怕兵，人家擺那麼大場面，怎能不去捧個場。","en":"She's gone to so much trouble — how could I not accept?","speaker":"葉問 / Ip Man"}],"location":"佛山","year":1936},{"scene":23,"notes":"Night banquet — Gong Er vs Ip Man","lines":[{"zh":"三天前，我爹就坐這位置。今天，咱們就從這兒開始。","en":"Three days ago, my father sat here. Tonight, it's between us.","speaker":"宮二 / Gong Er"},{"zh":"請。","en":"Please.","speaker":"葉問 / Ip Man"},{"zh":"可惜了這一屋的精緻。","en":"Pity about the lovely decor.","speaker":"宮二 / Gong Er"},{"zh":"功夫是纖毫之爭，真打壞了東西，算你贏。","en":"Kungfu is about precision. If anything gets broken, you win.","speaker":"葉問 / Ip Man"},{"zh":"葉先生，給你看六十四手。是讓你明白，人外有人，山外有山。拳不能只有眼前路，沒有身後身。希望你能舉一反三。","en":"Mr Ip, I showed you the 64 Hands so that you'd know the world is a big place. Kungfu isn't just charging forward. Look behind you as well. I hope that's enough of a clue.","speaker":"宮二 / Gong Er"},{"zh":"千古無同局。葉底是否能夠藏花，有機會，我們再印證。","en":"It went your way this time. Who knows what next time will bring.","speaker":"葉問 / Ip Man"},{"zh":"你來，我等著。","en":"Come. I'll be waiting.","speaker":"宮二 / Gong Er"},{"zh":"保重！","en":"Take care.","speaker":"葉問 / Ip Man"}],"location":"佛山","year":1936},{"scene":24,"notes":"Intertitles / inner monologue after parting","lines":[{"zh":"葉底藏花一度，夢裡踏雪幾回。","en":"I dream of seeing the 64 Hands again in the snow.","speaker":"葉問 / Ip Man"},{"zh":"一約既訂，萬里無阻。","en":"I'm waiting. What's keeping you?","speaker":"宮二 / Gong Er"}],"location":"佛山 & 东北","year":null},{"scene":25,"lines":[{"zh":"合不合身呀？佛山有這麼冷嗎？","en":"Does it fit? Does Foshan get this cold?","speaker":"張永成 / Zhang Yongcheng"},{"zh":"穿的這麼漂亮，過兩天我們去照張全家福。","en":"You look lovely. Let's take a family photo.","speaker":"葉問 / Ip Man"}],"location":"佛山","year":1937},{"scene":26,"lines":[{"zh":"一九三八年，十月，佛山淪陷。","en":"October 1938. Foshan fell to the Japanese.","speaker":""}],"location":null,"year":null},{"scene":27,"notes":"Japanese invasion","lines":[{"zh":"1938年10月，佛山淪陷，葉家大宅被日本憲兵部徵用。如果人生按四季分的話，那麼我的家就像從春天一下兒到了冬天。","en":"In October 1938, the Japanese invaded Foshan. Their army took over our home. If life has four seasons, we went from spring straight to winter.","speaker":"葉問 / Ip Man"},{"zh":"很快就回來，等我消息。","en":"I'll be back with dinner.","speaker":"葉問 / Ip Man"}],"location":"佛山","year":1938},{"scene":28,"lines":[{"zh":"提攜我發財，幫我斷窮根。我活到現在沒窮過。現在國難當頭，困難人人有，窮一點兒也沒什麼。我這人喝慣了珠江水，這日本的米，我吃不慣。真揭不開鍋，我還有朋友。一人請我吃一頓，我都能撐個一年半載。你們慢慢吃吧。","en":"Help me prosper? Rescue me from poverty? I've never been poor in my life. The country's in crisis and everyone is suffering. To be poor is no big deal. I'd rather starve than eat Japanese rice. I won't collaborate. I have plenty of friends. They'll help me through. Enjoy your dinner.","speaker":"葉問 / Ip Man"},{"zh":"在這種時候，不是下了水，誰會來喝花酒呀！剛剛有客人娶妾辦宴，剩下一頓菜。你要是不嫌棄呢，拿回去給孩子們解解饞吧。","en":"You won't find those friends here, only collaborators. We had a dinner just now. These are the leftovers. If it's not beneath you, take them back to your family.","speaker":"葉友 / Ye You"},{"zh":"怎麼好意思啊！","en":"How can I accept?","speaker":"葉問 / Ip Man"},{"zh":"反正都是不義之財，不拿白不拿，都是熟人，不用客氣。","en":"Dirty money paid for it. No point in waste. We're old friends. You're most welcome.","speaker":"葉友 / Ye You"}],"location":"佛山","year":null},{"scene":29,"lines":[{"zh":"還沒上過身吧？原來打算做了去東北的。現在怕是去不成了。價錢要是合適，幫我賣了吧！","en":"They're brand new. I was going to the Northeast. But that's impossible now. Sell them and I can feed my family.","speaker":"葉問 / Ip Man"},{"zh":"喲，怎麼少了個扣子。","en":"Why is there a button missing?","speaker":"裁縫 / Tailor"},{"zh":"是嗎？可能掉了。","en":"Is there? Must've dropped off.","speaker":"葉問 / Ip Man"}],"location":"佛山","year":null},{"scene":30,"lines":[{"zh":"我七歲學拳，四十之前，未見過高山。到第一次碰到，發現原來最難越過的是生活。抗戰八年，我變成一無所有。收入，朋友……","en":"I began studying kungfu at seven. Before I turned forty, I was never beaten. When that happened, it was life that dealt the blows. In eight years of war I lost everything. Money, friends...","speaker":"葉問 / Ip Man"},{"zh":"揍他娘的小日本。窯姐兒要聽老鴇的，混道的要聽大爺的。孫中山是咱大爺的，凡事他說了算。南粵子弟火氣旺，知榮辱。孫子才不敢打日本鬼子呢！來一個殺一個！","en":"China will never die! Girls obey their Madam. Gangsters obey their boss. Our boss was Sun Yat-sen. We followed his orders. We Southerners have fire in our bellies and a sense of honor. Only cowards fear the Japs. I'll kill any I see!","speaker":"燈叔 / Uncle Deng"},{"zh":"一九三八年，燈叔死于日軍大轟炸，金樓被漢奸接管。最後是我的家人。","en":"1938. Uncle Deng died in a Japanese bombardment. Collaborators took over the Gold Pavilion. Finally, I lost my family.","speaker":"葉問 / Ip Man"},{"zh":"抗戰八年期間，四女、六女相繼死於大饑荒。","en":"Ip Man lost two daughters in the war.","speaker":""}],"location":"佛山","year":null},{"scene":31,"lines":[{"zh":"坐下不要動！你們去哪裡的？把身分證拿出來，快點。拿出來。去哪裏？快拿出證件。站住！","en":"No one move! Where are you going? Show your IDs! Hurry. IDs! Where are you going? IDs! Halt!","speaker":""}],"location":"东北","year":1939},{"scene":32,"lines":[{"zh":"","en":"1939. Traveling to Northwest University to practice medicine, Gong Er meets The Razor, a Nationalist agent.","speaker":""}],"location":null,"year":null},{"scene":33,"lines":[{"zh":"一九四Ｏ年，馬三投日，擔任奉天協和會會長。","en":"1940. Ma San collaborates with the Japanese, taking an official post in the puppet government.","speaker":""}],"location":null,"year":null},{"scene":34,"notes":"Flashback — Gong Yutian confronts Ma San","lines":[{"zh":"你知道我為什麼叫你馬三嗎？","en":"Do you remember what I taught you?","speaker":"宮寶森 / Gong Yutian"},{"zh":"知道。言必稱三，手必稱拳，是武林的一句老話。意思是能人背後有能人，凡事讓人三分。你老人家替我起這個名字，是提醒馬三要謙虛，要本分。","en":"Yes. Never put yourself first, show respect. There's always someone better. To yield is not to lose. Master, you have taught me to be modest and know my place.","speaker":"馬三 / Ma San"},{"zh":"你是跟著我長大的，在風頭上你也算是為我們這一門掙名氣的人。今天我想跟你說說我的一手絕活，老媴掛印。練過沒有啊？","en":"I took you in as an orphan. You brought credit to our school. Let's go over my supreme move. The Old Monkey Hangs up his Badge. Have you practiced it?","speaker":"宮寶森 / Gong Yutian"},{"zh":"練過。","en":"Yes.","speaker":"馬三 / Ma San"},{"zh":"這活的關隘是什麼知道嗎？","en":"You know the key to it?","speaker":"宮寶森 / Gong Yutian"},{"zh":"沒聽您老人家說過。","en":"I was never told.","speaker":"馬三 / Ma San"},{"zh":"老媴掛印回首望。關隘不在掛印，而是回頭。懂我跟你說的意思嗎？","en":"It's looking back in reflection. It's not the upward move, but the turning back. Understand what I'm saying?","speaker":"宮寶森 / Gong Yutian"},{"zh":"兵無常勢，水無常形。要是回不了頭呢？","en":"A warrior molds himself to the times. What if I can't turn back?","speaker":"馬三 / Ma San"},{"zh":"那我宮家的東西。就不能留在你身上了。","en":"Then the Gong Family legacy cannot live on in you.","speaker":"宮寶森 / Gong Yutian"},{"zh":"讓他走，永遠都不許進我這個門。滾！","en":"Stay back. Let him go. Never darken my door again. Get lost.","speaker":"宮寶森 / Gong Yutian"},{"zh":"老爺！","en":"Master!","speaker":"老薑 / Old Jiang"}],"location":"东北","year":1940},{"scene":35,"notes":"Gong Er returns — gathering of elders","lines":[{"zh":"聽說您回來。東北的同門同道都到了。三爺五爺從關內趕來。老薑呢？","en":"The whole clan heard you were coming and raced in from all over. And Jiang?","speaker":"眾人 / Crowd"},{"zh":"薑叔在裡面陪著老爺。","en":"He's keeping them company.","speaker":"眾人 / Crowd"},{"zh":"姑娘，大夥都等著您拿主意呢！","en":"Miss Gong, they're awaiting your decision.","speaker":"老薑 / Old Jiang"},{"zh":"大老遠從關內趕來。要的恐怕不是我的主意。我爹留話了沒有？","en":"They didn't come all this way to hear my decision. Did Father have any last words?","speaker":"宮二 / Gong Er"},{"zh":"不問恩仇。姑娘，老爺子不讓報仇。","en":"Don't seek vengeance. Miss, your father forbade revenge.","speaker":"老薑 / Old Jiang"}],"location":"东北","year":1940},{"scene":36,"notes":"Elders try to dissuade Gong Er from revenge","lines":[{"zh":"依著我也該殺了他了。這仇太大了！欺師滅祖，天下還有比這更大的仇恨嗎？可話說回來，打你爹一門，八卦和形意就合成了一門。你師兄在形意上下了大功夫啊！你的六十四手，也是你父親手把手教的。你倆各成了你父親的一手絕活。你倆齊全了，你家那門武功才算齊全。","en":"I agree Ma San deserves to die. It's a massive crime to betray one's teacher. Nothing is worse. On the other hand, it was your father who united Xingyi and Bagua. Ma San worked hard at Xingyi. And your father taught you the 64 Hands himself. The two of you are his legacy. If you stand together, the legacy remains whole.","speaker":"五爺 / Fifth Elder"},{"zh":"再說，這件事情要是由你出頭，不管是誰死誰傷，傳出去都是個笑話。你們宮家門裡，徒弟殺了師父，師妹要殺師兄，這不是一窩子不仁不義的畜生嗎？至於說到你師兄，連你爹都拿不下來，你憑什麼？二姑娘，我們都這把年紀了，大老遠的從關內趕來。跟你說了很多的話都是為你好！你不能不領情呀！趕緊嫁了吧。你爹最後的話是不問恩仇。你要是殺了馬三，不是違背了他的心意了嗎啊？","en":"Besides, if you take action, whatever the outcome, people will laugh. They'll say what's this Gong school where the disciple kills the master, and the daughter kills her brother-in-arms? A pack of wild animals? Besides, as for Ma San, even your father couldn't finish him off. You think you can? Miss Gong, we're old men. We made the long trip here with your best interests in mind. Take our advice. Just get married. Your father's last words were Don't seek vengeance. If you kill Ma San won't that go against his wishes?","speaker":"三爺 / Third Elder"},{"zh":"我爹的話，是心疼我，想讓我有好日子過。但他的仇不報，我的日子好不了。諸位的話我都聽明白了。您老幾位，可是跟我爹磕過頭盟過誓折過鞋底子的兄弟。我爹死了，本該由你們去找馬三論理的。可你們反過了頭拿了他的話卻到我這兒來說三道四。虧你們受萌宮家多年。我知道，馬三仗著日本人，他硬氣。可我宮家不是沒有人，他今天來還是不來！","en":"My father said that out of love for me. He wants me to have a peaceful life. But if I don't avenge his death, I'll never be at peace. I understand what you're saying. With respect, he treated you all like brothers. After he died, you should've dealt with Ma San. Instead you come here as his messenger. After all my father did for you! I know Ma San works for the Japanese. He's got power. But I'll stand up for my family. Is he coming, or not?","speaker":"宮二 / Gong Er"},{"zh":"呵呵，來不來有什麼關係嗎？他來了，你走了，不是什麼事情都沒有了嗎？得饒人處且饒人呐二姑娘。許多事情不在人事，在天意。","en":"What does it matter? He comes, you go, and that's the end of it, right? It's better to let it go, Miss Gong. Some things are out of our hands. It's the Will of Heaven.","speaker":"三爺 / Third Elder"},{"zh":"或許我就是天意。","en":"Maybe I am the Will of Heaven.","speaker":"宮二 / Gong Er"}],"location":"东北","year":1940},{"scene":37,"notes":"Funeral procession — confrontation with Ma San's men","lines":[{"zh":"西方正路，諸神引領。","en":"Oh ye gods and spirits guide this soul to Paradise!","speaker":"眾人 / Crowd"},{"zh":"停！不能停！閃開。大路通天，各走一邊。閃開！","en":"Halt! We mustn't stop! Don't block the road. Keep to the side. Move!","speaker":"眾人 / Crowd"},{"zh":"奉家師馬三爺之命，送師爺一程。","en":"Ma San ordered us to escort the body.","speaker":"眾人 / Crowd"},{"zh":"二小姐，馬三的人，把路給攔上了。說是來給送挽幛。這不是搗亂嗎？二小姐，這人等時辰，時辰可不能等人吶。","en":"Miss Gong, Ma San's men are blocking the road. They have banners of mourning. Troublemakers! Miss Gong, time is of the essence.","speaker":"老薑 / Old Jiang"},{"zh":"老薑。讓馬三洗淨脖子在家等著。走！","en":"Jiang! Tell Ma San he's a dead man. Let's go!","speaker":"宮二 / Gong Er & 老薑 / Old Jiang"},{"zh":"西方正路，諸神引領。","en":"Oh ye gods and spirits ...guide this soul to Paradise!","speaker":"眾人 / Crowd"}],"location":"东北","year":1940},{"scene":38,"notes":"Gong Er confronts Ma San","lines":[{"zh":"來人吶，把她給我攔住。攔住她，給我上。","en":"They're here. Stop her. Keep her back. Let me at her. Stop her.","speaker":"眾人 / Crowd"},{"zh":"除了馬三，其他人都給我讓開。我敬你是師兄，不闖你屋子。可你得想清楚了，這道簾子擋不了你一輩子。我今天是要拿回宮家的東西。你出來！","en":"Stay back. We're here for Ma San. Since you're my senior, I won't force my way in. But know this. You can't hide from me forever. I will take back my family's legacy. Come out!","speaker":"宮二 / Gong Er"},{"zh":"寧可一思進，莫在一思停。這是老爺子教我的拳理，也是我做人的道理。可惜，他老人家想不開，宮家的東西至金至貴。要取，必須得是宮家的人。你是娶了親的人，沒資格！","en":"Better to advance than to stop. The Old Master taught me this. It became my philosophy of life. It's a shame he couldn't follow his own advice. His precious teachings are mine now. You want them — send a member of the family. You'll be marrying out. You don't count.","speaker":"馬三 / Ma San"}],"location":"东北","year":1940},{"scene":39,"notes":"Gong Er takes her vow","lines":[{"zh":"別打聽我的事情，沒有消息就是消息，再找個人吧。","en":"Don't ask after me. No news means I'm gone. Find someone else.","speaker":"宮二 / Gong Er"},{"zh":"姑娘，把那麼好的親事兒給推了，值得嗎？你可要想清楚呀，奉了道，你這一輩子就不能嫁人，不能傳藝，更不能有後。那可是回不了頭的。","en":"Miss, to give up such an ideal marriage — is it really worth it? Think it over. If you take those vows, you'll never be able to marry, teach, or have children. There's no turning back.","speaker":"老薑 / Old Jiang"},{"zh":"爹，你知道女兒心裡想的什麼嗎？你要是跟女兒想的一樣，就讓我看到一盞亮著的佛燈吧。寧可一思進，莫可一思停。他欺負我們宮家沒人。我只能進，不能停。","en":"Father, can you read what's in my heart? If you agree with me, show me a flame before Buddha. Better to advance than to stop. He mocks us for having no successor. I can only advance. I can't stop.","speaker":"宮二 / Gong Er"}],"location":"东北","year":1940},{"scene":40,"lines":[{"zh":"一九五Ｏ年 香港·大南街","en":"1950. Hong Kong. Tai Nan Street","speaker":""}],"location":null,"year":null},{"scene":41,"notes":"Hong Kong — Ip Man opens a school","lines":[{"zh":"葉師父您教過拳麼？靠教拳吃飯還是第一次。","en":"Ever taught before, Master Ip? To teach for a living is a new experience.","speaker":"雄哥 / Brother Hung"},{"zh":"怎麼一下有這種打算？為生活。連行李都帶來了，你很有把握？省得來回跑。","en":"So why now? I'm starting a new life. You've got your things. You're confident. Saves running back and forth.","speaker":"雄哥 / Brother Hung & 葉問 / Ip Man"},{"zh":"在香港知道詠春的人不多，不知道有什麼絕招？沒絕招。三板斧，攤、膀、伏。有幾趟拳。小念頭、尋橋、還有標指。","en":"In Hong Kong no one knows Wing Chun. Any special moves? Not really. Three basic hands — Spade, Pin, Sheath. How many forms? The Concept, The Bridge, and Darting Fingers.","speaker":"雄哥 / Brother Hung & 葉問 / Ip Man"},{"zh":"兵器呢？八斬刀、六點半棍。還有別的嗎？沒別的。跌打正骨，內功點穴，一概不會。無瓦遮頭，舞龍舞獅，一概不教。","en":"Weapons? Double Knives and the Six-and-a-half Point Pole. Anything else? That's it. Bone-setting, internal energy — I don't do any of that. Drifters, lion dancers — I don't teach those types.","speaker":"雄哥 / Brother Hung & 葉問 / Ip Man"},{"zh":"為什麼？教功夫不是街頭賣藝。所以無瓦遮頭不教。舞獅搶炮，總會打架鬧事。更何況爭強鬥狠，無非為了一個紅包，有失斯文。","en":"Why not? Kungfu isn't a sideshow. So I won't teach drifters. Lion dancers jump at firecrackers. They're always brawling and showing off, all for a bit of cash. It's crude.","speaker":"葉問 / Ip Man"},{"zh":"我再繞一句，你打過架嗎？這條街都是武館，有事沒事就踢館。葉師父，你覺得你行嗎？我要說行，你能信嗎？","en":"I'll ask you straight — ever been in a real fight? It's wall-to-wall kungfu schools here. They start fights over nothing. Master Ip, have you got what it takes? Try me and find out.","speaker":"雄哥 / Brother Hung & 葉問 / Ip Man"}],"location":"香港","year":1950},{"scene":42,"lines":[{"zh":"打嘞打嘞。","en":"Fight! Fight!","speaker":"眾人 / Crowd"},{"zh":"兄弟算是練過幾年，想請葉師父看看。午飯吃飽了沒有？剛剛吃了一碗叉燒飯。我勸你先歇會兒，別浪費了。浪費？","en":"I've had a few years of training. Show me your stuff, Master Ip. Have you had lunch? Barbecued pork and rice. I suggest you wait a bit. It'd be a shame to waste it. Waste it?","speaker":"雄哥 / Brother Hung & 葉問 / Ip Man"},{"zh":"雄哥。雄哥，你沒事吧？還不快去倒茶。倒茶？拜師啊。","en":"Brother Hung, are you okay? Where's the tea? Tea? To give to your new master!","speaker":"雄哥 / Brother Hung & 眾人 / Crowd"}],"location":"香港","year":1950},{"scene":43,"lines":[{"zh":"這張床是臨時加的。師傅，您先將就一下。別嫌寒磣啊。","en":"We've put a bed here for you. I hope it'll do for now. Sorry it's a bit shabby.","speaker":"雄哥 / Brother Hung"},{"zh":"有沒有錘子啊？","en":"Is there a hammer?","speaker":"葉問 / Ip Man"}],"location":"香港","year":1950},{"scene":44,"notes":"Challengers arrive at the school","lines":[{"zh":"葉師父，我這幫兄弟想跟你學兩手絕活。八毛一位，不算貴。不過你當師父的，得貨真價實。絕不能賣假藥。你那兩下行嗎？","en":"Master Ip, the boys and I want some lessons. Eighty cents a head. Cheap enough. But call yourself a master, you'd better deliver the goods. No snake oil. How good's your kungfu, anyway?","speaker":"踢館者 / Challenger"},{"zh":"關門。","en":"Lock the gate.","speaker":"葉問 / Ip Man"},{"zh":"嘿，兔惠子，關門就是往死裡打呀！你兩隻手兩隻腳，能打過幾個呀？","en":"Hey! Little fucker. Shut the door and it's on for real. You've got two hands and two feet. How you gonna beat us all?","speaker":"踢館者 / Challenger"},{"zh":"你錯了。我有兩隻手，八隻腳。能打幾個這不好說，打你一個綽綽有餘。","en":"You're mistaken. I have two hands but Wing Chun has eight kicks. Never mind your boys. There's more than enough for you.","speaker":"葉問 / Ip Man"},{"zh":"綽綽有餘？","en":"More than enough for me?","speaker":"踢館者 / Challenger"},{"zh":"這一腳送的。一腳。四腳。這還有一腳呢。","en":"That one's free. First kick. Fourth kick. One more left.","speaker":"葉問 / Ip Man"}],"location":"香港","year":1950},{"scene":45,"notes":"一線天 / The Razor — encounter with nationalist agent","lines":[{"zh":"你還記得我們的誓言嗎？什麼誓言？","en":"Do you remember our oath? What oath?","speaker":"藍衣社成員 / Blue Shirt Society member & 一線天 / The Razor"},{"zh":"余誓以至誠，效忠領袖，服從組織，為達成使命，甘任勞怨，不辭犧牲，如違誓言者，願受任何嚴厲之制裁。","en":"I vow with all my heart to be loyal and obedient to the Party. I fear neither hardship nor sacrifice. Should I forsake these vows, I accept the harshest punishment.","speaker":"藍衣社成員 / Blue Shirt Society member"},{"zh":"操，八寶街、朝天宮的東西在香港還能用嗎？","en":"Fuck. The war is over. This is Hong Kong.","speaker":"一線天 / The Razor"},{"zh":"可是我們的紀律還在，生的進來，死的出去。","en":"But we stand by our code — Join us alive. Leave us dead.","speaker":"藍衣社成員 / Blue Shirt Society member"},{"zh":"我現在出去，你能怎樣？你試試看？","en":"I'm leaving now. Can you stop me? Try us and see.","speaker":"一線天 / The Razor & 藍衣社成員 / Blue Shirt Society member"}],"location":"香港","year":1950},{"scene":46,"lines":[{"zh":"","en":"In exile in Hong Kong, The Razor ran the White Rose Barber Shop.","speaker":""}],"location":null,"year":null},{"scene":47,"lines":[{"zh":"一九五Ｏ年 大年夜·香港","en":"1950. Chinese New Year's Eve. Hong Kong","speaker":""}],"location":null,"year":null},{"scene":48,"notes":"Hong Kong — Ip Man visits Gong Er","lines":[{"zh":"葉先生來，不單是為了看病吧。","en":"You don't look like you need a doctor.","speaker":"宮二 / Gong Er"},{"zh":"我來是想再看一次宮家的六十四手。","en":"I'd like to see the 64 Hands again.","speaker":"葉問 / Ip Man"},{"zh":"說句玩笑話，你可是輸過我的。坐。你要是一進門就說這話，那恐怕你得先唱一齣《殺四門》，才能吃得上這頓餃子。","en":"If you don't mind me saying — You lost. I won. Have a seat. If you'd said that at the door, I wouldn't have made it so easy for you to get your dumplings.","speaker":"宮二 / Gong Er"},{"zh":"謝謝。你知道嗎。民國二十六年，我打算去東北。因為那邊有一座高山。大衣我都做了，後來因為打仗所以沒去成。大衣沒留下，只留下個扣子，算是個念想。","en":"Thank you. You know, I'd hoped to visit the Northeast in 1937. There was a challenge waiting for me. I had a warm coat made. But the war stopped me from going. I didn't keep the coat, but I still have one of its buttons. Call it a memento.","speaker":"葉問 / Ip Man"},{"zh":"宮家六十四手是一座高山，不該就這樣煙消雲散。","en":"The 64 Hands is too important a legacy. Why let it disappear?","speaker":"葉問 / Ip Man"},{"zh":"武學千年，煙消雲散的事，我們見得還少麼？憑什麼宮家的就不能絕？葉先生，武藝再高，高不過天，資質再厚，厚不過地。人生無常，沒有什麼可惜的。這扣子你拿回去。咱們要見什麼，不見什麼以後再慢慢說。","en":"In centuries of martial arts history, so many things have vanished. Why should the Gong Family arts survive? Mr Ip, no art is higher than Heaven, no gift more solid than Earth. Nothing lasts forever and that's fine. Keep this button. As for what may and may not be seen, let's not talk about it now.","speaker":"宮二 / Gong Er"},{"zh":"葉先生，十年前的大年夜，你知道我在哪兒嗎？","en":"Mr Ip, ten years ago on New Year's Eve — do you know where I was?","speaker":"宮二 / Gong Er"}],"location":"香港","year":1950},{"scene":49,"lines":[{"zh":"葉先生，我借您一步。宮家不是無緣之水無本之木，六十四手也不是你想見就能見的，宮家還有人。","en":"Mr Ip, may I have a word? The Gong arts belong to the Gong family. The 64 Hands aren't there just for show. The Gong Family lives.","speaker":"老薑 / Old Jiang"},{"zh":"我知道宮家臥虎藏龍。誰要來指教的，我隨時恭候。","en":"I know how much talent is there. I'm keen to learn. I'll be waiting.","speaker":"葉問 / Ip Man"}],"location":"香港","year":1950},{"scene":50,"notes":"丁連山 / The Razor's mentor — cigarette scene","lines":[{"zh":"唉，人哪，此一時彼一時。過什麼河，脫什麼鞋。有多大屁股就穿多大褲衩。來到了香港，我只能抽這種煙了。過去在老家，抽一口正宗的關東葉子煙，講究多了。要學會「溫、良、恭、儉、讓」。特別這個讓字，比方說我現在抽煙，對方坐了一個我不認識的人，我也要讓「抽兩口吧」。對方不管會抽不會抽，都要接受邀請，否則就是不給面子。葉先生，抽兩口吧。","en":"People — they change with the times. Wear shoes that suit the crossing, and underpants that fit your ass. In Hong Kong, I can only afford these cigarettes. Back home, I smoked real Manchurian tobacco. Now that was smoking. Be mild, good, respectful, thrifty, deferential. Deferential is the key. Let's say I'm smoking. A stranger sits down. I defer to him: Have a smoke. Even if he doesn't smoke, he must accept or he'll make me lose face. Mr Ip, have a smoke.","speaker":"丁連山 / Ding Lianshan"},{"zh":"謝謝！","en":"Thank you.","speaker":"葉問 / Ip Man"},{"zh":"不客氣。是個大材。倒退二十年，我們還可以過過手，可惜了。一門裡，有人當面子，就得有人當裡子。面子不能沾一點灰塵。流了血，裡子得收著。收不住，漏到了面子上，就是毀派滅門的大事。面子請人吃一支煙，可能裡子就得除掉一個人。葉先生啊，你來晚了。甭說六十四，你一手都看不見。","en":"You're welcome. You've got the gift. Twenty years ago, we could have sparred. What a shame. Some work in the light, others in shadow. The face of a school must be spotless. Blood must flow only in the shadows. If not, if it stains the face, then the school itself may perish. The face offers the cigarettes. The dirty work is done in the shadows. Mr Ip, you're too late. Forget the 64 hands — you'll never see even one.","speaker":"丁連山 / Ding Lianshan"}],"location":"香港","year":null},{"scene":51,"lines":[{"zh":"一九四Ｏ年 大年夜·東北","en":"1940. Chinese New Year's Eve. The Northeast.","speaker":""}],"location":null,"year":null},{"scene":52,"notes":"New Year's Eve — Gong Er waits for Ma San","lines":[{"zh":"你說殺人難嗎？姑娘，現在不比從前了，殺人是要償命的。為了馬三犯得著嗎？","en":"Is it hard to kill a man? Miss Gong, it's not like in the old days. Murder is punishable by death. Is Ma San worth it?","speaker":"宮二 / Gong Er & 老薑 / Old Jiang"},{"zh":"道是人走出來的，該回家還是繼續等？今天是大年夜。他一定會來，必須等。","en":"We make our own path in life. Should we go home, or keep waiting? It's New Year's Eve. He'll be here soon. We have to wait. All right. We'll wait.","speaker":"老薑 / Old Jiang & 宮二 / Gong Er"}],"location":"东北","year":1940},{"scene":53,"notes":"Final confrontation — Gong Er vs Ma San","lines":[{"zh":"今天是我家姑娘和馬三的事兒，旁人不得插手。","en":"This is between Miss Gong and Ma San. Everyone else stay out of it.","speaker":"老薑 / Old Jiang"},{"zh":"都什麼時候了，還在這兒耍猴戲。比追債的還狠，這年三十兒都不讓我過。","en":"There you are, still playing with your monkey. Deal with him! Get him! You're worse than a debt collector, trying to ruin my New Year's Eve.","speaker":"馬三 / Ma San"},{"zh":"餃子就在窩裡，怕你是吃不成了。","en":"The dumplings are in the pot, but you won't be eating them.","speaker":"宮二 / Gong Er"},{"zh":"我再三讓著你，不外乎是想替你們宮家留人留面子，別不知進退。","en":"I let you off before to avoid destroying the Gong clan. You should know when to give up.","speaker":"馬三 / Ma San"},{"zh":"該燒香燒香，該吃飯吃飯。該辦的事，天打雷劈也得辦。宮家的東西，你今天必須還。","en":"Those needing salvation burn joss. Those who are hungry, eat. What I must do, I will do and nothing can stop me. The Gong Family legacy must return to me tonight.","speaker":"宮二 / Gong Er"},{"zh":"好，東西在我身上，你想要，就來拿。","en":"Fine. It's a part of me. You want it — come and get it.","speaker":"馬三 / Ma San"}],"location":"东北","year":1940},{"scene":54,"notes":"Ma San's final words / returning the legacy","lines":[{"zh":"師傅！別過來。別過來。馬三，說話！","en":"Master! Keep away. Ma San, speak!","speaker":"馬三 / Ma San & 老薑 / Old Jiang"},{"zh":"那天，老爺子，跟我說了一手他的絕活，老猿掛印。他說掛印的關隘，在回頭。當時，我沒聽懂。還以為是他慢了。宮家的東西我還了。","en":"That day, the Old Master spoke to me about his supreme move — Old Monkey Hangs up his Badge. He said the key to the move was turning back. At the time, I didn't get it. I thought he couldn't keep up with the times. The Gong Family legacy I return to you.","speaker":"馬三 / Ma San"},{"zh":"話說清楚了，不是你還的，是我自己拿回來的。","en":"Let's be clear. You didn't return it. I took it back myself.","speaker":"宮二 / Gong Er"}],"location":"东北","year":1940},{"scene":55,"lines":[{"zh":"姑娘！","en":"Miss Gong! Miss Gong!","speaker":"老薑 / Old Jiang"}],"location":"东北","year":1940},{"scene":56,"lines":[{"zh":"一九五二年，香港，一線天開設白玫瑰理髮廳。","en":"1952. Hong Kong. White Rose Barber Shop","speaker":""}],"location":null,"year":null},{"scene":57,"notes":"一線天 / The Razor — barber shop scene (Hong Kong)","lines":[{"zh":"對不起，我想我娘了。在下送的帖子老闆收到了嗎？收了。","en":"Sorry. I miss my mom. You got my notice about the memorial? Yes.","speaker":"三江水 / San Jiangshui & 一線天 / The Razor"},{"zh":"開張就有開張的規矩，到哪兒都一樣，我三江水下的帖子你應該知道有多大份量。","en":"Open a business, follow the rules. It's the same everywhere. Do you know how much weight a summons from me carries?","speaker":"三江水 / San Jiangshui"},{"zh":"足金足兩，兄弟，錢備下了，命在身上。你看那個夠分量，拿去。","en":"It's measured in gold. Brother, I've got the money. And I've got my life. Whichever is worth more, take it.","speaker":"一線天 / The Razor"},{"zh":"我看那雙眼睛不錯，好像我娘那只。要一對還是一隻？","en":"I like those eyes of yours. They remind me of my mom's. Want both? Or just one?","speaker":"三江水 / San Jiangshui & 一線天 / The Razor"},{"zh":"慢。要不，勞你駕。行，真夠爺們。今日是我娘的忌日，這兩盞燈留著給老闆照路。青山常在綠水常流，我先走一步了。","en":"Not so fast. How about, you do the honors? Forget it. You're a real man. It's the anniversary of my mom's death. I'll leave you those two lamps of yours. As the rivers flow, we'll meet again. I'll take my leave.","speaker":"三江水 / San Jiangshui & 一線天 / The Razor"},{"zh":"拿，也得講個規矩。人都沒了講什麼規矩，乾脆點兒，我捅你三刀你捅我三刀算了。俗了。俗了來個不俗的。","en":"Want the money — there're rules for that too. What use are rules? Keep it simple. I stab you three times then you stab me. How common. Then raise the tone.","speaker":"一線天 / The Razor & 三江水 / San Jiangshui"},{"zh":"那兒有張椅子看到了嗎？立馬我叫你坐那兒去，坐不踏實了這錢歸你。","en":"See that chair over there? If I can't plant your ass there, keep the cash.","speaker":"一線天 / The Razor"},{"zh":"開玩笑呢，是不？兄弟，念經就限這麼一回，下次要超度了。請吧。","en":"You're kidding, aren't you? Brother, here's your prayer money. Next time you'll be joining your mom. Off you go.","speaker":"三江水 / San Jiangshui & 一線天 / The Razor"},{"zh":"我說心裡話，你的眼神跟我爹是一樣的。你收我為徒吧。","en":"To tell the truth, take me as a disciple!","speaker":"三江水 / San Jiangshui"},{"zh":"教你是糟塌祖宗東西，我說的也是心裡話。好歹教一點兒唄。","en":"Teach you? It'd be a waste of my time. That's speaking honestly too. Just a few pointers?","speaker":"一線天 / The Razor & 三江水 / San Jiangshui"}],"location":"香港","year":1952},{"scene":58,"lines":[{"zh":"同年，一線天授徒，八極拳傳入香港。","en":"That same year, The Razor began teaching. Baji kungfu came to Hong Kong.","speaker":""}],"location":null,"year":null},{"scene":59,"notes":"Ip Man narrates — Gong Er's decline","lines":[{"zh":"1952年冬天，宮二停止掛牌。有人說是因為舊患，開始吸鴉片。有人傳她是煉功走火入魔。我最後一次見她是在大南。","en":"In 1952, Gong Er stopped seeing patients. Some say her old injury drove her to opium. Others that she was obsessed with kungfu. I last saw her at a teahouse.","speaker":"葉問 / Ip Man"}],"location":"香港","year":1952},{"scene":60,"notes":"Tea house — final meeting","lines":[{"zh":"聽得懂這戲嗎？像是在佛山聽過，叫什麼夢。風流戲。","en":"Do you know this opera? I think I heard it before in Foshan. Something about a dream. A Dream of Love.","speaker":"葉問 / Ip Man & 宮二 / Gong Er"},{"zh":"風流本就是這個夢。有人說，絲不如竹，竹不如肉。唱的遠比說的好聽。","en":"Love is just that, a dream. It's said no instrument is as lovely as a voice. Words always sound better sung.","speaker":"宮二 / Gong Er"},{"zh":"宮先生學過戲呀？皮毛而已。當年，要真擰著性子把戲學下來，我定會是臺上的角兒。千回百轉，一悲一喜。唱膩了楊門女將，就換遊園驚夢唱唱。那時候，你在台下，我唱你看。想想那樣的相遇也怪有意思的。","en":"Has Miss Gong studied opera? Just the basics. Back then if I'd put my mind to it, I'd be an opera star. All those tales, happy and sad... If I tired of Yang Family Women Generals, I'd sing Waking from a Dream. Think of it — me on stage, you in the audience, meeting that way. Wouldn't that be something?","speaker":"葉問 / Ip Man & 宮二 / Gong Er"},{"zh":"我怕到時候一票難求呀。你真捧場，您看戲，我送票。","en":"But what if it was sold out? You flatter me. If you came, I'd save you a seat.","speaker":"葉問 / Ip Man & 宮二 / Gong Er"},{"zh":"其實人生如戲，這幾年宮先生文戲武唱，可是唱得有板有眼功架十足。可惜，就差個轉身。","en":"You've performed well in the opera of life. You have both timing and skill. Unfortunately, you never saw beyond your role.","speaker":"葉問 / Ip Man"},{"zh":"想不到你把我當戲看。我的戲不管人家喝不喝彩，也只能這樣下去了。今晚請您出來，也是想把該了的事了一了，該說的話說一說。","en":"I'd no idea you watched me like an opera. This opera of mine, applauded or not, will play on to the end. I asked you here to bring things to a close and say what needs to be said.","speaker":"宮二 / Gong Er"},{"zh":"宮先生要出門？","en":"Are you going somewhere?","speaker":"葉問 / Ip Man"},{"zh":"在北方，有句老話，人不辭路，虎不辭山。這些年，咱都是他鄉之人，我是真的累了，想回老家了。臨走前，有樣東西要還給你。六十四手，我已經忘了。我在最好的時候碰到你，是我的運氣。可惜我沒時間。","en":"We have a saying in the North — a tiger never quits the mountain. We've both been living on foreign soil. I'm so very tired. I want to go home. But I wanted to return this to you first. As for the 64 Hands, I've already forgotten them. I was lucky to meet you in my prime. Sadly, my time is running out.","speaker":"宮二 / Gong Er"},{"zh":"想想，說人生無悔。都是賭氣的話。人生若無悔，那該多無趣呀。葉先生，說句真心話，我心裡有過你。我把這話告訴你也沒什麼。喜歡人不犯法，可我也只能到喜歡為止了。","en":"To say there are no regrets in life, is just to fool yourself. How boring it would be without regrets. Mr Ip, to tell you the truth, I cared about you. I don't mind telling you that. It's not a crime to love. But that's all it can ever be.","speaker":"宮二 / Gong Er"},{"zh":"這些話我沒對誰說過，今晚見了你，不知道為什麼就都說出來了。就讓你我的恩怨像盤棋一樣保留在那兒。你多保重。","en":"I never said that to anyone before. Seeing you tonight, I don't know why, it just came out. Let's say we suspend this game of chess between us. Take care.","speaker":"宮二 / Gong Er"},{"zh":"人生如棋落子無悔，我們之間本來就沒恩怨，有的，只是一段緣分。你爹講過，念念不忘，必有迴響，有燈就有人。希望有一日，我可以再見宮家六十四手。","en":"In life, as in chess, a move once made stays on the board. What we have is simply fate. Your father once said, never give up the faith. Keep the light burning. I hope that one day I'll see the 64 Hands once more.","speaker":"葉問 / Ip Man"}],"location":"香港","year":1953},{"scene":61,"notes":"Gong Er's final monologue","lines":[{"zh":"我爹常說，習武之人有三個階段，見自己，見天地，見眾生。我見過自己，也算見過天地，可惜見不到眾生。這條路，我沒走完。希望你能把它走下去。","en":"My father said mastery had three stages — being, knowing, doing. I know myself. I've seen the world. Sadly, I can't pass on what I know. This is a road I won't see to the end. I hope you will.","speaker":"宮二 / Gong Er"},{"zh":"一眼看上去，這不就是一個武林嗎？","en":"Is this street of schools all the Martial World has come to be?","speaker":"宮二 / Gong Er"},{"zh":"所謂的大時代，不過就是一個選擇。或去或留。我選擇了留在屬於我的年月，那是我最開心的日子。","en":"A great age offers a choice: stay or move on. I choose to remain in my era, the times when I was happiest.","speaker":"宮二 / Gong Er"}],"location":"香港","year":1953},{"scene":62,"notes":"Intertitle","lines":[{"zh":"一九五三年，宮二病逝香港，一生信守誓言，不婚嫁，不留後，不傳藝。","en":"In 1953, Gong Er died in Hong Kong. She kept her vows to the end.","speaker":""}],"location":null,"year":null},{"scene":63,"notes":"Old Jiang delivers Gong Er's ashes","lines":[{"zh":"明天送二小姐靈柩回老家。這是她留給您的。","en":"Tomorrow I take Miss Gong's coffin home. She left this for you.","speaker":"老薑 / Old Jiang"},{"zh":"沒進宮家前，我是個砍人頭的劊子手。到了民國，我們這行算是沒飯吃了。當年要不是老爺子收留了我，我還在城南收拾豬下水呢。老爺子從來沒嫌棄我，他讓我一直陪在二小姐身邊。他說我煞氣重，能壓邪。後來還給我改名叫福星。他是希望二小姐，永遠都有福星相隨。","en":"In imperial times I was an executioner. The Republic left me out of a job. Had Master Gong not taken me in, I'd have landed in the gutter like a dog. He never looked down on me. He made me his daughter's guardian. My fierceness would protect her. He nicknamed me Lucky Star, so fortune would shine on her always.","speaker":"老薑 / Old Jiang"},{"zh":"女人，斷發就是斷頭。為了給老爺報仇，她斷了發奉了道不婚嫁不傳藝。一輩子一個人，她真的做到了。","en":"For a woman, taking vows is a kind of death. To avenge her father, she vowed never to marry or teach, to remain single her whole life. She kept that vow.","speaker":"老薑 / Old Jiang"},{"zh":"這是她發願前，剪下自己的頭髮燒成了灰兒。姑娘說，她和你說相識了半輩子。實則你不知她，她不知你。看了這東西，你就能看明白她。葉先生，宮家沒人了。我把二小姐交給你了。","en":"These are the ashes from when she cut and burnt her hair. She said she knew you a long time, but you didn't really know her, nor she you. Seeing these ashes, you'll understand her better. Mr Ip, the Gong Family is through. Miss Gong belongs to you now.","speaker":"老薑 / Old Jiang"}],"location":"香港","year":1953},{"scene":64,"lines":[{"zh":"宮家從無敗績，宮二一生也沒輸給過誰。要輸，她寧願輸給自己。","en":"Like her father, Gong Er never lost a fight. She only ever lost to herself.","speaker":"葉問 / Ip Man"}],"location":"香港","year":null},{"scene":65,"lines":[{"zh":"","en":"1953. Ip Man gets his Hong Kong ID after the border to China is shut.","speaker":""}],"location":null,"year":null},{"scene":66,"lines":[{"zh":"在我離開佛山那天，我有話想跟她說，但沒說出口。","en":"The day I left Foshan, I wanted to say something but couldn't speak the words.","speaker":"葉問 / Ip Man"},{"zh":"郎心自有一雙腳，隔江隔海會歸來。","en":"My heart will carry me back to you.","speaker":""},{"zh":"我踏出這一步的時候，我以為有一天我還會回來，沒想到那次是最後一面。從此我只有眼前路，沒有身後身，回頭無岸。","en":"When I left her that time, I thought I'd be able to return. But it was the last time I saw her. After that I only had the path ahead. There was no turning back, and no road home.","speaker":"葉問 / Ip Man"}],"location":"佛山","year":null},{"scene":67,"notes":"Intertitle","lines":[{"zh":"一九六Ｏ年，張永成病逝，葉問終生未再踏足佛山。","en":"In 1960, Zhang Yongcheng died of illness. Ip Man never returned to Foshan.","speaker":""}],"location":null,"year":null},{"scene":68,"lines":[{"zh":"好，開拳。左拳，出，攤開，轉腕，收。右拳，出，攤，擰手腕，收。","en":"Okay, begin. Left fist out, palm open, turn the wrist, pull back, right fist, out, open, twist the wrist, pull back.","speaker":"雄哥 / Brother Hung"}],"location":"香港","year":null},{"scene":69,"lines":[{"zh":"葉先生，世間所有的相遇，都是久別重逢。","en":"Mr Ip, all encounters in this world are a kind of reunion.","speaker":"宮二 / Gong Er"}],"location":"香港","year":null},{"scene":70,"notes":"Ip Man's closing monologue — teaching Wing Chun in Hong Kong","lines":[{"zh":"有人說詠春因我而起，因我而收。我一輩子沒掛過招牌，對我而言，武術是大同的。到頭來，就兩個字，一橫一堅。","en":"They say I popularized Wing Chun. I hope they're right. I never did it for fame. The martial arts belong to all. We're all on the same quest. It all comes down to those two words — Horizontal. Vertical.","speaker":"葉問 / Ip Man"}],"location":"香港","year":null},{"scene":71,"notes":"Final intertitle","lines":[{"zh":"一九七二年，葉問逝於香港。一生傳燈無數，詠春因他而盛，從此傳遍世界。","en":"Ip Man was a huge inspiration to others. Because of him, the torch of Wing Chun has been carried around the world.","speaker":""}],"location":null,"year":null}]};
-init(DATA);
+fetch('script.json').then(r => r.json()).then(init).catch(() => init(SAMPLE_DATA));
+
+const SAMPLE_DATA = {
+  "title": "一代宗師 / The Grandmaster",
+  "scenes": [
+    {
+      "scene": 1,
+      "year": null,
+      "location": null,
+      "title_zh": "功夫",
+      "title_en": "What Kungfu Is",
+      "lines": [
+        { "speaker": "葉問 / Ip Man", "zh": "別跟我說你功夫有多深，師父有多厲害，門派有多少嘍囉。", "en": "Don't tell me how well you fight, or how great your teacher is, or brag about your style." },
+        { "speaker": "葉問 / Ip Man", "zh": "功夫，兩個字，一橫一堅。", "en": "Kungfu — two words. Horizontal. Vertical." },
+        { "speaker": "葉問 / Ip Man", "zh": "錯的，躺下嘍，站著的才有資格說話，你說這話對嗎？", "en": "Make a mistake — horizontal. Stay standing and you win. Isn't that right?" }
+      ]
+    },
+    {
+      "scene": 2,
+      "year": 1936,
+      "location": "佛山",
+      "title_zh": "南北相遇",
+      "title_en": "South Meets North",
+      "lines": [
+        { "speaker": "宮寶森 / Gong Yutian", "zh": "天下之大，又何止南北。", "en": "The world is a big place. Why limit it to North and South?" },
+        {
+          "speaker": "葉問 / Ip Man",
+          "zh": "所謂大成若缺，有缺憾才能有進步。",
+          "en": "The greatest completion appears incomplete. Only through imperfection can we grow.",
+          "annotation": {
+            "headline": "大成若缺 — The Daodejing's Paradox of Completion",
+            "explanation": "Ip Man's line is a direct quotation from Daodejing Chapter 45: 大成若缺，其用不弊 — \"The greatest completion appears incomplete; its use is never exhausted.\"\n\nThe paradox is Daoist: a vessel that declares itself full cannot receive anything more. A martial art that believes itself perfected has begun its decline. Ip Man uses this to argue that admitting incompleteness is itself the sign of deeper understanding.",
+            "key_terms": [
+              { "zh": "大成若缺", "pinyin": "dà chéng ruò quē", "meaning": "The greatest completion appears incomplete — Daodejing Ch. 45" },
+              { "zh": "武林", "pinyin": "wǔ lín", "meaning": "The martial world — a distinct cultural sphere with its own codes and hierarchy" }
+            ]
+          }
+        },
+        { "speaker": "宮寶森 / Gong Yutian", "zh": "說得好！宮某贏了一輩子，沒有輸在武功上。今日我把名聲送給你。", "en": "Well said. All my life I've been the victor. Today I hand my reputation to you." }
+      ]
+    },
+    {
+      "scene": 3,
+      "year": 1936,
+      "location": "佛山",
+      "title_zh": "一念",
+      "title_en": "A Single Thought",
+      "lines": [
+        { "speaker": "宮二 / Gong Er", "zh": "我不圖一世，只圖一時。", "en": "I ask not for a lifetime — only for a single moment." },
+        {
+          "speaker": "宮二 / Gong Er",
+          "zh": "念念不忘，必有迴響。有燈就有人。",
+          "en": "Hold fast to what matters, and an echo will return. While there is light, there is someone.",
+          "annotation": {
+            "headline": "念念不忘，必有迴響 — The Buddhist Echo",
+            "explanation": "This line comes from Chan Buddhist teaching: 念念不忘，必有迴響 — if one holds a thought ceaselessly without forgetting, that thought must eventually find its answer in the world.\n\nGong Yutian's use of it reframes martial transmission as something closer to prayer or devotion. Keeping the flame is not technique — it is faith. The 燈 (lamp) is the lineage itself.",
+            "key_terms": [
+              { "zh": "念念不忘", "pinyin": "niàn niàn bù wàng", "meaning": "To hold something ceaselessly in mind; never to forget, thought after thought" },
+              { "zh": "迴響", "pinyin": "huí xiǎng", "meaning": "Echo; a resonance that returns — the universe answering a sustained intention" },
+              { "zh": "燈", "pinyin": "dēng", "meaning": "Lamp; here the flame of lineage passed between generations" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "scene": 4,
+      "year": 1939,
+      "location": "東北",
+      "title_zh": "雪中刀",
+      "title_en": "Blade in the Snow",
+      "lines": [
+        { "speaker": "馬三 / Ma San", "zh": "時勢造英雄。", "en": "The times make the hero." },
+        { "speaker": "宮二 / Gong Er", "zh": "你記住了，我今日，是為了門規而來。", "en": "Remember this: I am here today for the sake of our code." },
+        { "speaker": "宮二 / Gong Er", "zh": "你是我爹的徒弟，打死你，我不能，所以我廢了你的武功。", "en": "You are my father's disciple. I cannot kill you. So I take your kung fu instead." }
+      ]
+    },
+    {
+      "scene": 5,
+      "year": 1950,
+      "location": "香港",
+      "title_zh": "離散",
+      "title_en": "Diaspora",
+      "lines": [
+        { "speaker": "葉問 / Ip Man", "zh": "我在香港開了武館，學生多是窮孩子，收費不高。", "en": "I opened a school in Hong Kong. Most of my students were poor. I charged very little." },
+        { "speaker": "葉問 / Ip Man", "zh": "我這一生，沒什麼遺憾。", "en": "I have no regrets." }
+      ]
+    }
+  ]
+};
 
 function init(data) {
-  const scenes = data.scenes;
+  const scenes = data.scenes.filter(s => s.scene > 0);
 
-  const LOC_ORDER = ['佛山', '东北', '香港', '未知'];
+  // Global annotation index
+  const allAnnotations = [];
+  scenes.forEach((scene, si) => {
+    scene.lines.forEach((line, li) => {
+      if (line.annotation) {
+        allAnnotations.push({ si, li, sceneNum: scene.scene, speaker: line.speaker, annotation: line.annotation });
+      }
+    });
+  });
 
-  function splitAmp(str) {
-    return str ? str.split(/\s*&\s*/).map(s => s.trim()).filter(Boolean) : [];
+  const years = [...new Set(scenes.map(s => s.year).filter(Boolean))].sort((a, b) => a - b);
+
+  function getChapter(year) {
+    if (!year || year <= 1906) return 'I';
+    if (year <= 1939) return 'II';
+    if (year <= 1949) return 'III';
+    return 'IV';
   }
 
-  // ── Enrich scenes with parsed locs/speakers ──
-  scenes.forEach(s => {
-    s._locs = s.location ? splitAmp(s.location) : ['未知'];
-    s._speakers = [...new Set(s.lines.flatMap(l => splitAmp(l.speaker)))];
-  });
+  function escHtml(s) {
+    if (!s) return '';
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
 
-  // ── Collect unique years, locations, speakers ──
-  const years = [...new Set(scenes.map(s => s.year).filter(Boolean))].sort((a,b)=>a-b);
-  const allLocs = [...new Set(scenes.flatMap(s => s._locs))];
-  const locations = LOC_ORDER.filter(l => allLocs.includes(l));
-  const speakers = [...new Set(scenes.flatMap(s => s._speakers))].sort();
-
-  // ── Build right year timeline (proportional spacing) ──
-  const yearTrack = document.getElementById('year-track');
-  const minYear = years[0];
-  const maxYear = years[years.length - 1];
-  const yearRange = maxYear - minYear || 1;
-
-  years.forEach(y => {
-    const pct = (y - minYear) / yearRange * 100;
-    const btn = document.createElement('button');
-    btn.className = 'year-marker';
-    btn.dataset.year = y;
-    btn.style.top = `${pct}%`;
-    btn.innerHTML = `<span class="dot"></span><span class="yr">${y}</span>`;
-    btn.addEventListener('click', () => {
-      const first = document.querySelector(`.scene-card[data-year="${y}"]:not(.hidden)`);
-      first?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  function highlightTerms(zh, keyTerms) {
+    if (!keyTerms || !keyTerms.length) return escHtml(zh);
+    let result = escHtml(zh);
+    keyTerms.forEach(t => {
+      const safe = escHtml(t.zh);
+      result = result.split(safe).join(
+        `<span class="term-highlight" title="${escHtml(t.pinyin)}: ${escHtml(t.meaning)}">${safe}</span>`
+      );
     });
-    yearTrack.appendChild(btn);
-  });
+    return result;
+  }
 
-  // ── Build location filter buttons ──
-  const locSection = document.getElementById('loc-filter-section');
-  locations.forEach(loc => {
+  // ── Build year nav ──
+  const yearNav = document.getElementById('year-nav');
+  years.forEach((y, i) => {
+    if (i > 0) {
+      const rule = document.createElement('div');
+      rule.className = 'year-nav-rule';
+      yearNav.appendChild(rule);
+    }
+    const item = document.createElement('div');
+    item.className = 'year-nav-item';
     const btn = document.createElement('button');
-    btn.className = 'filter-btn';
-    btn.dataset.filter = 'loc';
-    btn.dataset.loc = loc;
-    btn.innerHTML = `${loc} <span class="tag"></span>`;
-    locSection.appendChild(btn);
+    btn.className = 'year-nav-btn';
+    btn.dataset.year = y;
+    btn.textContent = y;
+    btn.addEventListener('click', () => {
+      const card = document.querySelector(`.scene-card[data-year="${y}"]`);
+      card?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    item.appendChild(btn);
+    yearNav.appendChild(item);
   });
 
-  // ── Build speaker filter buttons ──
-  const spkSection = document.getElementById('spk-filter-section');
-  speakers.forEach(spk => {
-    const btn = document.createElement('button');
-    btn.className = 'filter-btn';
-    btn.dataset.filter = 'spk';
-    btn.dataset.spk = spk;
-    btn.innerHTML = `${spk} <span class="tag"></span>`;
-    spkSection.appendChild(btn);
-  });
-
-  // ── Build scene cards ──
+  // ── Render all scenes ──
   const container = document.getElementById('scenes-container');
-  const jumpList = document.getElementById('scene-jump-list');
 
-  scenes.forEach((scene, i) => {
-    const num = i + 1;
+  scenes.forEach((scene, si) => {
     const card = document.createElement('div');
     card.className = 'scene-card';
-    card.id = `scene-${num}`;
-    card.dataset.year = scene.year || 'unknown';
-    card.dataset.locs = scene._locs.join('|');
-    card.dataset.speakers = scene._speakers.join('|');
+    card.dataset.scene = scene.scene;
+    card.dataset.year = scene.year || '';
 
-    const yearText = scene.year ? `<span class="year-badge">${scene.year}</span>` : '';
-    const locBadges = scene._locs.map(l => `<span class="location-badge">${l}</span>`).join('');
+    const yearLoc = [scene.year, scene.location].filter(Boolean).join(' · ') || '—';
 
-    const linesHtml = scene.lines.map(line => {
-      const spk = line.speaker
-        ? `<div class="speaker">${line.speaker}</div>`
-        : '';
-      return `<div class="line">${spk}<div class="zh">${line.zh}</div><div class="en">${line.en}</div></div>`;
+    const linesHtml = scene.lines.map((line, li) => {
+      const hasAnn = !!line.annotation;
+      const spk = line.speaker ? `<div class="speaker">${escHtml(line.speaker)}</div>` : '';
+      const zhHtml = hasAnn ? highlightTerms(line.zh, line.annotation.key_terms) : escHtml(line.zh);
+
+      if (hasAnn) {
+        const annRef = allAnnotations.find(a => a.si === si && a.li === li);
+        return `<div class="line annotated" data-ann-si="${si}" data-ann-li="${li}">
+          ${spk}
+          <div class="zh">${zhHtml}</div>
+          <div class="en">${escHtml(line.en)}</div>
+          <button class="annotation-toggle showing">解 <span style="font-size:0.6rem;letter-spacing:0.14em">SHOWING</span></button>
+        </div>`;
+      }
+      return `<div class="line">${spk}<div class="zh">${zhHtml}</div><div class="en">${escHtml(line.en)}</div></div>`;
     }).join('');
 
     card.innerHTML = `
-      <div class="scene-meta">
-        <span class="scene-num">Scene ${num}</span>
-        ${locBadges}
-        ${yearText}
+      <div class="scene-header">
+        <span class="sc-label">SC ${scene.scene}</span>
+        <span class="sc-loc">${escHtml(yearLoc)}</span>
       </div>
+      <hr class="scene-rule">
       ${linesHtml}
     `;
+
+    // Annotation toggle clicks
+    card.querySelectorAll('.annotation-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lineEl = btn.closest('.line.annotated');
+        const si2 = parseInt(lineEl.dataset.annSi);
+        const li2 = parseInt(lineEl.dataset.annLi);
+        const annRef = allAnnotations.find(a => a.si === si2 && a.li === li2);
+        if (annRef) showAnnotationInPanel(annRef);
+      });
+    });
+
     container.appendChild(card);
-
-    const firstZh = scene.lines[0]?.zh?.slice(0, 18) || '…';
-    const jump = document.createElement('button');
-    jump.className = 'scene-jump';
-    jump.dataset.scene = num;
-    jump.textContent = `${num}. ${firstZh}`;
-    jump.addEventListener('click', () => {
-      document.getElementById(`scene-${num}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-    jumpList.appendChild(jump);
   });
 
-  // ── Filter state ──
-  let activeLoc = 'all';
-  let activeSpk = 'all';
-
-  function sceneMatchesFilters(scene, card) {
-    const locMatch = activeLoc === 'all' || card.dataset.locs.split('|').includes(activeLoc);
-    const spkMatch = activeSpk === 'all' || card.dataset.speakers.split('|').includes(activeSpk);
-    return locMatch && spkMatch;
+  // ── Update top bar ──
+  function updateTopBar(scene) {
+    const chapter = getChapter(scene.year);
+    const yearLoc = [scene.year, scene.location].filter(Boolean).join(' · ') || '—';
+    const titleZh = scene.title_zh || scene.location || `SC ${scene.scene}`;
+    const titleEn = scene.title_en || scene.notes || '';
+    document.getElementById('chapter-tag').textContent = `章·Ch·${chapter}`;
+    document.getElementById('top-year-loc').textContent = yearLoc;
+    document.getElementById('scene-title-zh').textContent = titleZh;
+    document.getElementById('scene-title-en').textContent = titleEn;
   }
 
-  function applyFilters() {
-    const cards = document.querySelectorAll('.scene-card');
-    const jumps = document.querySelectorAll('.scene-jump');
-    let visible = 0;
+  // ── Show annotation in panel ──
+  function showAnnotationInPanel(annRef) {
+    const ann = scenes[annRef.si].lines[annRef.li].annotation;
+    document.getElementById('notes-empty').style.display = 'none';
+    document.getElementById('notes-content').style.display = '';
 
-    cards.forEach((card, i) => {
-      const show = sceneMatchesFilters(scenes[i], card);
-      card.classList.toggle('hidden', !show);
-      if (jumps[i]) jumps[i].classList.toggle('hidden', !show);
-      if (show) visible++;
-    });
+    const globalIdx = allAnnotations.indexOf(annRef);
+    document.getElementById('notes-count').textContent = globalIdx >= 0
+      ? `${String(globalIdx + 1).padStart(2, '0')} / ${String(allAnnotations.length).padStart(2, '0')}`
+      : '';
 
-    document.getElementById('results-info').textContent =
-      `${visible} of ${scenes.length} scenes`;
-    document.getElementById('empty-state').classList.toggle('visible', visible === 0);
+    document.getElementById('notes-scene-ref').textContent =
+      `SC ${annRef.sceneNum}${annRef.speaker ? ' · ' + annRef.speaker : ''}`;
+    document.getElementById('notes-headline').textContent = ann.headline || '';
 
-    // Update location counts
-    document.querySelectorAll('#loc-filter-section .filter-btn').forEach(btn => {
-      const loc = btn.dataset.loc;
-      const tagEl = btn.querySelector('.tag');
-      if (!tagEl) return;
-      tagEl.textContent = scenes.filter(s => {
-        const spkOk = activeSpk === 'all' || s._speakers.includes(activeSpk);
-        const locOk = loc === 'all' ? true : s._locs.includes(loc);
-        return spkOk && locOk;
-      }).length;
-    });
+    const paras = (ann.explanation || '').split('\n\n').map(p => `<p>${escHtml(p)}</p>`).join('');
+    document.getElementById('notes-explanation').innerHTML = paras;
 
-    // Update speaker counts
-    document.querySelectorAll('#spk-filter-section .filter-btn').forEach(btn => {
-      const spk = btn.dataset.spk;
-      const tagEl = btn.querySelector('.tag');
-      if (!tagEl) return;
-      tagEl.textContent = scenes.filter(s => {
-        const locOk = activeLoc === 'all' || s._locs.includes(activeLoc);
-        const spkOk = spk === 'all' ? true : s._speakers.includes(spk);
-        return locOk && spkOk;
-      }).length;
-    });
+    const terms = ann.key_terms || [];
+    document.getElementById('notes-terms').innerHTML = terms.map(t => `
+      <div class="notes-term">
+        <div class="nt-left">
+          <span class="nt-zh">${escHtml(t.zh)}</span>
+          <span class="nt-pinyin">${escHtml(t.pinyin)}</span>
+        </div>
+        <span class="nt-meaning">${escHtml(t.meaning)}</span>
+      </div>
+    `).join('');
+
+    document.getElementById('notes-watermark').textContent = terms.length > 0 ? terms[0].zh.slice(-1) : '';
   }
 
-  // ── Location filter clicks ──
-  document.getElementById('loc-filter-section').addEventListener('click', e => {
-    const btn = e.target.closest('.filter-btn');
-    if (!btn) return;
-    activeLoc = btn.dataset.loc;
-    document.querySelectorAll('#loc-filter-section .filter-btn').forEach(b => b.classList.toggle('active', b === btn));
-    applyFilters();
-  });
+  // ── Scroll observer: update top bar, year nav, notes panel ──
+  const readingArea = document.getElementById('reading-area');
 
-  // ── Speaker filter clicks ──
-  document.getElementById('spk-filter-section').addEventListener('click', e => {
-    const btn = e.target.closest('.filter-btn');
-    if (!btn) return;
-    activeSpk = btn.dataset.spk;
-    document.querySelectorAll('#spk-filter-section .filter-btn').forEach(b => b.classList.toggle('active', b === btn));
-    applyFilters();
-  });
-
-  // ── Scroll-based year highlight ──
-  let currentYear = null;
-
-  function updateYearHighlight() {
-    const threshold = window.innerHeight * 0.45;
-    let found = null;
-    for (const card of document.querySelectorAll('.scene-card:not(.hidden)')) {
-      const top = card.getBoundingClientRect().top;
-      if (top <= threshold) {
-        const y = card.dataset.year;
-        if (y && y !== 'unknown') found = y;
-      } else {
-        break;
+  // IntersectionObserver for scene cards → update top bar + year nav
+  const sceneObserver = new IntersectionObserver(entries => {
+    // Pick the topmost visible scene card
+    let topmost = null;
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (!topmost || entry.boundingClientRect.top < topmost.boundingClientRect.top) {
+          topmost = entry;
+        }
+      }
+    });
+    if (topmost) {
+      const sceneNum = parseInt(topmost.target.dataset.scene);
+      const scene = scenes.find(s => s.scene === sceneNum);
+      if (scene) {
+        updateTopBar(scene);
+        document.querySelectorAll('.year-nav-btn').forEach(btn => {
+          btn.classList.toggle('active', scene.year && btn.dataset.year == scene.year);
+        });
       }
     }
-    if (found && found !== currentYear) {
-      currentYear = found;
-      document.querySelectorAll('.year-marker').forEach(m => {
-        m.classList.toggle('active', m.dataset.year == currentYear);
-      });
-    }
-  }
+  }, { root: readingArea, threshold: 0.1 });
 
-  window.addEventListener('scroll', () => requestAnimationFrame(updateYearHighlight), { passive: true });
+  document.querySelectorAll('.scene-card').forEach(card => sceneObserver.observe(card));
 
-  // ── Initial render ──
-  applyFilters();
-  updateYearHighlight();
+  // IntersectionObserver for annotated lines → update notes panel
+  const annObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const si = parseInt(entry.target.dataset.annSi);
+        const li = parseInt(entry.target.dataset.annLi);
+        const annRef = allAnnotations.find(a => a.si === si && a.li === li);
+        if (annRef) showAnnotationInPanel(annRef);
+      }
+    });
+  }, { root: readingArea, threshold: 0.5 });
+
+  document.querySelectorAll('.line.annotated').forEach(el => annObserver.observe(el));
+
+  // ── Initial top bar state ──
+  if (scenes.length > 0) updateTopBar(scenes[0]);
 }
 </script>
 </body>
