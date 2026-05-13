@@ -732,13 +732,23 @@ function init(data) {
 
   function highlightTerms(zh, keyTerms) {
     if (!keyTerms || !keyTerms.length) return escHtml(zh);
-    let result = escHtml(zh);
+    const spans = [];
     keyTerms.forEach(t => {
-      const safe = escHtml(t.zh);
-      result = result.split(safe).join(
-        `<span class="term-highlight" title="${escHtml(t.pinyin)}: ${escHtml(t.meaning)}">${safe}</span>`
-      );
+      (t.positions || []).forEach(([start, end]) => {
+        spans.push({ start, end, term: t });
+      });
     });
+    if (!spans.length) return escHtml(zh);
+    spans.sort((a, b) => a.start - b.start);
+    let result = '';
+    let cursor = 0;
+    for (const { start, end, term } of spans) {
+      if (start < cursor) continue;
+      result += escHtml(zh.slice(cursor, start));
+      result += `<span class="term-highlight" title="${escHtml(term.pinyin)}: ${escHtml(term.meaning)}">${escHtml(zh.slice(start, end))}</span>`;
+      cursor = end;
+    }
+    result += escHtml(zh.slice(cursor));
     return result;
   }
 

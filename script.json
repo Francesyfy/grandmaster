@@ -768,17 +768,35 @@
               {
                 "zh": "大成若缺",
                 "pinyin": "dà chéng ruò quē",
-                "meaning": "The greatest completion appears incomplete — Daodejing Ch. 45"
+                "meaning": "The greatest completion appears incomplete — Daodejing Ch. 45",
+                "positions": [
+                  [
+                    49,
+                    53
+                  ]
+                ]
               },
               {
                 "zh": "固步自封",
                 "pinyin": "gù bù zì fēng",
-                "meaning": "To seal oneself within one's own footsteps; self-imposed stagnation"
+                "meaning": "To seal oneself within one's own footsteps; self-imposed stagnation",
+                "positions": [
+                  [
+                    19,
+                    23
+                  ]
+                ]
               },
               {
                 "zh": "武林",
                 "pinyin": "wǔ lín",
-                "meaning": "The martial world — a distinct cultural sphere with its own codes and hierarchy"
+                "meaning": "The martial world — a distinct cultural sphere with its own codes and hierarchy",
+                "positions": [
+                  [
+                    34,
+                    36
+                  ]
+                ]
               }
             ]
           }
@@ -917,17 +935,35 @@
               {
                 "zh": "葉底藏花",
                 "pinyin": "yè dǐ cáng huā",
-                "meaning": "Flower hidden beneath the leaf — concealed beauty; also a name for one of the Gong family's 64 Hands"
+                "meaning": "Flower hidden beneath the leaf — concealed beauty; also a name for one of the Gong family's 64 Hands",
+                "positions": [
+                  [
+                    0,
+                    4
+                  ]
+                ]
               },
               {
                 "zh": "踏雪",
                 "pinyin": "tà xuě",
-                "meaning": "Treading snow — a classical image of solitary longing and distance"
+                "meaning": "Treading snow — a classical image of solitary longing and distance",
+                "positions": [
+                  [
+                    9,
+                    11
+                  ]
+                ]
               },
               {
                 "zh": "幾回",
                 "pinyin": "jǐ huí",
-                "meaning": "How many times — a lament of recurrence, not a simple question"
+                "meaning": "How many times — a lament of recurrence, not a simple question",
+                "positions": [
+                  [
+                    11,
+                    13
+                  ]
+                ]
               }
             ]
           }
@@ -943,12 +979,24 @@
               {
                 "zh": "一約既訂",
                 "pinyin": "yī yuē jì dìng",
-                "meaning": "Once a vow is established — sealed on a different ontological plane from ordinary speech"
+                "meaning": "Once a vow is established — sealed on a different ontological plane from ordinary speech",
+                "positions": [
+                  [
+                    0,
+                    4
+                  ]
+                ]
               },
               {
                 "zh": "萬里無阻",
                 "pinyin": "wàn lǐ wú zǔ",
-                "meaning": "Ten thousand li cannot obstruct — mythic distance made irrelevant by the force of a vow"
+                "meaning": "Ten thousand li cannot obstruct — mythic distance made irrelevant by the force of a vow",
+                "positions": [
+                  [
+                    5,
+                    9
+                  ]
+                ]
               }
             ]
           }
@@ -1964,17 +2012,25 @@
               {
                 "zh": "見",
                 "pinyin": "jiàn",
-                "meaning": "To see, to awaken to — not merely visual perception but genuine recognition"
+                "meaning": "To see, to awaken to — not merely visual perception but genuine recognition",
+                "positions": [
+                  [
+                    15,
+                    26
+                  ]
+                ]
               },
               {
                 "zh": "天地",
                 "pinyin": "tiān dì",
-                "meaning": "Heaven and earth — the entire cosmic order, not just the natural world"
+                "meaning": "Heaven and earth — the entire cosmic order, not just the natural world",
+                "positions": []
               },
               {
                 "zh": "眾生",
                 "pinyin": "zhòng shēng",
-                "meaning": "All sentient beings — a Mahayana Buddhist term; compassion for 眾生 is the bodhisattva ideal"
+                "meaning": "All sentient beings — a Mahayana Buddhist term; compassion for 眾生 is the bodhisattva ideal",
+                "positions": []
               }
             ]
           }
@@ -2074,17 +2130,24 @@
               {
                 "zh": "郎",
                 "pinyin": "láng",
-                "meaning": "A beloved young man — classical poetic term used in Tang verse and opera"
+                "meaning": "A beloved young man — classical poetic term used in Tang verse and opera",
+                "positions": [
+                  [
+                    0,
+                    1
+                  ]
+                ]
               },
               {
                 "zh": "隔江隔海",
                 "pinyin": "gé jiāng gé hǎi",
-                "meaning": "Separated by rivers and seas — a classical formula for mythic distance"
-              },
-              {
-                "zh": "張永成",
-                "pinyin": "Zhāng Yǒngchéng",
-                "meaning": "Ip Man's wife, left in Foshan; they never reunited"
+                "meaning": "Separated by rivers and seas — a classical formula for mythic distance",
+                "positions": [
+                  [
+                    8,
+                    12
+                  ]
+                ]
               }
             ]
           }
