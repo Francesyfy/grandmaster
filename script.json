@@ -102,7 +102,79 @@
         {
           "zh": "我一生經歷光緒，宣統，民國，北伐，抗日，內戰。",
           "en": "I lived through dynastic times, the early republic, warlords, Japanese invasion and civil war.",
-          "speaker": "葉問 / Ip Man"
+          "speaker": "葉問 / Ip Man",
+          "annotation": {
+            "headline": "六個時代 — A Life Across Six Eras",
+            "explanation": "Ip Man lists six distinct historical worlds he lived through in a single breath. Each word is a generation's worth of catastrophe compressed into two characters. 光緒 (Guangxu Emperor's reign, 1875–1908) is the late Qing — the era of failed reforms, the Sino-Japanese War of 1895, and the Boxer Rebellion. 宣統 (Xuantong, 1909–1912) is the reign of the last emperor Puyi, ending with the Republican Revolution of 1911. 民國 (Republic of China, 1912–) marks the collapse of imperial rule. 北伐 (Northern Expedition, 1926–1928) was Chiang Kai-shek's military campaign that nominally unified China under the KMT. 抗日 (Resistance against Japan, 1937–1945) is the Second Sino-Japanese War — eight years that consumed the wealth, friends, and daughters Ip Man has just described. 內戰 (Civil War, 1946–1949) ended with the Communist victory and the partition that sent millions to Hong Kong. The line is spoken flatly, as a list — but each word contains a world that no longer exists.",
+            "key_terms": [
+              {
+                "zh": "光緒",
+                "pinyin": "guāng xù",
+                "meaning": "Guangxu Emperor's reign (1875–1908) — late Qing; era of failed reform and the 1895 defeat by Japan",
+                "positions": [
+                  [
+                    5,
+                    7
+                  ]
+                ]
+              },
+              {
+                "zh": "宣統",
+                "pinyin": "xuān tǒng",
+                "meaning": "Xuantong Emperor (Puyi, 1909–1912) — the last Qing reign; ended with the 1911 Revolution",
+                "positions": [
+                  [
+                    8,
+                    10
+                  ]
+                ]
+              },
+              {
+                "zh": "民國",
+                "pinyin": "mín guó",
+                "meaning": "Republic of China (1912–) — the Republican era that replaced imperial rule",
+                "positions": [
+                  [
+                    11,
+                    13
+                  ]
+                ]
+              },
+              {
+                "zh": "北伐",
+                "pinyin": "běi fá",
+                "meaning": "Northern Expedition (1926–1928) — Chiang Kai-shek's military campaign to unify China under the KMT",
+                "positions": [
+                  [
+                    14,
+                    16
+                  ]
+                ]
+              },
+              {
+                "zh": "抗日",
+                "pinyin": "kàng rì",
+                "meaning": "Resistance against Japan — the Second Sino-Japanese War (1937–1945); the eight years in which Ip Man lost everything",
+                "positions": [
+                  [
+                    17,
+                    19
+                  ]
+                ]
+              },
+              {
+                "zh": "內戰",
+                "pinyin": "nèi zhàn",
+                "meaning": "Civil War (1946–1949) — ended with the Communist victory and the displacement that sent millions to Hong Kong",
+                "positions": [
+                  [
+                    20,
+                    22
+                  ]
+                ]
+              }
+            ]
+          }
         },
         {
           "zh": "最後來到香港，能夠堅持下來，憑的就是這句話。",
@@ -197,7 +269,46 @@
         {
           "zh": "它是全廣東第一家有電梯的堂子，號稱太子進太監出，可以讓你千金散盡。",
           "en": "It was the first to have an elevator. Enter a prince, exit a pauper. You'd spend money like water.",
-          "speaker": "葉問 / Ip Man"
+          "speaker": "葉問 / Ip Man",
+          "annotation": {
+            "headline": "太子進太監出 — The Double Emasculation",
+            "explanation": "The English subtitle gives \"Enter a prince, exit a pauper,\" which captures only the financial register. 太監 is not a pauper — it is a eunuch, a castrated man. The Gold Pavilion brothel is said to reduce you not only to bankruptcy (千金散盡, your fortune exhausted) but to symbolic emasculation: you enter as a 太子 (crown prince), whole and powerful, and you leave as a 太監, stripped of both wealth and masculine potency. The joke is that the pleasure house is where men go to become less of a man. The phrase operates simultaneously as a boast — this place is that good — and as a warning, and it places the Gold Pavilion squarely within the classic Chinese literary tradition of establishments that consume men whole.",
+            "key_terms": [
+              {
+                "zh": "太子",
+                "pinyin": "tài zǐ",
+                "meaning": "Crown prince — a man at the height of power and wholeness",
+                "positions": [
+                  [
+                    17,
+                    19
+                  ]
+                ]
+              },
+              {
+                "zh": "太監",
+                "pinyin": "tài jiàn",
+                "meaning": "Eunuch — a castrated man; the English 'pauper' loses the dimension of bodily and sexual stripping",
+                "positions": [
+                  [
+                    20,
+                    22
+                  ]
+                ]
+              },
+              {
+                "zh": "千金散盡",
+                "pinyin": "qiān jīn sàn jìn",
+                "meaning": "Fortune exhausted — an allusion to Li Bai's line 千金散盡還復來 (\"when all my gold is gone, it will come again\"), here used without the consoling second half",
+                "positions": [
+                  [
+                    28,
+                    32
+                  ]
+                ]
+              }
+            ]
+          }
         },
         {
           "zh": "那裡也是我們師兄弟常聚的地方，風塵之中，必有性情中人，其中不少是藏身不露的高手。",
@@ -237,7 +348,35 @@
         {
           "zh": "民國十八年；兩廣國術館成立，五虎下江南。就是我和李任潮先生在這座金樓談定的。",
           "en": "In 1929, the First Southern Martial Arts Academy was founded under my supervision after talks here in the Gold Pavilion.",
-          "speaker": "宮寶森 / Gong Yutian"
+          "speaker": "宮寶森 / Gong Yutian",
+          "annotation": {
+            "headline": "五虎下江南 — The Five Tigers Go South",
+            "explanation": "This is a real historical event. In 1929, the ROC government's Central Guoshu Institute sent five northern martial arts masters to Guangdong to establish the 兩廣國術館 (Lianguang Martial Arts Academy). They were Fu Zhensong (Bagua), Gu Ruzhang (Northern Shaolin Iron Palm), Wan Laisheng (Six Harmonies), Li Xianwu (Tan Tui), and Wang Shaochou (Cha Quan). They were challenged continuously by southern stylists throughout Guangdong and reportedly won every bout — a source of lasting tension between northern and southern schools. 精武會 (Jingwu Athletic Association), which is hosting Gong Yutian's ceremony, was founded in Shanghai in 1910 — China's first non-sectarian martial arts organization, representing no single style and dedicated to martial arts as national physical culture; by 1920 it had branches across Southeast Asia. 中華武士會 was its northern counterpart, founded in Tianjin around 1911 by masters of Xingyi, Bagua, and Taiji. Both organizations were central to the Republican-era effort to modernize and unify martial arts as part of national strengthening (國術運動).",
+            "key_terms": [
+              {
+                "zh": "兩廣國術館",
+                "pinyin": "liǎng guǎng guó shù guǎn",
+                "meaning": "Lianguang (Guangdong-Guangxi) Martial Arts Academy — founded 1929, the institutional result of the Five Tigers' mission south",
+                "positions": [
+                  [
+                    6,
+                    11
+                  ]
+                ]
+              },
+              {
+                "zh": "五虎下江南",
+                "pinyin": "wǔ hǔ xià jiāng nán",
+                "meaning": "Five Tigers Go South — the five northern masters sent to Guangdong in 1929: Fu Zhensong, Gu Ruzhang, Wan Laisheng, Li Xianwu, Wang Shaochou",
+                "positions": [
+                  [
+                    14,
+                    19
+                  ]
+                ]
+              }
+            ]
+          }
         },
         {
           "zh": "我是老了，新人要出頭，我的引退儀式在北邊辦過一次。",
@@ -477,7 +616,46 @@
         {
           "zh": "暗事好做，明事難成。我們都老了，你一輩子名聲不容易。跟晚輩掄拳頭揮胳膊的事就別幹了，勉強了味道就壞了。",
           "en": "The South may secede. It's no time for diplomacy. We're getting old. Don't risk your reputation. Ip is more than he appears to be. Force it, things could go wrong.",
-          "speaker": "丁連山 / Ding Lianshan"
+          "speaker": "丁連山 / Ding Lianshan",
+          "annotation": {
+            "headline": "暗事好做，明事難成 — A Near-Complete Mistranslation",
+            "explanation": "The English subtitle reads: \"The South may secede. It's no time for diplomacy.\" This has no relationship to the Chinese. The actual line — spoken by Ding Lianshan to Gong Yutian — contains no mention of secession or diplomacy. 暗事好做，明事難成 is a martial-world aphorism: \"Covert matters are easy to accomplish; overt, public ones are hard to pull off.\" The logic: private actions carry no public stakes; once something becomes a formal, visible contest, it acquires the weight of reputation, precedent, and face (面子). Ding is advising Gong Yutian specifically not to publicly challenge a younger generation fighter — that a public fight, win or lose, is bad for a man whose reputation has taken a lifetime to build. 勉強了味道就壞了 — \"force it and the taste goes sour\" — is the final idiom: some things only work when they arise naturally; pressure ruins them. The entire speech is a warning about the difference between private wisdom and public exposure, and the subtitle replaces it with invented political content.",
+            "key_terms": [
+              {
+                "zh": "暗事好做",
+                "pinyin": "àn shì hǎo zuò",
+                "meaning": "Covert matters are easy to accomplish — private action without public stakes",
+                "positions": [
+                  [
+                    0,
+                    4
+                  ]
+                ]
+              },
+              {
+                "zh": "明事難成",
+                "pinyin": "míng shì nán chéng",
+                "meaning": "Overt, public matters are hard to pull off — formal action carries the full weight of face and reputation",
+                "positions": [
+                  [
+                    5,
+                    9
+                  ]
+                ]
+              },
+              {
+                "zh": "勉強",
+                "pinyin": "miǎn qiǎng",
+                "meaning": "To force something that should arise naturally — a recurring warning throughout the film",
+                "positions": [
+                  [
+                    42,
+                    44
+                  ]
+                ]
+              }
+            ]
+          }
         },
         {
           "zh": "寶森不是想當英雄，是想造時勢。現在這爐子裡呀，需要這根新柴。",
@@ -901,7 +1079,35 @@
         {
           "zh": "千古無同局。葉底是否能夠藏花，有機會，我們再印證。",
           "en": "It went your way this time. Who knows what next time will bring.",
-          "speaker": "葉問 / Ip Man"
+          "speaker": "葉問 / Ip Man",
+          "annotation": {
+            "headline": "千古無同局 — A Go Proverb Reduced to a Shrug",
+            "explanation": "The English subtitle gives: \"It went your way this time. Who knows what next time will bring.\" This deflates a precise classical reference into a casual acknowledgment of defeat. 千古無同局 is a classical weiqi (Go) proverb: \"Through all of antiquity, no two games are the same.\" It is a statement about the infinite variety of the board — no position ever exactly repeats across all the games ever played. Ip Man is not merely conceding the bout; he is invoking the inexhaustibility of encounter itself. The full line — 千古無同局。葉底是否能夠藏花，有機會，我們再印證 — reaches toward Gong Er with a question about the flower hidden beneath the leaf (her signature technique), and 印證 (to verify through future experience) is an invitation disguised as philosophical observation. The subtitle loses the Go reference, the metaphysics of uniqueness, and the quiet opening toward what might yet happen between them.",
+            "key_terms": [
+              {
+                "zh": "千古無同局",
+                "pinyin": "qiān gǔ wú tóng jú",
+                "meaning": "Through all of antiquity, no two games (of Go) are the same — an assertion of infinite, unrepeatable variety in every encounter",
+                "positions": [
+                  [
+                    0,
+                    5
+                  ]
+                ]
+              },
+              {
+                "zh": "印證",
+                "pinyin": "yìn zhèng",
+                "meaning": "To verify through future experience — not mere confirmation but a meeting of evidence with reality; used here as a concealed invitation",
+                "positions": [
+                  [
+                    22,
+                    24
+                  ]
+                ]
+              }
+            ]
+          }
         },
         {
           "zh": "你來，我等著。",
@@ -1248,7 +1454,46 @@
         {
           "zh": "兵無常勢，水無常形。要是回不了頭呢？",
           "en": "A warrior molds himself to the times. What if I can't turn back?",
-          "speaker": "馬三 / Ma San"
+          "speaker": "馬三 / Ma San",
+          "annotation": {
+            "headline": "兵無常勢，水無常形 — Sun Tzu Perverted",
+            "explanation": "This is Sun Tzu, Art of War, Chapter 6 (虛實篇 — Weak Points and Strong). The full original passage: 夫兵形象水，水之形，避高而趨下；兵之形，避實而擊虛。水因地而制流，兵因敵而制勝。故兵無常勢，水無常形；能因敵變化而取勝，謂之神 — \"Military formations resemble water. Water avoids high ground and flows downward; armies avoid strength and strike weakness. Water shapes its course according to terrain; armies shape victory according to the enemy. Thus there is no constant formation in warfare, no constant shape in water. He who wins by adapting to the enemy is called divine.\"\n\nSun Tzu's point is tactical flexibility in the strict service of victory — fluid means, fixed goal. Ma San quotes this to justify collaborating with the Japanese occupiers, turning a maxim about how to fight into a license for ethical surrender. He invokes \"no constant formation\" to mean there is no constant morality either. The perversion is complete: the text describes how to adapt your methods to defeat your enemy; Ma San uses it to justify becoming his enemy's instrument. Gong Yutian's immediate expulsion — without argument — is his judgment that this misreading is not correctable.",
+            "key_terms": [
+              {
+                "zh": "兵無常勢",
+                "pinyin": "bīng wú cháng shì",
+                "meaning": "There is no constant formation in warfare — Sun Tzu Ch. 6; tactical flexibility in the service of victory",
+                "positions": [
+                  [
+                    0,
+                    4
+                  ]
+                ]
+              },
+              {
+                "zh": "水無常形",
+                "pinyin": "shuǐ wú cháng xíng",
+                "meaning": "Water has no constant shape — the paired image; adaptation of form, not of principle",
+                "positions": [
+                  [
+                    5,
+                    9
+                  ]
+                ]
+              },
+              {
+                "zh": "回不了頭",
+                "pinyin": "huí bu liǎo tóu",
+                "meaning": "Cannot turn back — Ma San's admission that his collaboration is already irreversible; Gong Yutian had just taught him that the key to 老猿掛印 is precisely this turning back",
+                "positions": [
+                  [
+                    12,
+                    16
+                  ]
+                ]
+              }
+            ]
+          }
         },
         {
           "zh": "那我宮家的東西。就不能留在你身上了。",
@@ -1693,7 +1938,24 @@
         {
           "zh": "唉，人哪，此一時彼一時。過什麼河，脫什麼鞋。有多大屁股就穿多大褲衩。來到了香港，我只能抽這種煙了。過去在老家，抽一口正宗的關東葉子煙，講究多了。要學會「溫、良、恭、儉、讓」。特別這個讓字，比方說我現在抽煙，對方坐了一個我不認識的人，我也要讓「抽兩口吧」。對方不管會抽不會抽，都要接受邀請，否則就是不給面子。葉先生，抽兩口吧。",
           "en": "People — they change with the times. Wear shoes that suit the crossing, and underpants that fit your ass. In Hong Kong, I can only afford these cigarettes. Back home, I smoked real Manchurian tobacco. Now that was smoking. Be mild, good, respectful, thrifty, deferential. Deferential is the key. Let's say I'm smoking. A stranger sits down. I defer to him: Have a smoke. Even if he doesn't smoke, he must accept or he'll make me lose face. Mr Ip, have a smoke.",
-          "speaker": "丁連山 / Ding Lianshan"
+          "speaker": "丁連山 / Ding Lianshan",
+          "annotation": {
+            "headline": "溫良恭儉讓 — Confucius in a Barber's Chair",
+            "explanation": "This is a verbatim quotation from the Analects of Confucius, Book 1, Chapter 10 (學而篇·第十章). Ziqin asks Zigong: whenever Confucius visits a state, he always learns about its governance — does he seek this information, or is it offered to him? Zigong replies: the Master obtains it through these five qualities — 溫 (warmth), 良 (goodness), 恭 (respectfulness), 儉 (frugality/restraint), 讓 (deference/yielding). The original context is specifically about how Confucius gained access to political intelligence through personal virtue rather than aggression: his character opened every door that force could not.\n\nDing Lianshan cites this ancient text of social grace, then uses it to illustrate the ritual of offering a cigarette to a stranger — a miniature Confucian performance of deference. The irony is heavy: this man who has just explained that \"the face offers cigarettes while the shadows do the killing\" is quoting the Sage's five virtues as his operating manual. The 讓 (deference) he demonstrates is real and practiced, and so is the violence underneath it. The Analects was never meant to describe this kind of man, but Ding Lianshan wears it perfectly.",
+            "key_terms": [
+              {
+                "zh": "溫、良、恭、儉、讓",
+                "pinyin": "wēn liáng gōng jiǎn ràng",
+                "meaning": "Warmth, goodness, respectfulness, frugality, deference — Analects 1:10; the five virtues through which Confucius opened every door he encountered",
+                "positions": [
+                  [
+                    76,
+                    85
+                  ]
+                ]
+              }
+            ]
+          }
         },
         {
           "zh": "謝謝！",
@@ -1948,7 +2210,35 @@
         {
           "zh": "宮先生學過戲呀？皮毛而已。當年，要真擰著性子把戲學下來，我定會是臺上的角兒。千回百轉，一悲一喜。唱膩了楊門女將，就換遊園驚夢唱唱。那時候，你在台下，我唱你看。想想那樣的相遇也怪有意思的。",
           "en": "Has Miss Gong studied opera? Just the basics. Back then if I'd put my mind to it, I'd be an opera star. All those tales, happy and sad... If I tired of Yang Family Women Generals, I'd sing Waking from a Dream. Think of it — me on stage, you in the audience, meeting that way. Wouldn't that be something?",
-          "speaker": "葉問 / Ip Man & 宮二 / Gong Er"
+          "speaker": "葉問 / Ip Man & 宮二 / Gong Er",
+          "annotation": {
+            "headline": "遊園驚夢 — The Peony Pavilion and the Love That Cannot Be",
+            "explanation": "遊園驚夢 (\"Strolling the Garden, Startled from a Dream\") is Scene 10 of 牡丹亭 (The Peony Pavilion, 1598) by Tang Xianzu — the most celebrated passage in the entire kunqu repertoire, performed continuously for over four centuries. In it, Du Liniang visits a neglected spring garden, is overwhelmed by its beauty, falls asleep under the peony pavilion, and dreams of a young scholar who courts her passionately. She wakes, cannot recover from longing for a man she met only in a dream, wastes away, and dies. Three years later the scholar finds her self-portrait, falls in love with it, digs up her grave, and restores her to life.\n\nGong Er is imagining herself in this exact role — the woman whose desire for a man she cannot have exists only in the space outside ordinary life, who dies for an impossible love. She mentions it to Ip Man directly: me on stage, you in the audience. The pairing with 楊門女將 (Yang Family Women Generals) — about women warriors who fight on after all their men have died in battle — describes Gong Er's two possible selves: the woman who keeps going alone, and the woman who dies of what she cannot have. She has been both. The subtitle \"A Dream of Love\" is generic; what is actually named is one of the great literary texts of unconsummated desire in the Chinese tradition.",
+            "key_terms": [
+              {
+                "zh": "楊門女將",
+                "pinyin": "yáng mén nǚ jiàng",
+                "meaning": "Yang Family Women Generals — a famous opera about women of the Song dynasty warrior clan who fight on after their husbands fall; the arc of Gong Er's martial life",
+                "positions": [
+                  [
+                    51,
+                    55
+                  ]
+                ]
+              },
+              {
+                "zh": "遊園驚夢",
+                "pinyin": "yóu yuán jīng mèng",
+                "meaning": "Scene 10 of 牡丹亭 (The Peony Pavilion, Tang Xianzu, 1598) — the woman who dies of longing for a man met only in a dream; the arc of Gong Er's inner life",
+                "positions": [
+                  [
+                    58,
+                    62
+                  ]
+                ]
+              }
+            ]
+          }
         },
         {
           "zh": "我怕到時候一票難求呀。你真捧場，您看戲，我送票。",
@@ -2155,7 +2445,46 @@
         {
           "zh": "我踏出這一步的時候，我以為有一天我還會回來，沒想到那次是最後一面。從此我只有眼前路，沒有身後身，回頭無岸。",
           "en": "When I left her that time, I thought I'd be able to return. But it was the last time I saw her. After that I only had the path ahead. There was no turning back, and no road home.",
-          "speaker": "葉問 / Ip Man"
+          "speaker": "葉問 / Ip Man",
+          "annotation": {
+            "headline": "只有眼前路，沒有身後身 — Gong Er's Lesson Becomes Ip Man's Fate",
+            "explanation": "In Scene 22, Gong Er taught Ip Man: 拳不能只有眼前路，沒有身後身 — \"Kungfu cannot have only the road ahead and nothing behind. Look behind you as well.\" It was a lesson about martial awareness, about the 64 Hands, about humility before a larger world.\n\nHere, Ip Man uses her exact phrase to describe his life after leaving Foshan: 從此我只有眼前路，沒有身後身，回頭無岸 — \"From then on I had only the road ahead. Nothing behind me. To turn back, no shore.\" He has become the proof of her lesson — not because he failed to learn it, but because history made it impossible to live otherwise. The classical military phrase 回頭無岸 (to turn back, no shore) describes a crossing from which return is structurally impossible, not merely difficult. He learned her words about the necessity of looking back, and became the man for whom turning back was foreclosed entirely. The circularity is the film's deepest irony: the lesson she gave him describes the loss of her.",
+            "key_terms": [
+              {
+                "zh": "眼前路",
+                "pinyin": "yǎn qián lù",
+                "meaning": "The road ahead — first used by Gong Er in Scene 22 as a martial principle; here it becomes the totality of Ip Man's remaining life",
+                "positions": [
+                  [
+                    38,
+                    41
+                  ]
+                ]
+              },
+              {
+                "zh": "身後身",
+                "pinyin": "shēn hòu shēn",
+                "meaning": "What is behind you — Gong Er's term for awareness of one's back; here its absence marks the impossibility of return",
+                "positions": [
+                  [
+                    44,
+                    47
+                  ]
+                ]
+              },
+              {
+                "zh": "回頭無岸",
+                "pinyin": "huí tóu wú àn",
+                "meaning": "To turn back, no shore — a crossing from which return is structurally impossible; echoes Ma San's 回不了頭 and Gong Er's own 寧可一思進",
+                "positions": [
+                  [
+                    48,
+                    52
+                  ]
+                ]
+              }
+            ]
+          }
         }
       ],
       "location": "佛山",
